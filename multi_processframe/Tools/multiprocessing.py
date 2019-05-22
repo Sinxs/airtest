@@ -10,7 +10,7 @@ def  entrance(processNo,devices):
     start_Time = gettimer.get_time()
     print(start_Time,f"进入第《-{processNo}-》进程----{devices}")
     is_Connect = ""
-    os.system("adb connect" + devices) # 确保端口号已经打开
+    os.system("adb connect " + devices) # 确保端口号已经打开
     try:
         connect_device("Android:///" + devices)
 

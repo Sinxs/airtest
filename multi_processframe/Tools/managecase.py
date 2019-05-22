@@ -26,7 +26,7 @@ def run_testcase(devices):
         file_Name = "TC_" + config_Test_List[i] # 把配置列表中的用例加上tc标志
         if file_Name in script_List:
             cases.append(file_Name)
-            if i == len(script_List) - 1:  # 当TestCase全部用例循环加载之后
+            if i == len(config_Test_List) - 1:  # 当TestCase全部用例循环加载之后
 
                 for b in range(devices_List.index(devices)+1): # 根据设备的数量循环把用例分成若干等分
                     split_Cases = cases[math.floor( b / len(devices_List) * len(cases)):math.floor((b + 1) / len(devices_List) * len(cases))]  # 到这里已经把当前用例给分片了
@@ -38,4 +38,5 @@ def run_testcase(devices):
     # 获取设备名称
     devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.name").read()
     nowtime=time.strftime("%H-%M-%S")
-    unittest_Report.report(filename=devices_name.split()[0] + "_" + str(nowtime), description="龙之谷-东南亚+8版本", report_dir=report_Path)
+    reportname = devices_name.split()[0] + "_" + str(nowtime)
+    unittest_Report.report(filename=reportname, description="龙之谷-东南亚+8版本", report_dir=report_Path)

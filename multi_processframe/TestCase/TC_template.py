@@ -8,7 +8,7 @@ from multi_processframe.Tools import initial, screenshot
 
 
 def Main(devices):
-    class TCmainectype(unittest.TestCase):
+    class TCtemplate(unittest.TestCase):
         u'''测试用例102的集合'''
 
         @classmethod
@@ -37,5 +37,5 @@ def Main(devices):
             u'''这里放需要在所有用例后执行的部分'''
             pass
 
-    srcSuite = unittest.makeSuite(TCmainectype)
+    srcSuite = unittest.makeSuite(TCtemplate)
     return srcSuite
