@@ -40,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multi_processframe/TestCase/TC_mainectype.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="270">
+              <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
               <folding>
                 <element signature="e#47#62#0" expanded="true" />
               </folding>
@@ -50,6 +50,9 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/multi_processframe/Tools/initial.py" root0="SKIP_INSPECTION" />
@@ -82,11 +85,12 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1918" />
     <option name="width" value="1096" />
     <option name="height" value="1936" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -107,24 +111,6 @@
             <path>
               <item name="AutoTest_Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="AutoTest_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="multi_processframe" type="462c0819:PsiDirectoryNode" />
-              <item name="Report" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AutoTest_Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AutoTest_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="multi_processframe" type="462c0819:PsiDirectoryNode" />
-              <item name="TestCase" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AutoTest_Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AutoTest_Project" type="462c0819:PsiDirectoryNode" />
-              <item name="multi_processframe" type="462c0819:PsiDirectoryNode" />
-              <item name="Tools" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AutoTest_Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AutoTest_Project" type="462c0819:PsiDirectoryNode" />
               <item name="Script" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -135,11 +121,12 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -198,23 +185,22 @@
       <option name="presentableId" value="Default" />
       <updated>1558430638272</updated>
       <workItem from="1558430640972" duration="5493000" />
-      <workItem from="1558490702286" duration="574000" />
+      <workItem from="1558490702286" duration="1199000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6067000" />
+    <option name="totallyTimeSpent" value="6692000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1096" height="1936" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25772202" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.583472" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.5837958" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39988908" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -377,8 +363,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/multi_processframe/TestCase/TC_mainectype.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="270">
+          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
           <folding>
             <element signature="e#47#62#0" expanded="true" />
           </folding>
