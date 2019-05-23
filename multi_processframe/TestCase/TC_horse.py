@@ -23,8 +23,12 @@ def Main(devices):
             """
             这是测试坐骑的用例:return: 返回最后一个坐骑的按钮状态
             """
-            self.assertEqual("Btnhave", horse.test_Horse(devices))
-            screenshot.get_screen_shot(time.time(), devices, "坐骑功能测试脚本")
+            try:
+                self.assertEqual("Btnhave", horse.test_Horse(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "坐骑功能测试脚本")
+                self.assertEqual("此条的信息请忽略",start_Screenshot)
 
         def tearDown(self):
             u'''这里放需要在每条用例后执行的部分'''

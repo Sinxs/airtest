@@ -20,9 +20,7 @@ def get_screen_shot(start,devices,action):
     """
     report_Path = os.path.join(os.getcwd(), "Report") # 获取报告路径 D:\AirtestIDE\Case\Common\Report
     screen_Shot = os.path.join(report_Path,"Screenshot") # 获取截图路径 D:\AirtestIDE\Case\Common\Report\Screenshot
-    print(screen_Shot)
     picture_PNG = screen_Shot + "\\" +time.strftime('%Y%m%d_%H%M%S',time.localtime(start)) + "_" +  "_" + action+ ".png" # 通过传参给截图命名，时间发生的时间
-    print(picture_PNG)
     os.system("adb -s " + devices + " shell screencap -p /sdcard/screencap.png") # 调用adb命令实现截图
     file_Path = open(picture_PNG, "a+", encoding="utf-8") # 打开文件启用添加模式
     file_Path.close() # 关闭打开的文件路径

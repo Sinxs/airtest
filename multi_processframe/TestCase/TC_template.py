@@ -24,9 +24,12 @@ def Main(devices):
             """
             这是测试坐骑的用例:return: 返回关卡完成回到主界面
             """
-
-            self.assertEqual("Duck", main_ectype.test_Chapter_One(devices))
-            screenshot.get_screen_shot(time.time(), devices, "主线关卡测试脚本")
+            try:
+                self.assertEqual("Btnhave", "需要测试的模块")
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "测试模块的截图名称")
+                self.assertEqual("此条的信息请忽略",start_Screenshot)
 
         def tearDown(self):
             u'''这里放需要在每条用例后执行的部分'''
