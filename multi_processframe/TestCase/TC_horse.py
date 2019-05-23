@@ -19,9 +19,9 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def  test_test_Horse(self):
+        def  test_Horse(self):
             """
-            这是测试坐骑的用例:return: 返回最后一个坐骑的按钮状态
+            返回最后一个坐骑的按钮状态
             """
             try:
                 self.assertEqual("Btnhave", horse.test_Horse(devices))

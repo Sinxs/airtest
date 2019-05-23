@@ -20,9 +20,9 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_test_Horse(self):
+        def test_Chapter_One(self):
             """
-            这是测试坐骑的用例:return: 返回关卡完成回到主界面
+            返回关卡完成回到主界面
             """
             try:
                 self.assertEqual("Duck", main_ectype.test_Chapter_One(devices))
