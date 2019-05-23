@@ -8,7 +8,7 @@ from multi_processframe.Tools import initial, screenshot
 
 
 def Main(devices):
-    class TCSkillProf6(unittest.TestCase):
+    class TCSkillthug(unittest.TestCase):
         u'''测试用例以下为刺客分支的集合'''
 
         @classmethod
@@ -26,7 +26,7 @@ def Main(devices):
             return: 返回关卡完成回到主界面
             """
             print("测试Prof6-转职为刺客分支、暗之使徒分支、烈分支")
-            self.assertEqual("烈", Skill.test_Prof1_23(devices))
+            self.assertEqual("烈", Skill.test_thug_1(devices))
             screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
 
         def test_Prof1_24(self):
@@ -35,7 +35,7 @@ def Main(devices):
             return: 返回关卡完成回到主界面
             """
             print("测试Prof6-转职为刺客分支、暗之使徒分支、影分支")
-            self.assertEqual("影", Skill.test_Prof1_24(devices))
+            self.assertEqual("影", Skill.test_thug_2(devices))
             screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
 
         def test_Prof1_25(self):
@@ -44,7 +44,7 @@ def Main(devices):
             return: 返回关卡完成回到主界面
             """
             print("测试Prof6-转职为刺客分支、光明之怒分支、耀分支")
-            self.assertEqual("耀", Skill.test_Prof1_25(devices))
+            self.assertEqual("耀", Skill.test_thug_3(devices))
             screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
 
         def test_Prof1_26(self):
@@ -53,7 +53,7 @@ def Main(devices):
             return: 返回关卡完成回到主界面
             """
             print("测试Prof6-转职为刺客分支、光明之怒分支、暗分支")
-            self.assertEqual("暗", Skill.test_Prof1_26(devices))
+            self.assertEqual("暗", Skill.test_thug_4(devices))
             screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
 
 
@@ -66,5 +66,5 @@ def Main(devices):
             u'''这里放需要在所有用例后执行的部分'''
             pass
 
-    srcSuite = unittest.makeSuite(TCSkillProf6)
+    srcSuite = unittest.makeSuite(TCSkillthug)
     return srcSuite

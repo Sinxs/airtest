@@ -1,4 +1,4 @@
-from multi_processframe.TestCase import TC_horse, TC_mainectype, TC_title,TC_skillProf1,\
-    TC_skillProf2,TC_skillProf3,TC_skillProf4,TC_skillProf5,TC_skillProf6,TC_skillProf7
+from multi_processframe.TestCase import TC_horse, TC_mainectype, TC_title,TC_skillwarrior,\
+    TC_skillarcher,TC_skillmagic,TC_skillpastor,TC_skillscholar,TC_skillthug,TC_skilldance
 
 

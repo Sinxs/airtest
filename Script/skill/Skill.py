@@ -159,7 +159,7 @@ print("start...")
 ---------------------------------------------以下为战士分支----------------------------------
 """
 
-def test_Prof1_1(devices):  # Prof1-转职为战士分支、剑圣分支、月之领主职业
+def test_warrior_1(devices):  # Prof1-转职为战士分支、剑圣分支、月之领主职业
     """
     转职为战士分支、剑圣分支、月之领主职业
     :return:
@@ -178,7 +178,7 @@ def test_Prof1_1(devices):  # Prof1-转职为战士分支、剑圣分支、月�
     juexing(poco)  # 点击觉醒
     return Skill(poco)  # 测试技能模块
 
-def test_Prof1_2(devices):  #  Prof1-转职为战士分支、剑圣分支、剑皇职业
+def test_warrior_2(devices):  #  Prof1-转职为战士分支、剑圣分支、剑皇职业
     """
      转职为战士分支、剑圣分支、剑皇职业
     :return:
@@ -199,7 +199,7 @@ def test_Prof1_2(devices):  #  Prof1-转职为战士分支、剑圣分支、剑�
 
 
 
-def test_Prof1_3(devices): #  Prof1- 转职为战士分支、剑圣分支、复仇者、黑暗复仇者职业
+def test_warrior_3(devices): #  Prof1- 转职为战士分支、剑圣分支、复仇者、黑暗复仇者职业
     """
      转职为战士分支、剑圣分支、复仇者、黑暗复仇者职业
     :return:
@@ -220,7 +220,7 @@ def test_Prof1_3(devices): #  Prof1- 转职为战士分支、剑圣分支、复�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_4(devices):  # Prof1- 转职为战士分支、战皇分支、狂战士者职业
+def test_warrior_4(devices):  # Prof1- 转职为战士分支、战皇分支、狂战士者职业
     """
        Prof1- 转职为战士分支、战皇分支、狂战士职业
     :return:
@@ -241,7 +241,7 @@ def test_Prof1_4(devices):  # Prof1- 转职为战士分支、战皇分支、狂�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_5(devices):  # Prof1- 转职为战士分支、战神分支、毁灭者者职业
+def test_warrior_5(devices):  # Prof1- 转职为战士分支、战神分支、毁灭者者职业
     """
        Prof1- 转职为战士分支、战神分支、毁灭者者职业
     :return:
@@ -267,7 +267,7 @@ def test_Prof1_5(devices):  # Prof1- 转职为战士分支、战神分支、毁�
 """
 
 
-def test_Prof1_6(devices):  # Prof2-转职为弓箭手分支、箭神分支、魔羽分支
+def test_Archer_1(devices):  # Prof2-转职为弓箭手分支、箭神分支、魔羽分支
     """
        Prof2-转职为弓箭手分支、箭神分支、魔羽分支
     :return:
@@ -288,7 +288,7 @@ def test_Prof1_6(devices):  # Prof2-转职为弓箭手分支、箭神分支、�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_7(devices):  # Prof2-转职为弓箭手分支、箭神分支、狙翎分支
+def test_Archer_2(devices):  # Prof2-转职为弓箭手分支、箭神分支、狙翎分支
     """
        Prof2-转职为弓箭手分支、箭神分支、魔羽分支
     :return:
@@ -309,7 +309,7 @@ def test_Prof1_7(devices):  # Prof2-转职为弓箭手分支、箭神分支、�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_8(devices):  # Prof2-转职为弓箭手分支、猎人分支、银色猎人分支
+def test_Archer_3(devices):  # Prof2-转职为弓箭手分支、猎人分支、银色猎人分支
     """
        Prof2-转职为弓箭手分支、猎人分支、银色猎人分支
     :return:
@@ -330,7 +330,7 @@ def test_Prof1_8(devices):  # Prof2-转职为弓箭手分支、猎人分支、�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_9(devices):  # Prof2-转职为弓箭手分支、游侠分支、风行者分支
+def test_Archer_4(devices):  # Prof2-转职为弓箭手分支、游侠分支、风行者分支
     """
        Prof2-转职为弓箭手分支、游侠分支、风行者分支
     :return:
@@ -351,7 +351,7 @@ def test_Prof1_9(devices):  # Prof2-转职为弓箭手分支、游侠分支、�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_10(devices):  # Prof2-转职为弓箭手分支、游侠分支、影舞者分支
+def test_Archer_5(devices):  # Prof2-转职为弓箭手分支、游侠分支、影舞者分支
     """
        Prof2-转职为弓箭手分支、游侠分支、影舞者分支
     :return:
@@ -377,7 +377,7 @@ def test_Prof1_10(devices):  # Prof2-转职为弓箭手分支、游侠分支、�
 """
 
 
-def test_Prof1_11(devices):  # Prof3-转职为魔法师分支、元素分支、冰灵分支
+def test_magic_1(devices):  # Prof3-转职为魔法师分支、元素分支、冰灵分支
     """
        Prof3-转职为魔法师分支、元素分支、冰灵分支
     :return:
@@ -398,7 +398,7 @@ def test_Prof1_11(devices):  # Prof3-转职为魔法师分支、元素分支、�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_12(devices):  # Prof3-转职为魔法师分支、元素分支、火舞分支
+def test_magic_2(devices):  # Prof3-转职为魔法师分支、元素分支、火舞分支
     """
         Prof3-转职为魔法师分支、元素分支、火舞分支
     :return:
@@ -419,7 +419,7 @@ def test_Prof1_12(devices):  # Prof3-转职为魔法师分支、元素分支、�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_13(devices):  # Prof3-转职为魔法师分支、魔导师分支、黑暗女王分支
+def test_magic_3(devices):  # Prof3-转职为魔法师分支、魔导师分支、黑暗女王分支
     """
        Prof3-转职为魔法师分支、魔导师分支、黑暗女王分支
     :return:
@@ -440,7 +440,7 @@ def test_Prof1_13(devices):  # Prof3-转职为魔法师分支、魔导师分支�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_14(devices):  # Prof3-转职为魔法师分支、魔导师分支、时空领主分支
+def test_magic_4(devices):  # Prof3-转职为魔法师分支、魔导师分支、时空领主分支
     """
        Prof3-转职为魔法师分支、魔导师分支、时空领主分支
     :return:
@@ -466,7 +466,7 @@ def test_Prof1_14(devices):  # Prof3-转职为魔法师分支、魔导师分支�
 """
 
 
-def test_Prof1_15(devices):  # Prof4-转职为牧师分支、祭祀分支、雷神分支
+def test_pastor_1(devices):  # Prof4-转职为牧师分支、祭祀分支、雷神分支
     """
         Prof4-转职为牧师分支、祭祀分支、雷神分支
     :return:
@@ -487,7 +487,7 @@ def test_Prof1_15(devices):  # Prof4-转职为牧师分支、祭祀分支、雷�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_16(devices):  # Prof4-转职为牧师分支、祭祀分支、圣徒分支
+def test_pastor_2(devices):  # Prof4-转职为牧师分支、祭祀分支、圣徒分支
     """
         Prof4-转职为牧师分支、祭祀分支、圣徒分支
     :return:
@@ -508,7 +508,7 @@ def test_Prof1_16(devices):  # Prof4-转职为牧师分支、祭祀分支、圣�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_17(devices):  # Prof4-转职为牧师分支、贤者分支、十字军分支
+def test_pastor_3(devices):  # Prof4-转职为牧师分支、贤者分支、十字军分支
     """
         Prof4-转职为牧师分支、贤者分支、十字军分支
     :return:
@@ -529,7 +529,7 @@ def test_Prof1_17(devices):  # Prof4-转职为牧师分支、贤者分支、十�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_18(devices):  # Prof4-转职为牧师分支、贤者分支、圣骑士分支
+def test_pastor_4(devices):  # Prof4-转职为牧师分支、贤者分支、圣骑士分支
     """
         Prof4-转职为牧师分支、贤者分支、圣骑士分支
     :return:
@@ -555,7 +555,7 @@ def test_Prof1_18(devices):  # Prof4-转职为牧师分支、贤者分支、圣�
 """
 
 
-def test_Prof1_19(devices):  # Prof5-转职为学者分支、工程师分支、重炮手分支
+def test_scholar_1(devices):  # Prof5-转职为学者分支、工程师分支、重炮手分支
     """
         Prof5-转职为学者分支、工程师分支、重炮手分支
     :return:
@@ -576,7 +576,7 @@ def test_Prof1_19(devices):  # Prof5-转职为学者分支、工程师分支、�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_20(devices):  # Prof5-转职为学者分支、工程师分支、机械大师分支
+def test_scholar_2(devices):  # Prof5-转职为学者分支、工程师分支、机械大师分支
     """
         Prof5-转职为学者分支、工程师分支、机械大师分支
     :return:
@@ -597,7 +597,7 @@ def test_Prof1_20(devices):  # Prof5-转职为学者分支、工程师分支、�
     return Skill(poco)  # 测试技能模块
 
 
-def test_Prof1_21(devices):  # Prof5-转职为学者分支、炼金术士分支、炼金圣士分支
+def test_scholar_3(devices):  # Prof5-转职为学者分支、炼金术士分支、炼金圣士分支
     """
         Prof5-转职为学者分支、炼金术士分支、炼金圣士分支
     :return:
@@ -620,7 +620,7 @@ def test_Prof1_21(devices):  # Prof5-转职为学者分支、炼金术士分支�
 
 
 
-def test_Prof1_22(devices):  # Prof5-转职为学者分支、炼金术士分支、药剂师分支
+def test_scholar_4(devices):  # Prof5-转职为学者分支、炼金术士分支、药剂师分支
     """
          Prof5-转职为学者分支、炼金术士分支、药剂师分支
     :return:
@@ -647,7 +647,7 @@ def test_Prof1_22(devices):  # Prof5-转职为学者分支、炼金术士分支�
 """
 
 
-def test_Prof1_23(devices):  # Prof6-转职为刺客分支、暗之使徒分支、烈分支
+def test_thug_1(devices):  # Prof6-转职为刺客分支、暗之使徒分支、烈分支
     """
          Prof6-转职为刺客分支、暗之使徒分支、烈分支
     :return:
@@ -671,7 +671,7 @@ def test_Prof1_23(devices):  # Prof6-转职为刺客分支、暗之使徒分支�
 
 
 
-def test_Prof1_24(devices):  # Prof6-转职为刺客分支、暗之使徒分支、影分支
+def test_thug_2(devices):  # Prof6-转职为刺客分支、暗之使徒分支、影分支
     """
          Prof6-转职为刺客分支、暗之使徒分支、影分支
     :return:
@@ -695,7 +695,7 @@ def test_Prof1_24(devices):  # Prof6-转职为刺客分支、暗之使徒分支�
 
 
 
-def test_Prof1_25(devices):  # Prof6-转职为刺客分支、光明之怒分支、耀分支
+def test_thug_3(devices):  # Prof6-转职为刺客分支、光明之怒分支、耀分支
     """
          Prof6-转职为刺客分支、光明之怒分支、耀分支
     :return:
@@ -719,7 +719,7 @@ def test_Prof1_25(devices):  # Prof6-转职为刺客分支、光明之怒分支�
 
 
 
-def test_Prof1_26(devices):  # Prof6-转职为刺客分支、光明之怒分支、暗分支
+def test_thug_4(devices):  # Prof6-转职为刺客分支、光明之怒分支、暗分支
     """
          Prof6-转职为刺客分支、光明之怒分支、暗分支
     :return:
@@ -748,7 +748,7 @@ def test_Prof1_26(devices):  # Prof6-转职为刺客分支、光明之怒分支�
 
 
 
-def test_Prof1_27(devices):  # Prof7-转职为舞娘分支、呐喊者分支、噬魂者分支
+def test_dance_1(devices):  # Prof7-转职为舞娘分支、呐喊者分支、噬魂者分支
     """
          Prof7-转职为舞娘分支、呐喊者分支、噬魂者分支
     :return:
@@ -773,7 +773,7 @@ def test_Prof1_27(devices):  # Prof7-转职为舞娘分支、呐喊者分支、�
 
 
 
-def test_Prof1_28(devices):  # Prof7-转职为舞娘分支、呐喊者分支、黑暗萨满分支
+def test_dance_2(devices):  # Prof7-转职为舞娘分支、呐喊者分支、黑暗萨满分支
     """
          Prof7-转职为舞娘分支、呐喊者分支、黑暗萨满分支
     :return:
@@ -795,7 +795,7 @@ def test_Prof1_28(devices):  # Prof7-转职为舞娘分支、呐喊者分支、�
 
 
 
-def test_Prof1_29(devices):  # Prof7-转职为舞娘分支、舞者分支、灵魂舞者分支
+def test_dance_3(devices):  # Prof7-转职为舞娘分支、舞者分支、灵魂舞者分支
     """
          Prof7-转职为舞娘分支、舞者分支、灵魂舞者分支
     :return:
@@ -818,7 +818,7 @@ def test_Prof1_29(devices):  # Prof7-转职为舞娘分支、舞者分支、灵�
 
 
 
-def test_Prof1_30(devices):  # Prof7-转职为舞娘分支、舞者分支、刀锋舞者分支
+def test_dance_4(devices):  # Prof7-转职为舞娘分支、舞者分支、刀锋舞者分支
     """
          Prof7-转职为舞娘分支、舞者分支、刀锋舞者分支
     :return:
