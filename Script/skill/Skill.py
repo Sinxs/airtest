@@ -153,8 +153,7 @@ def Skill_Switchroles(damo,poco):  # 重置当前职业
 
 
 from airtest.core.api import *
-from airtest.cli.parser import cli_setup
-print("start...")
+
 """
 ---------------------------------------------以下为战士分支----------------------------------
 """

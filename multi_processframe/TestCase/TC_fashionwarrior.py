@@ -8,7 +8,7 @@ from multi_processframe.Tools import initial, screenshot
 
 
 def Main(devices):
-    class TC_Prof1fashion(unittest.TestCase):
+    class TC_fashionwarrior(unittest.TestCase):
         u'''测试用例102的集合'''
 
         @classmethod
@@ -22,11 +22,17 @@ def Main(devices):
 
         def test_test_Horse(self):
             """
-            这是测试坐骑的用例:return: 返回关卡完成回到主界面
+            这是测试时装的用例:
+            return: 返回关卡完成回到主界面
             """
+            try:
+                self.assertEqual("衣柜换装", fashion.test_fashionwarrior(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "战士职业时装测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
 
-            self.assertEqual("衣柜换装", fashion.test_Prof1fashion_1(devices))
-            screenshot.get_screen_shot(time.time(), devices, "主线关卡测试脚本")
+
 
         def tearDown(self):
             u'''这里放需要在每条用例后执行的部分'''
@@ -37,5 +43,5 @@ def Main(devices):
             u'''这里放需要在所有用例后执行的部分'''
             pass
 
-    srcSuite = unittest.makeSuite(TC_Prof1fashion)
+    srcSuite = unittest.makeSuite(TC_fashionwarrior)
     return srcSuite

@@ -5,7 +5,9 @@ import unittest, sys, math
 from airtest.core.api import *
 from BeautifulReport import BeautifulReport
 from multi_processframe.Tools import multiprocessing, analysis, emali
-from multi_processframe.TestCase import TC_horse, TC_mainectype
+from multi_processframe.TestCase import TC_horse, TC_mainectype,TC_title,TC_template,TC_skilldance,TC_skillmagic,TC_skillpastor,\
+    TC_skillscholar,TC_skillthug,TC_skillarcher,TC_skillwarrior,TC_fashionarcher,TC_fashiondance,TC_fashionmagic,TC_fashionpastor,\
+    TC_fashionscholar,TC_fashionthug,TC_fashionwarrior
 
 def run_testcase(devices):
     config_Path = os.path.join(os.getcwd(), "config.ini")

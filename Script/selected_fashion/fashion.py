@@ -211,7 +211,7 @@ def Switchroles_2(chroles, poco):
 
 
 
-def test_Prof1fashion_1(devices):  # Prof1-转职为战士分支、剑圣分支、月之领主职业
+def test_fashionwarrior(devices):  # Prof1-转职为战士分支、剑圣分支、月之领主职业
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
     Switchroles_1(poco)
@@ -220,8 +220,8 @@ def test_Prof1fashion_1(devices):  # Prof1-转职为战士分支、剑圣分支�
     return poco("title_back").child("Title").get_text()
 
 
-test_Prof1fashion_1(devices)
-def test_Prof1fashion_2():  # Prof2-转职为弓箭手分支、箭神分支、魔羽分支
+
+def test_fashionarcher():  # Prof2-转职为弓箭手分支、箭神分支、魔羽分支
     # fashion_1.Switchroles_1()
     # fashion_1.Switchroles_2(2)
     # fashion_1.Fashion_text1()
