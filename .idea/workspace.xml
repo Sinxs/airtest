@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3136a59e-931c-46f7-a3e7-499769466749" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Script/skill/Skill.py" beforeDir="false" afterPath="$PROJECT_DIR$/Script/skill/Skill.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multi_processframe/TestCase/TC_fashionwarrior.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_processframe/TestCase/TC_fashionwarrior.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillarcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillarcher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skilldance.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skilldance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillmagic.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillmagic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillpastor.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillpastor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillscholar.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillscholar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillthug.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillthug.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillwarrior.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillwarrior.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multi_processframe/TestCase/testcase.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_processframe/TestCase/testcase.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,10 +48,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/multi_processframe/TestCase/TC_skillscholar.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
+              <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="33" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/multi_processframe/TestCase/TC_skillthug.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="489">
               <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
             </state>
           </provider>
@@ -115,13 +114,13 @@
         <option value="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillProf7.py" />
         <option value="$PROJECT_DIR$/multi_processframe/TestCase/TC_fashionwarrior.py" />
         <option value="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillwarrior.py" />
-        <option value="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillthug.py" />
         <option value="$PROJECT_DIR$/Script/skill/Skill.py" />
         <option value="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillarcher.py" />
         <option value="$PROJECT_DIR$/multi_processframe/TestCase/TC_skilldance.py" />
         <option value="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillmagic.py" />
         <option value="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillpastor.py" />
         <option value="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillscholar.py" />
+        <option value="$PROJECT_DIR$/multi_processframe/TestCase/TC_skillthug.py" />
       </list>
     </option>
   </component>
@@ -242,12 +241,12 @@
       <updated>1558430638272</updated>
       <workItem from="1558430640972" duration="5493000" />
       <workItem from="1558490702286" duration="1199000" />
-      <workItem from="1558602007210" duration="2602000" />
+      <workItem from="1558602007210" duration="2801000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9294000" />
+    <option name="totallyTimeSpent" value="9493000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
@@ -468,13 +467,6 @@
     <entry file="file://$PROJECT_DIR$/multi_processframe/TestCase/TC_fashionarcher.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/multi_processframe/TestCase/TC_skillthug.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/multi_processframe/TestCase/TC_mainectype.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-90">
@@ -537,6 +529,13 @@
     <entry file="file://$PROJECT_DIR$/multi_processframe/TestCase/TC_skillscholar.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
+          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="33" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/multi_processframe/TestCase/TC_skillthug.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
           <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
         </state>
       </provider>

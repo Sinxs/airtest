@@ -20,41 +20,65 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_Prof1_23(self):
+        def test_thug_1(self):
             """
             这是测试Prof6-转职为刺客分支、暗之使徒分支、烈分支
             return: 返回关卡完成回到主界面
             """
-            print("测试Prof6-转职为刺客分支、暗之使徒分支、烈分支")
-            self.assertEqual("烈", Skill.test_thug_1(devices))
-            screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+            try:
+                print("测试Prof6-转职为刺客分支、暗之使徒分支、烈分支")
+                self.assertEqual("烈", Skill.test_thug_1(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "刺客角色技能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
 
-        def test_Prof1_24(self):
+
+
+        def test_thug_2(self):
             """
             这是测试Prof6-转职为刺客分支、暗之使徒分支、影分支
             return: 返回关卡完成回到主界面
             """
-            print("测试Prof6-转职为刺客分支、暗之使徒分支、影分支")
-            self.assertEqual("影", Skill.test_thug_2(devices))
-            screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+            try:
+                print("测试Prof6-转职为刺客分支、暗之使徒分支、影分支")
+                self.assertEqual("影", Skill.test_thug_2(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "刺客角色技能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
 
-        def test_Prof1_25(self):
+
+
+        def test_thug_3(self):
             """
             这是测试Prof6-转职为刺客分支、光明之怒分支、耀分支
             return: 返回关卡完成回到主界面
             """
-            print("测试Prof6-转职为刺客分支、光明之怒分支、耀分支")
-            self.assertEqual("耀", Skill.test_thug_3(devices))
-            screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+            try:
+                print("测试Prof6-转职为刺客分支、光明之怒分支、耀分支")
+                self.assertEqual("耀", Skill.test_thug_3(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "刺客角色技能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
 
-        def test_Prof1_26(self):
+
+
+        def test_thug_4(self):
             """
             这是测试Prof6-转职为刺客分支、光明之怒分支、暗分支
             return: 返回关卡完成回到主界面
             """
-            print("测试Prof6-转职为刺客分支、光明之怒分支、暗分支")
-            self.assertEqual("暗", Skill.test_thug_4(devices))
-            screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+            try:
+                print("测试Prof6-转职为刺客分支、光明之怒分支、暗分支")
+                self.assertEqual("暗", Skill.test_thug_4(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "刺客角色技能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
+
 
 
         def tearDown(self):
