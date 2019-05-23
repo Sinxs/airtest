@@ -1,5 +1,5 @@
 from airtest.core.api import *
-# from poco.drivers.unity3d import UnityPoco
+from poco.drivers.unity3d import UnityPoco
 # poco = UnityPoco()
 import random
 
@@ -34,9 +34,9 @@ def titlepos(posbut):
         pos = posbut.get_position()
         # print(pos)
         if pos[1] > 0.730:
-            swipe([1434, 746], [1434, 340])
+            swipe([1065, 512], [1065, 215], 5)
         elif pos[1] < 0.260:
-            swipe([1434, 340], [1434, 746])
+            swipe([1065, 215], [1065, 512], 5)
         else:
             break
 
@@ -111,34 +111,36 @@ def test_titletets(int,poco):  #
 
 
 
-def test_titletets0(poco):  # 普通称号
-    poco = poco
+def test_titletets0(devices):  # 普通称号
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
     test_titletets(0,poco)
     return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring("SelectedTextLabel").get_text()
 
-def test_titletets1(poco):  # 副本称号
-    poco = poco
-    test_titletets(1,poco)
+def test_titletets1(devices):  # 副本称号
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    test_titletets(1)
     return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring("SelectedTextLabel").get_text()
 
-def test_titletets2(poco):  # 巢穴称号
-    poco = poco
-    test_titletets(2,poco)
+def test_titletets2():  # 巢穴称号
+
+    test_titletets(2)
     return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring("SelectedTextLabel").get_text()
 
-def test_titletets3(poco):  # 战斗称号
-    poco = poco
-    test_titletets(3,poco)
+def test_titletets3():  # 战斗称号
+
+    test_titletets(3)
     return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring( "SelectedTextLabel").get_text()
 
-def test_titletets4(poco):  # 活动称号
-    poco = poco
-    test_titletets(4,poco)
+def test_titletets4():  # 活动称号
+
+    test_titletets(4)
     return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring("SelectedTextLabel").get_text()
 
-def test_titletets5(poco):  # 限时称号
-    poco = poco
-    test_titletets(5,poco)
+def test_titletets5():  # 限时称号
+
+    test_titletets(5)
     return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring("SelectedTextLabel").get_text()
 
 

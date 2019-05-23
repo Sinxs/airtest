@@ -2,7 +2,7 @@
 __author__ = "Lee.li"
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
-
+from multi_processframe.Tools import get_screen_size
 
 def startgame(devices):
     dev = connect_device("android:///" + devices)
@@ -12,10 +12,10 @@ def startgame(devices):
         stop_app('com.playfungame.ggplay.lzgsea')
         sleep(1)
         start_app('com.playfungame.ggplay.lzgsea')
-        sleep(15)
+        sleep(35)
         poco = UnityPoco(device=dev)
-        touch([0.5, 0.5])
-        sleep(15)
+        touch([int(get_screen_size._get_screen_size(devices)[0]*0.5),int(get_screen_size._get_screen_size(devices)[1]*0.5)])
+        sleep(20)
         if poco(text="进入游戏").exists():
             poco(text="进入游戏").click()
             print("点击进入游戏，开始选择角色。。。")
@@ -31,14 +31,14 @@ def startgame(devices):
     else:
         print("游戏已经启动，无需再次启动...")
     for x in range(10):
-        poco = UnityPoco(device=dev)
-        Close = poco("Close")
         l_close = poco(texture="l_close_00")
+        Close = poco("Close")
         if l_close.exists() and Close.exists():
             poco(texture="l_close_00").click()
         elif Close.exists():
             Close.click()
         else:
-            print("初始化脚本环境成功。。。")
             break
     return None
+devices = "127.0.0.1:62001"
+startgame(devices)
