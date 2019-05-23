@@ -20,12 +20,13 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_test_Horse(self):
+        def test_fashionarcher(self):
             """
             这是测试时装用例:
             return: 返回关卡完成回到主界面
             """
             try:
+                print(" Prof2-转职为弓箭手时装模块测试")
                 self.assertEqual("衣柜换装", fashion.test_fashionarcher(devices))
             except:
                 start_Screenshot = "这里是启动报错场景截图的功能"

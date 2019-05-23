@@ -26,6 +26,7 @@ def Main(devices):
             return: 返回关卡完成回到主界面
             """
             try:
+                print("战士时装模块测试")
                 self.assertEqual("衣柜换装", fashion.test_fashionwarrior(devices))
             except:
                 start_Screenshot = "这里是启动报错场景截图的功能"
