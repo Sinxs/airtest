@@ -8,7 +8,7 @@ from multi_processframe.Tools import initial, screenshot
 
 
 def Main(devices):
-    class TCSkillProf1(unittest.TestCase):
+    class TCSkillwarrior(unittest.TestCase):
         u'''测试用例战士的集合'''
 
         @classmethod
@@ -74,5 +74,5 @@ def Main(devices):
             u'''这里放需要在所有用例后执行的部分'''
             pass
 
-    srcSuite = unittest.makeSuite(TCSkillProf1)
+    srcSuite = unittest.makeSuite(TCSkillwarrior)
     return srcSuite
