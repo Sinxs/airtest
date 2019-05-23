@@ -43,12 +43,12 @@ def Fashiontextpos(poco):  # 寻找最后一个时装并获取该控件的text
     拿到该控件的text值
     :return:
     """
-    A = 471
-    B = 850
-    for i in range(15):  # TODO：15次是为了保证肯定能滑到底部---其实并不严谨，因为设备卡爆了的情况也不是没有-_-!!!
-        swipe((A, B), (A, 350), 150)
+    A = 140
+    B = 593
+    for i in range(15):  # TODO：15次是为了保证最大概率能滑到底部-----其实并不严谨，因为设备卡爆了的情况也不是没有-_-!!!
+        swipe((A, B), (A, 256), 150)
         sleep(1)
-        A -= 5
+        A -= 1
         B += 3
     if poco("Select").offspring("item0").exists():
         if poco("Select").offspring("item0").get_position()[1] > 0.8:
@@ -68,7 +68,7 @@ def Fashion_text7(item,poco):  # 七件套装 or 五件套装数量
     """
     for item_1 in range(int(item)):  # 获取当前时装的件数，然后点击当前时装的件数
         item1 = "Part" + str(item_1)
-        print(item1)
+        print(f"点击第 {item1} 件时装")
         poco(item1).child("Icon").child("Icon").click()
         if poco("FashionStorageFashionToolTip(Clone)").child("Bg").offspring("ItemTpl").child("Icon").exists():
             if poco(texture="l_close_00").exists():
@@ -86,6 +86,7 @@ def Fashion_text3(poco):  # 三件时装测试
     """
     for i in range(7,10):
         item1 = "Part" + str(i)
+        print(f"点击第 {item1} 件时装")
         if poco(item1).exists():
             poco(item1).click()
             if poco("FashionStorageFashionToolTip(Clone)").child("Bg").offspring("ItemTpl").child("Icon").exists():
@@ -104,6 +105,7 @@ def Fashion_text2(poco):  # 2件时装测试
     """
     for i in range(5,7):
         item1 = "Part" + str(i)
+        print(f"点击第 {item1} 件时装")
         if poco(item1).exists():
             poco(item1).click()
             if poco("FashionStorageFashionToolTip(Clone)").child("Bg").offspring("ItemTpl").child("Icon").exists():
@@ -141,16 +143,14 @@ def findtext1(Fashiontext,poco):  # 依次点击最新的
             Fashion_text2(poco)
             if Fashiontext == item:  # 如果点到了最后就停止
                 break
-        for i in range(5):  # TODO：为了应付手机的卡顿问题，特意容错5次，够意思了吧！！！
+        for i in range(5):  # TODO：为了应付手机的卡顿问题，特意容错5次，够意思了吧！！！不在坐标内的控件就滑动到坐标内
             pos = poco("Select").offspring(item1).offspring("TextLabel").get_position()
-            print(pos)
             global test
             test = poco("Select").offspring(item1).offspring("TextLabel").get_text()
-            print(test)
             if pos[1] > 0.7:
-                swipe((470, 750), (470, 550))
+                swipe((137, 567), (137, 365))
             elif pos[1] < 0.33:
-                swipe((470, 550),(470, 750) )
+                swipe((137, 365), (137, 567))
             else:
                 break
             # test = poco("Select").offspring(item1).offspring("TextLabel").get_text()
@@ -165,7 +165,15 @@ def Fashion_text1(poco):
     Fashionpos(poco)  # 进入时装收集界面
     Fashiontext = Fashiontextpos(poco)  # 翻到最后底部并且拿到
     print(Fashiontext)
-    initial.startgame(poco)  # 重置脚本环境
+    for x in range(10):
+        l_close = poco(texture="l_close_00")
+        Close = poco("Close")
+        if l_close.exists() and Close.exists():
+            poco(texture="l_close_00").click()
+        elif Close.exists():
+            Close.click()
+        else:
+            break
     Fashionpos(poco)
     for i in range(5):
         findtext2 = findtext1(Fashiontext,poco)
@@ -183,7 +191,7 @@ def Switchroles_1(poco):
     """
     if not poco("Open").exists():
         poco("Avatar").click()
-        touch((2118,454))
+        touch((1196,667))
         poco(text="切换角色").click()
         sleep(10)
     else:
@@ -203,7 +211,15 @@ def Switchroles_2(chroles, poco):
     sleep(3)
     poco("Label").click()
     sleep(11)
-    initial.startgame(poco)  # 初始化脚本运行环境
+    for x in range(10):
+        l_close = poco(texture="l_close_00")
+        Close = poco("Close")
+        if l_close.exists() and Close.exists():
+            poco(texture="l_close_00").click()
+        elif Close.exists():
+            Close.click()
+        else:
+            break
 
 
 
@@ -219,8 +235,8 @@ def test_fashionwarrior(devices):  # Prof1-转职为战士分支、剑圣分支�
     Fashion_text1(poco)
     return poco("title_back").child("Title").get_text()
 
-
-
+# devices = "127.0.0.1:62001"
+# test_fashionwarrior(devices)
 def test_fashionarcher():  # Prof2-转职为弓箭手分支、箭神分支、魔羽分支
     # fashion_1.Switchroles_1()
     # fashion_1.Switchroles_2(2)
