@@ -9,7 +9,7 @@ from poco.drivers.unity3d import UnityPoco
 poco = UnityPoco()
 
 def Main(devices):
-    class TChorse(unittest.TestCase):
+    class test_titletets(unittest.TestCase):
         u'''测试用例101的集合'''
         @classmethod
         def setUpClass(self):
@@ -18,17 +18,95 @@ def Main(devices):
 
         def setUp(self):
             u'''这里放需要在每条用例前执行的部分'''
-            poco = UnityPoco()
-            initial.startgame(devices, poco)
 
-        def  test_test_Horse(self):
-            """
-            这是测试称号的用例:return: 返回最后一个坐骑的按钮状态
-            """
+            initial.startgame(devices)
 
-            poco = UnityPoco()
-            self.assertEqual("称 号", title_test.test_titletets0(poco))
-            screenshot.get_screen_shot(time.time(), devices, "称号功能测试脚本")
+        def  test_titletets0(self):
+            """
+            这是测试称号的用例:
+            return:
+            """
+            try:
+                print("普通称号测试")
+                self.assertEqual("称 号", title_test.test_titletets0(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "称号功能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
+
+
+        def  test_titletets1(self):
+            """
+            这是测试称号的用例:
+            return:
+            """
+            try:
+                print("副本称号测试")
+                self.assertEqual("称 号", title_test.test_titletets1(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "称号功能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
+
+
+        def  test_titletets2(self):
+            """
+            这是测试称号的用例:
+            return:
+            """
+            try:
+                print("副本称号测试")
+                self.assertEqual("称 号", title_test.test_titletets2(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "称号功能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
+
+
+        def test_titletets3(self):
+            """
+            这是测试称号的用例:
+            return:
+            """
+            try:
+                print("副本称号测试")
+                self.assertEqual("称 号", title_test.test_titletets3(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "称号功能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
+
+        def test_titletets4(self):
+            """
+            这是测试称号的用例:
+            return:
+            """
+            try:
+                print("副本称号测试")
+                self.assertEqual("称 号", title_test.test_titletets4(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "称号功能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
+
+        def test_titletets5(self):
+            """
+            这是测试称号的用例:
+            return:
+            """
+            try:
+                print("副本称号测试")
+                self.assertEqual("称 号", title_test.test_titletets5(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "称号功能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
 
         def tearDown(self):
             u'''这里放需要在每条用例后执行的部分'''
@@ -39,5 +117,5 @@ def Main(devices):
             u'''这里放需要在所有用例后执行的部分'''
             pass
 
-    srcSuite = unittest.makeSuite(TChorse)
+    srcSuite = unittest.makeSuite(test_titletets)
     return srcSuite

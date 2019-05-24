@@ -43,10 +43,10 @@ def Fashiontextpos(poco):  # 寻找最后一个时装并获取该控件的text
     拿到该控件的text值
     :return:
     """
-    A = 140
-    B = 593
+    A = 425
+    B = 830
     for i in range(15):  # TODO：15次是为了保证最大概率能滑到底部-----其实并不严谨，因为设备卡爆了的情况也不是没有-_-!!!
-        swipe((A, B), (A, 256), 150)
+        swipe((A, B), (A, 417), 150)
         sleep(1)
         A -= 1
         B += 3
@@ -74,7 +74,7 @@ def Fashion_text7(item,poco):  # 七件套装 or 五件套装数量
             if poco(texture="l_close_00").exists():
                 poco(texture="l_close_00").click()
             else:
-                touch((100, 200),times=2)  # 点击屏边角位置，达到取消弹窗的目的
+                touch((1968, 419), times=1)  # 点击屏边角位置，达到取消弹窗的目的
         else:
             print("ERROR:时装显示错误，请检查。。。。")
 
@@ -93,10 +93,9 @@ def Fashion_text3(poco):  # 三件时装测试
                 if poco(texture="l_close_00").exists():
                     poco(texture="l_close_00").click()
                 else:
-                    poco("Select").offspring(item1).offspring("TextLabel").click()
+                    touch((1968, 419), times=1)  # 点击屏边角位置，达到取消弹窗的目的
             else:
                 print("ERROR:时装显示错误，请检查。。。。")
-
 
 def Fashion_text2(poco):  # 2件时装测试
     """
@@ -112,10 +111,9 @@ def Fashion_text2(poco):  # 2件时装测试
                 if poco(texture="l_close_00").exists():
                     poco(texture="l_close_00").click()
                 else:
-                    poco("Select").offspring(item1).offspring("TextLabel").click()
+                    touch((1968, 419), times=1)  # 点击屏边角位置，达到取消弹窗的目的
             else:
                 print("ERROR:时装显示错误，请检查。。。。")
-
 
 def findtext1(Fashiontext,poco):  # 依次点击最新的
     for i in range(11):
@@ -147,10 +145,10 @@ def findtext1(Fashiontext,poco):  # 依次点击最新的
             pos = poco("Select").offspring(item1).offspring("TextLabel").get_position()
             global test
             test = poco("Select").offspring(item1).offspring("TextLabel").get_text()
-            if pos[1] > 0.7:
-                swipe((137, 567), (137, 365))
+            if pos[1] > 0.7:  #  滑动时装控件
+                swipe((425, 816), (425, 545))
             elif pos[1] < 0.33:
-                swipe((137, 365), (137, 567))
+                swipe((425, 545), (425, 816))
             else:
                 break
             # test = poco("Select").offspring(item1).offspring("TextLabel").get_text()
@@ -191,7 +189,7 @@ def Switchroles_1(poco):
     """
     if not poco("Open").exists():
         poco("Avatar").click()
-        touch((1196,667))
+        touch((2255, 1026))  # 点击GM出现的确定控件
         poco(text="切换角色").click()
         sleep(10)
     else:
@@ -235,42 +233,56 @@ def test_fashionwarrior(devices):  # Prof1-转职为战士分支、剑圣分支�
     Fashion_text1(poco)
     return poco("title_back").child("Title").get_text()
 
-# devices = "127.0.0.1:62001"
-# test_fashionwarrior(devices)
-def test_fashionarcher():  # Prof2-转职为弓箭手分支、箭神分支、魔羽分支
-    # fashion_1.Switchroles_1()
-    # fashion_1.Switchroles_2(2)
-    # fashion_1.Fashion_text1()
+
+def test_fashionarcher(devices):  # Prof2-转职为弓箭手分支、箭神分支、魔羽分支
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Switchroles_1(poco)
+    Switchroles_2(2, poco)
+    Fashion_text1(poco)
     return poco("title_back").child("Title").get_text()
 
 
-
-def test_Prof1fashion_3():  # Prof3-转职为魔法师分支、元素分支、冰灵分支
-    fashion_1.Switchroles_1()
-    fashion_1.Switchroles_2(3)
-    fashion_1.Fashion_text1()
+def test_fashionmagic(devices):  # Prof3-转职为魔法师分支、元素分支、冰灵分支
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Switchroles_1(poco)
+    Switchroles_2(3, poco)
+    Fashion_text1(poco)
     return poco("title_back").child("Title").get_text()
 
-def test_Prof1fashion_4(): # Prof4-转职为牧师分支、祭祀分支、雷神分支
-    fashion_1.Switchroles_1()
-    fashion_1.Switchroles_2(4)
-    fashion_1.Fashion_text1()
+
+def test_fashionpastor(devices): # Prof4-转职为牧师分支、祭祀分支、雷神分支
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Switchroles_1(poco)
+    Switchroles_2(4, poco)
+    Fashion_text1(poco)
     return poco("title_back").child("Title").get_text()
 
-def test_Prof1fashion_5():  # Prof5-转职为学者分支、工程师分支、重炮手分支
-    fashion_1.Switchroles_1()
-    fashion_1.Switchroles_2(5)
-    fashion_1.Fashion_text1()
+
+def test_fashionscholar(devices):  # Prof5-转职为学者分支、工程师分支、重炮手分支
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Switchroles_1(poco)
+    Switchroles_2(5, poco)
+    Fashion_text1(poco)
     return poco("title_back").child("Title").get_text()
 
-def test_Prof1fashion_6():  # Prof6-转职为刺客分支、暗之使徒分支、烈分支
-    fashion_1.Switchroles_1()
-    fashion_1.Switchroles_2(6)
-    fashion_1.Fashion_text1()
+
+def test_fashionthug(devices):  # Prof6-转职为刺客分支、暗之使徒分支、烈分支
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Switchroles_1(poco)
+    Switchroles_2(6, poco)
+    Fashion_text1(poco)
     return poco("title_back").child("Title").get_text()
 
-def test_Prof1fashion_7():  # Prof7-转职为舞娘分支、呐喊者分支、噬魂者分支
-    Switchroles_1()
-    fashion_1.Switchroles_2(7)
-    fashion_1.Fashion_text1()
+
+def test_fashiondance(devices):  # Prof7-转职为舞娘分支、呐喊者分支、噬魂者分支
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Switchroles_1(poco)
+    Switchroles_2(7, poco)
+    Fashion_text1(poco)
     return poco("title_back").child("Title").get_text()

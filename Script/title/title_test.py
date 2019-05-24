@@ -34,9 +34,9 @@ def titlepos(posbut):
         pos = posbut.get_position()
         # print(pos)
         if pos[1] > 0.730:
-            swipe([1065, 512], [1065, 215], 5)
+            swipe([1500, 730], [1500, 400], 5)
         elif pos[1] < 0.260:
-            swipe([1065, 215], [1065, 512], 5)
+            swipe([1500, 400], [1500, 730], 5)
         else:
             break
 
@@ -114,33 +114,40 @@ def test_titletets(int,poco):  #
 def test_titletets0(devices):  # 普通称号
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
-    test_titletets(0,poco)
+    test_titletets(0, poco)
     return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring("SelectedTextLabel").get_text()
+
 
 def test_titletets1(devices):  # 副本称号
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
-    test_titletets(1)
+    test_titletets(1, poco)
     return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring("SelectedTextLabel").get_text()
 
-def test_titletets2():  # 巢穴称号
 
-    test_titletets(2)
+def test_titletets2(devices):  # 巢穴称号
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    test_titletets(2, poco)
     return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring("SelectedTextLabel").get_text()
 
-def test_titletets3():  # 战斗称号
 
-    test_titletets(3)
+def test_titletets3(devices):  # 战斗称号
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    test_titletets(3, poco)
     return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring( "SelectedTextLabel").get_text()
 
-def test_titletets4():  # 活动称号
 
-    test_titletets(4)
-    return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring("SelectedTextLabel").get_text()
-
-def test_titletets5():  # 限时称号
-
-    test_titletets(5)
+def test_titletets4(devices):  # 活动称号
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    test_titletets(4, poco)
     return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring("SelectedTextLabel").get_text()
 
 
+def test_titletets5(devices):  # 限时称号
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    test_titletets(5, poco)
+    return poco("ItemNewDlg(Clone)").child("Bg").offspring("XSys_Design_Designation").offspring("SelectedTextLabel").get_text()

@@ -21,7 +21,7 @@ def Switchroles_1(poco):
         print(device)
         # todo:相对坐标的改动较大，暂时延后
         # devicesize(poco)
-        touch((1196, 666))
+        touch((2255, 1026))  # 点击GM出现的确定控件
         poco(text="切换角色").click()
         sleep(10)
     else:
@@ -100,8 +100,8 @@ def Skill(poco):
             item21 = "Skill" + str(item2 + 1)
             Skillpos_1 = poco("SkillTree(Clone)").offspring(str(item21)).child("Bg").get_position()
             if Skillpos_1[1] > 0.9:  # 判断当前技能元素是不是在屏幕以内
-                swipe((725, 539), (725, 300), 10)
-                swipe((725, 539), (725, 300), 10)
+                swipe((950, 770), (950, 480), 10)
+                swipe((950, 770), (950, 480), 10)
                 poco("SkillTree(Clone)").offspring(str(item21)).child("Bg").click()
                 print("点击" + poco("SkillTree(Clone)").offspring("Name").get_text() + "技能")
                 Skillpng(poco)  # 点击视频预览
