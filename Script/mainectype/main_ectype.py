@@ -72,12 +72,13 @@ def Verdict_AutoPlay(ob_level,poco): # 判断自动战斗按钮是否存在
     """
     if poco("AutoPlayCancel").exists():
         print("自动战斗中...")
-    else:
-        if poco("AutoPlay").exists():
-            Skip_Plot(poco)
-            poco("AutoPlay").click()
-            print("开启自动战斗...")
-        else:
+        return None
+    elif poco("AutoPlay").exists():
+        touch([168,150],times=1)
+        print("----------开启自动战斗----------")
+        return None
+    elif not poco("AutoPlayContent").exists():
+        if poco("Pause").exists():
             print(f"关卡{ob_level}没有自动战斗功能，执行副本跳过步棸！！！")
             poco("Pause").click()  # 点击设置
             time.sleep(1)
@@ -101,34 +102,43 @@ def Complete_Map(action,poco): # 跑图功能
     for number in range(1,(len(levels)+1)): # 循环遍历执行关卡通关
         if action >= 1:
             top = 10 - action
-            level = str(top) + "0" + str(number)
+            level = str(top) + "0" + str(4)
         else:
             level = "1100" + str(number)
 
         poco("DungeonSelect(Clone)").offspring(chapter).offspring(level).child("SprBtn").click() # 循环找到关卡
         poco("DungeonSelect(Clone)").offspring("DetailFrame").offspring("Bg").child("GoBattle").click() # 点击战斗按钮
-        if poco("DownBG").wait(3) or poco("TalkTextBg").wait(3).exists():
-            Skip_Plot(poco) # 跳过剧情和对白
-        if poco("Pause").wait(3).exists():
-            Verdict_AutoPlay(level,poco) # 判断自动战斗是否开启
-        for i in range(20):
+        print(f'----------------开始{level}关卡战斗流程----------------')
+        if poco("LoadingProgress").exists():
+            time.sleep(5)
+            if poco("DownBG").wait(3) or poco("TalkTextBg").wait(3):
+                Skip_Plot(poco) # 跳过剧情和对白
+            if poco("Pause").exists():
+                Verdict_AutoPlay(level, poco)
+        for i in range(100):
             if poco("DownBG").exists() or poco("TalkTextBg").exists(): # 判断动画和对白存在的话
                 Skip_Plot(poco) # 跳过剧情和对白
-            elif poco("WarTime").exists():
+            if i ==25 and poco("WarTime").exists():
                 Wartime(level,poco) # 判断战斗时间
-            elif poco("Time").exists(): # 判断通关时间
+            if poco("LevelRewardGerenalFrame").child("Bg").offspring("Time").exists(): # 判断通关时间
                 print(poco("Time").get_text()) # 获取打印通关时间，有可能获取不到
-                time.sleep(3)
-                if not poco("Duck").exists(): # 查找日常控件，找不到等3秒
-                    time.sleep(2)
-                    if poco("Duck").exists(): # 找到日常控件，算流程正常，打印关卡信息
+                try:
+                    if poco("Duck").wait_for_appearance(15):
                         print(f"关卡通关回到主界面，{level}关卡流程正常，地图没有卡点!")
                         break
-            elif poco("Duck").exists(): # 如果没有获取到通关时间的话，直接检测日常界面是否存在
+                except:
+                     if poco("Duck").exists():  # 如果没有获取到通关时间的话，直接检测日常界面是否存在
+                        print(f"关卡通关回到主界面，{level}关卡流程正常，地图没有卡点!")
+                        break
+                # if not poco("Duck").exists(): # 查找日常控件，找不到等3秒
+                #     time.sleep(2)
+                #     if poco("Duck").exists(): # 找到日常控件，算流程正常，打印关卡信息
+                #         print(f"关卡通关回到主界面，{level}关卡流程正常，地图没有卡点!")
+            #            break
+            if poco("Duck").exists(): # 如果没有获取到通关时间的话，直接检测日常界面是否存在
                 print(f"关卡通关回到主界面，{level}关卡流程正常，地图没有卡点!")
                 break
-            time.sleep(1)
-        time.sleep(2) # 等待两秒
+        # time.sleep(2) # 等待两秒
         if number == len(levels):
             print(f"此章节一共{number}关，已经全部通关....")
             break
@@ -144,85 +154,90 @@ def test_Chapter_One(devices):
     poco = UnityPoco(device=dev)
     Complete_Map(9,poco)
     return poco("Duck").get_name()
+
 #
-# def test_Chapter_Two(devices):
-#     """ 主线第二章
-#     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
-#     """
-#     dev = connect_device("android:///" + devices)
-#     poco = UnityPoco(device=dev)
-#     Complete_Map(8)
-#     return poco("Duck").get_name()
-#
-#
-# def test_Chapter_Three(devices):
-#     """ 主线第三章
-#     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
-#     """
-#     dev = connect_device("android:///" + devices)
-#     poco = UnityPoco(device=dev)
-#     Complete_Map(7)
-#     return poco("Duck").get_name()
-#
-#
-# def test_Chapter_four(devices):
-#     """ 主线第四章
-#     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
-#     """
-#     dev = connect_device("android:///" + devices)
-#     poco = UnityPoco(device=dev)
-#     Complete_Map(6)
-#     return poco("Duck").get_name()
-#
-# def test_Chapter_Five(devices):
-#     """ 主线第五章
-#     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
-#     """
-#     dev = connect_device("android:///" + devices)
-#     poco = UnityPoco(device=dev)
-#     Complete_Map(5)
-#     return poco("Duck").get_name()
-#
-# def test_Chapter_Six(devices):
-#     """ 主线第六章
-#     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
-#     """
-#     dev = connect_device("android:///" + devices)
-#     poco = UnityPoco(device=dev)
-#     Complete_Map(4)
-#     return poco("Duck").get_name()
-#
-# def test_Chapter_Seven(devices):
-#     """ 主线第七章
-#     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
-#     """
-#     dev = connect_device("android:///" + devices)
-#     poco = UnityPoco(device=dev)
-#     Complete_Map(3)
-#     return poco("Duck").get_name()
-#
-# def test_Chapter_Eight(devices):
-#     """ 主线第八章
-#     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
-#     """
-#     dev = connect_device("android:///" + devices)
-#     poco = UnityPoco(device=dev)
-#     Complete_Map(2)
-#     return poco("Duck").get_name()
-#
-# def test_Chapter_Nine(devices):
-#     """ 主线第九章
-#     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
-#     """
-#     dev = connect_device("android:///" + devices)
-#     poco = UnityPoco(device=dev)
-#     Complete_Map(1)
-#     return poco("Duck").get_name()
-# def test_Chapter_Ten(devices):
-#     """ 主线第十章
-#     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
-#     """
-#     dev = connect_device("android:///" + devices)
-#     poco = UnityPoco(device=dev)
-#     Complete_Map(0)
-#     return poco("Duck").get_name()
+# devices = '127.0.0.1:62001'
+# test_Chapter_One(devices)
+
+def test_Chapter_Two(devices):
+    """ 主线第二章
+    :return:Complete_Map（）参数表示移动多少次可以到达指定章节
+    """
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Complete_Map(8,poco)
+    return poco("Duck").get_name()
+
+
+def test_Chapter_Three(devices):
+    """ 主线第三章
+    :return:Complete_Map（）参数表示移动多少次可以到达指定章节
+    """
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Complete_Map(7,poco)
+    return poco("Duck").get_name()
+
+
+def test_Chapter_four(devices):
+    """ 主线第四章
+    :return:Complete_Map（）参数表示移动多少次可以到达指定章节
+    """
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Complete_Map(6,poco)
+    return poco("Duck").get_name()
+
+def test_Chapter_Five(devices):
+    """ 主线第五章
+    :return:Complete_Map（）参数表示移动多少次可以到达指定章节
+    """
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Complete_Map(5,poco)
+    return poco("Duck").get_name()
+
+def test_Chapter_Six(devices):
+    """ 主线第六章
+    :return:Complete_Map（）参数表示移动多少次可以到达指定章节
+    """
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Complete_Map(4,poco)
+    return poco("Duck").get_name()
+
+def test_Chapter_Seven(devices):
+    """ 主线第七章
+    :return:Complete_Map（）参数表示移动多少次可以到达指定章节
+    """
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Complete_Map(3,poco)
+    return poco("Duck").get_name()
+
+def test_Chapter_Eight(devices):
+    """ 主线第八章
+    :return:Complete_Map（）参数表示移动多少次可以到达指定章节
+    """
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Complete_Map(2,poco)
+    return poco("Duck").get_name()
+
+def test_Chapter_Nine(devices):
+    """ 主线第九章
+    :return:Complete_Map（）参数表示移动多少次可以到达指定章节
+    """
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Complete_Map(1,poco)
+    return poco("Duck").get_name()
+
+def test_Chapter_Ten(devices):
+    """ 主线第十章
+    :return:Complete_Map（）参数表示移动多少次可以到达指定章节
+    """
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    Complete_Map(0,poco)
+    return poco("Duck").get_name()
