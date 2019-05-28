@@ -78,8 +78,9 @@ def Skillpng(poco):
 
     else:
         poco("Play").click()
-        print("播放技能预览视频")
-        print("----------下一个技能----------")
+        if poco("Play").wait_for_appearance():
+            print("播放技能预览视频")
+            print("----------下一个技能----------")
 
 
 

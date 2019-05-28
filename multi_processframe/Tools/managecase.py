@@ -12,10 +12,11 @@ from multi_processframe.TestCase import TC_skilldance,TC_skillmagic,TC_skillpast
 from multi_processframe.TestCase import TC_fashiondance,TC_fashionmagic,TC_fashionpastor,TC_fashionscholar,TC_fashionthug,TC_fashionarcher,TC_fashionwarrior
                                         #  舞娘           法师           牧师              学者               刺客           弓箭手            战士
 from multi_processframe.TestCase import TC_mainectype_1one,TC_mainectype_2two,TC_mainectype_3three,TC_mainectype_4four,TC_mainectype_5five,TC_mainectype_6six,TC_mainectype_7seven,TC_mainectype_8eight,TC_mainectype_9nine,TC_mainectype_10ten
-from multi_processframe.TestCase import *
+
+from multi_processframe.TestCase import TC_firstinterface  # 一级界面
+from multi_processframe.TestCase import TC_template
 
 
-from multi_processframe.TestCase import *
 
 
 def run_testcase(devices):
