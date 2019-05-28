@@ -17,8 +17,7 @@ def test_Horse(devices):
     poco("NewBtn").child("BtnBg").click() # 打开坐骑列表
     petgrid = poco("Grid").child() # 获取目前所有坐骑数量
     swipe((486, 170), (486, 889), 4)
-    # for i in range(len(petgrid)):
-    for i in range(3):
+    for i in range(len(petgrid)):
         if i == 22:
             swipe((486,889),(486,170),6)
             swipe((486,889),(486,170),4)# 滑动界面确保未出现在界面内的坐骑可以点击到
