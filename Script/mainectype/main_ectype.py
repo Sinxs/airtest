@@ -105,19 +105,6 @@ def Complete_Map(action,poco): # 跑图功能
     temporarylist.sort() # 把临时列表从小到大排序
     for number in range(len(temporarylist)): # 循环拿出关卡来执行下列操作
         level = temporarylist[number]
-    # for number in range(1,(len(levels)+1)): # 循环遍历执行关卡通关
-    #     if action >= 1:
-    #         top = 10 - action
-    #         if number >= 10:
-    #             level = str(top) + str(number)
-    #         else:
-    #             level = str(top) + "0" + str(number)
-    #     else:
-    #         if number >= 10:
-    #             level = "110" + str(number)
-    #         else:
-    #             level = "1100" + str(number)
-
         poco("DungeonSelect(Clone)").offspring(chapter).offspring(level).child("SprBtn").click() # 循环找到关卡
         poco("DungeonSelect(Clone)").offspring("DetailFrame").offspring("Bg").child("GoBattle").click() # 点击战斗按钮
         print(f'----------------开始{level}关卡战斗流程----------------')
@@ -146,12 +133,12 @@ def Complete_Map(action,poco): # 跑图功能
                 print(f"关卡通关回到主界面，{level}关卡流程正常，地图没有卡点!")
                 break
         # time.sleep(2) # 等待两秒
-        if number == len(levels):
-            print(f"此章节一共{number}关，已经全部通关....")
+        if number == (len(levels)) - 1:
+            print(f"此章节一共{number+1}关，已经全部通关....")
             break
         else:
+            time.sleep(3)
             EnterEctype(action,poco) # 执行下一个关卡
-
 
 def test_Chapter_One(devices):
     """ 主线第一章
