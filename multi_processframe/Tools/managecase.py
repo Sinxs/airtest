@@ -14,6 +14,10 @@ from multi_processframe.TestCase import TC_fashiondance,TC_fashionmagic,TC_fashi
 from multi_processframe.TestCase import TC_mainectype_1one,TC_mainectype_2two,TC_mainectype_3three,TC_mainectype_4four,TC_mainectype_5five,TC_mainectype_6six,TC_mainectype_7seven,TC_mainectype_8eight,TC_mainectype_9nine,TC_mainectype_10ten
 from multi_processframe.TestCase import *
 
+
+from multi_processframe.TestCase import *
+
+
 def run_testcase(devices):
     config_Path = os.path.join(os.getcwd(), "config.ini")
     case_Path = os.path.join(os.getcwd(), "TestCase")
