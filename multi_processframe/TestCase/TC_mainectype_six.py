@@ -8,8 +8,8 @@ from multi_processframe.Tools import initial, screenshot
 
 
 def Main(devices):
-    class TCmainectype(unittest.TestCase):
-        u'''测试用例102的集合'''
+    class TCmainectype_chapter_six(unittest.TestCase):
+        u'''测试用例TCmainectype_chapter_six的集合'''
 
         @classmethod
         def setUpClass(self):
@@ -20,12 +20,12 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_Chapter_One(self):
+        def test_Chapter_Six(self):
             """
-            返回关卡完成回到主界面
+            主线关卡第六章战斗流程测试
             """
             try:
-                self.assertEqual("Duck", main_ectype.test_Chapter_One(devices))
+                self.assertEqual("Duck", main_ectype.test_Chapter_Six(devices))
             except:
                 start_Screenshot = "这里是启动报错场景截图的功能"
                 screenshot.get_screen_shot(time.time(), devices, "主线关卡测试脚本")
@@ -40,5 +40,5 @@ def Main(devices):
             u'''这里放需要在所有用例后执行的部分'''
             pass
 
-    srcSuite = unittest.makeSuite(TCmainectype)
+    srcSuite = unittest.makeSuite(TCmainectype_chapter_six)
     return srcSuite

@@ -71,7 +71,6 @@ def Verdict_AutoPlay(ob_level,poco): # 判断自动战斗按钮是否存在
     判断自动战斗是否开启
     """
     if poco("AutoPlayCancel").exists():
-        print("自动战斗中...")
         return None
     elif poco("AutoPlay").exists():
         touch([168,150],times=1)
@@ -98,13 +97,26 @@ def Complete_Map(action,poco): # 跑图功能
     """
     EnterEctype(action,poco) # 进入副本的函数
     chapter = "chapter" + str(10 - action)
-    levels = poco("DungeonSelect(Clone)").offspring(chapter).offspring("Levels").child() # 获取当前关卡数量
-    for number in range(1,(len(levels)+1)): # 循环遍历执行关卡通关
-        if action >= 1:
-            top = 10 - action
-            level = str(top) + "0" + str(4)
-        else:
-            level = "1100" + str(number)
+    freeeze = poco.freeze()
+    levels = freeeze("DungeonSelect(Clone)").offspring(chapter).offspring("Levels").child() # 获取当前关卡数量
+    temporarylist = [] # 定义一个临时的空列表
+    for x in levels: # 循环把获取的class中的元素添加到空列表中
+        temporarylist.append(x.get_name())
+    temporarylist.sort() # 把临时列表从小到大排序
+    for number in range(len(temporarylist)): # 循环拿出关卡来执行下列操作
+        level = temporarylist[number]
+    # for number in range(1,(len(levels)+1)): # 循环遍历执行关卡通关
+    #     if action >= 1:
+    #         top = 10 - action
+    #         if number >= 10:
+    #             level = str(top) + str(number)
+    #         else:
+    #             level = str(top) + "0" + str(number)
+    #     else:
+    #         if number >= 10:
+    #             level = "110" + str(number)
+    #         else:
+    #             level = "1100" + str(number)
 
         poco("DungeonSelect(Clone)").offspring(chapter).offspring(level).child("SprBtn").click() # 循环找到关卡
         poco("DungeonSelect(Clone)").offspring("DetailFrame").offspring("Bg").child("GoBattle").click() # 点击战斗按钮
@@ -130,11 +142,6 @@ def Complete_Map(action,poco): # 跑图功能
                      if poco("Duck").exists():  # 如果没有获取到通关时间的话，直接检测日常界面是否存在
                         print(f"关卡通关回到主界面，{level}关卡流程正常，地图没有卡点!")
                         break
-                # if not poco("Duck").exists(): # 查找日常控件，找不到等3秒
-                #     time.sleep(2)
-                #     if poco("Duck").exists(): # 找到日常控件，算流程正常，打印关卡信息
-                #         print(f"关卡通关回到主界面，{level}关卡流程正常，地图没有卡点!")
-            #            break
             if poco("Duck").exists(): # 如果没有获取到通关时间的话，直接检测日常界面是否存在
                 print(f"关卡通关回到主界面，{level}关卡流程正常，地图没有卡点!")
                 break
@@ -240,4 +247,5 @@ def test_Chapter_Ten(devices):
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
     Complete_Map(0,poco)
+    poco("a").get_bounds()
     return poco("Duck").get_name()

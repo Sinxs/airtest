@@ -5,13 +5,18 @@ import unittest, sys, math
 from airtest.core.api import *
 from BeautifulReport import BeautifulReport
 from multi_processframe.Tools import multiprocessing, analysis, emali
-from multi_processframe.TestCase import TC_horse, TC_mainectype,TC_title,TC_template,TC_skilldance,TC_skillmagic,TC_skillpastor,\
-    TC_skillscholar,TC_skillthug,TC_skillarcher,TC_skillwarrior,TC_fashionarcher,TC_fashiondance,TC_fashionmagic,TC_fashionpastor,\
-    TC_fashionscholar,TC_fashionthug,TC_fashionwarrior
+from multi_processframe.TestCase import TC_horse # 坐骑
+from multi_processframe.TestCase import TC_title # 称号
+from multi_processframe.TestCase import TC_skilldance,TC_skillmagic,TC_skillpastor,TC_skillscholar,TC_skillthug,TC_skillarcher,TC_skillwarrior
+                                        #  舞娘        法师          牧师            学者            刺客          弓箭手          战士
+from multi_processframe.TestCase import TC_fashiondance,TC_fashionmagic,TC_fashionpastor,TC_fashionscholar,TC_fashionthug,TC_fashionarcher,TC_fashionwarrior
+                                        #  舞娘           法师           牧师              学者               刺客           弓箭手            战士
+from multi_processframe.TestCase import TC_mainectype_one,TC_mainectype_two,TC_mainectype_three,TC_mainectype_four,TC_mainectype_five,TC_mainectype_six,TC_mainectype_seven,TC_mainectype_eight,TC_mainectype_nine,TC_mainectype_ten
+from multi_processframe.TestCase import *
 
 def run_testcase(devices):
     config_Path = os.path.join(os.getcwd(), "config.ini")
-    case_Path = os.path.join(os.getcwd(), "TestCase")  # D:\AirtestIDE\Case\Common\TestCase
+    case_Path = os.path.join(os.getcwd(), "TestCase")
     devices_List = analysis.analysis_config(config_Path, "deviceslist")  # 设备的数量
     if not os.path.exists(case_Path):
         print("测试用例需要放到‘TestCase’文件目录下")
