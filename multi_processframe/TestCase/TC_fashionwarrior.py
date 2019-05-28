@@ -22,8 +22,7 @@ def Main(devices):
 
         def test_test_Horse(self):
             """
-            这是测试时装的用例:
-            return: 返回关卡完成回到主界面
+            测试--战士--时装
             """
             try:
                 print("战士时装模块测试")

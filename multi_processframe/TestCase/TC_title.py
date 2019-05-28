@@ -23,8 +23,7 @@ def Main(devices):
 
         def  test_titletets0(self):
             """
-            这是测试称号的用例:
-            return:
+             测试--普通称号
             """
             try:
                 print("普通称号测试")
@@ -38,8 +37,7 @@ def Main(devices):
 
         def  test_titletets1(self):
             """
-            这是测试称号的用例:
-            return:
+            测试--副本称号
             """
             try:
                 print("副本称号测试")
@@ -53,11 +51,10 @@ def Main(devices):
 
         def  test_titletets2(self):
             """
-            这是测试称号的用例:
-            return:
+            测试--巢穴称号
             """
             try:
-                print("副本称号测试")
+                print("巢穴称号测试")
                 self.assertEqual("称 号", title_test.test_titletets2(devices))
             except:
                 start_Screenshot = "这里是启动报错场景截图的功能"
@@ -68,11 +65,10 @@ def Main(devices):
 
         def test_titletets3(self):
             """
-            这是测试称号的用例:
-            return:
+            测试--限时称号
             """
             try:
-                print("副本称号测试")
+                print("限时称号测试")
                 self.assertEqual("称 号", title_test.test_titletets3(devices))
             except:
                 start_Screenshot = "这里是启动报错场景截图的功能"
@@ -82,11 +78,10 @@ def Main(devices):
 
         def test_titletets4(self):
             """
-            这是测试称号的用例:
-            return:
+            测试--活动称号
             """
             try:
-                print("副本称号测试")
+                print("活动称号测试")
                 self.assertEqual("称 号", title_test.test_titletets4(devices))
             except:
                 start_Screenshot = "这里是启动报错场景截图的功能"
@@ -96,11 +91,10 @@ def Main(devices):
 
         def test_titletets5(self):
             """
-            这是测试称号的用例:
-            return:
+            测试--限时称号
             """
             try:
-                print("副本称号测试")
+                print("限时称号测试")
                 self.assertEqual("称 号", title_test.test_titletets5(devices))
             except:
                 start_Screenshot = "这里是启动报错场景截图的功能"

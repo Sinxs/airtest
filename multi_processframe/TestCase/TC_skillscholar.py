@@ -22,8 +22,7 @@ def Main(devices):
 
         def test_scholar_1(self):
             """
-            这是测试Prof5-转职为学者分支、工程师分支、重炮手分支
-            return:
+              技能测试--学者转职--重炮手
             """
             try:
                 print("测试Prof5-转职为学者分支、工程师分支、重炮手分支")
@@ -37,8 +36,7 @@ def Main(devices):
 
         def test_scholar_2(self):
             """
-            这是测试Prof5-转职为学者分支、工程师分支、机械大师分支
-            return:
+            技能测试--学者转职--机械大师
             """
             try:
                 print("测试Prof5-转职为学者分支、工程师分支、机械大师分支")
@@ -52,8 +50,7 @@ def Main(devices):
 
         def test_scholar_3(self):
             """
-            这是测试Prof5-转职为学者分支、炼金术士分支、炼金圣士分支
-            return: 返回关卡完成回到主界面
+            技能测试--学者转职--炼金圣士
             """
             try:
                 print("Prof5-转职为学者分支、炼金术士分支、炼金圣士分支")
@@ -67,8 +64,7 @@ def Main(devices):
 
         def test_scholar_4(self):
             """
-            这是测试Prof5-转职为学者分支、炼金术士分支、药剂师分支
-            return: 返回关卡完成回到主界面
+             技能测试--学者转职--药剂师
             """
             try:
                 print("Prof5-转职为学者分支、炼金术士分支、药剂师分支")

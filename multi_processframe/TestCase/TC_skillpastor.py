@@ -22,8 +22,7 @@ def Main(devices):
 
         def test_pastor_1(self):
             """
-            这是测试Prof4-转职为牧师分支、祭祀分支、雷神分支
-            return:
+            技能测试--牧师转职--雷神
             """
             try:
                 print("测试Prof4-转职为牧师分支、祭祀分支、雷神分支")
@@ -36,8 +35,7 @@ def Main(devices):
 
         def test_pastor_2(self):
             """
-             Prof4-转职为牧师分支、祭祀分支、圣徒分支
-            return:
+            技能测试--牧师转职--圣徒
             """
             try:
                 print("测试Prof4-转职为牧师分支、祭祀分支、圣徒分支")
@@ -50,8 +48,7 @@ def Main(devices):
 
         def test_pastor_3(self):
             """
-            这是测试Prof4-转职为牧师分支、贤者分支、十字军分支
-            return:
+            技能测试--牧师转职--十字军
             """
             try:
                 print("测试Prof4-转职为牧师分支、祭祀分支、十字军分支")
@@ -64,8 +61,7 @@ def Main(devices):
 
         def test_pastor_4(self):
             """
-            这是测试Prof4-转职为牧师分支、贤者分支、圣骑士分支
-            return:
+            技能测试--牧师转职--圣骑士
             """
             try:
                 print("测试Prof4-转职为牧师分支、祭祀分支、圣骑士分支")

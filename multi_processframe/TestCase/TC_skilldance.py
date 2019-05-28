@@ -22,8 +22,7 @@ def Main(devices):
 
         def test_dance_1(self):
             """
-            这是测试Prof7-转职为舞娘分支、呐喊者分支、噬魂者分支
-            return:
+            技能测试--舞娘转职--噬魂者
             """
             try:
                 print("测试Prof7-转职为舞娘分支、呐喊者分支、噬魂者分支")
@@ -35,8 +34,7 @@ def Main(devices):
 
         def test_dance_2(self):
             """
-            这是测试Prof7-转职为舞娘分支、呐喊者分支、黑暗萨满分支
-            return:
+             技能测试--舞娘转职--黑暗萨满
             """
             try:
                 print("测试Prof7-转职为舞娘分支、呐喊者分支、黑暗萨满分支")
@@ -51,8 +49,7 @@ def Main(devices):
 
         def test_dance_3(self):
             """
-            这是测试rof7-转职为舞娘分支、舞者分支、灵魂舞者分支
-            return:
+               技能测试--舞娘转职--灵魂舞者
             """
             try:
                 print("测试rof7-转职为舞娘分支、舞者分支、灵魂舞者分支")
@@ -65,8 +62,7 @@ def Main(devices):
 
         def test_dance_4(self):
             """
-            这是测试Prof7-转职为舞娘分支、舞者分支、刀锋舞者分支
-            return:
+            技能测试--舞娘转职--刀锋舞者
             """
             try:
                 print("测试Prof7-转职为舞娘分支、舞者分支、刀锋舞者分支")

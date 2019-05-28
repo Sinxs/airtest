@@ -22,8 +22,7 @@ def Main(devices):
 
         def test_fashionthug(self):
             """
-            这是测试时装用例:
-            return: 返回关卡完成回到主界面
+            测试--刺客--时装
             """
             try:
                 print(" Prof2-转职为刺客时装模块测试")

@@ -22,8 +22,7 @@ def Main(devices):
 
         def test_thug_1(self):
             """
-            这是测试Prof6-转职为刺客分支、暗之使徒分支、烈分支
-            return: 返回关卡完成回到主界面
+            技能测试--刺客转职--烈
             """
             try:
                 print("测试Prof6-转职为刺客分支、暗之使徒分支、烈分支")
@@ -37,8 +36,7 @@ def Main(devices):
 
         def test_thug_2(self):
             """
-            这是测试Prof6-转职为刺客分支、暗之使徒分支、影分支
-            return: 返回关卡完成回到主界面
+            技能测试--刺客转职--影
             """
             try:
                 print("测试Prof6-转职为刺客分支、暗之使徒分支、影分支")
@@ -52,8 +50,7 @@ def Main(devices):
 
         def test_thug_3(self):
             """
-            这是测试Prof6-转职为刺客分支、光明之怒分支、耀分支
-            return: 返回关卡完成回到主界面
+             技能测试--刺客转职--耀
             """
             try:
                 print("测试Prof6-转职为刺客分支、光明之怒分支、耀分支")
@@ -67,8 +64,7 @@ def Main(devices):
 
         def test_thug_4(self):
             """
-            这是测试Prof6-转职为刺客分支、光明之怒分支、暗分支
-            return: 返回关卡完成回到主界面
+               技能测试--刺客转职--暗
             """
             try:
                 print("测试Prof6-转职为刺客分支、光明之怒分支、暗分支")

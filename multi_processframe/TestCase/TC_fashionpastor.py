@@ -22,8 +22,7 @@ def Main(devices):
 
         def test_fashionpastor(self):
             """
-            这是测试时装用例:
-            return: 返回关卡完成回到主界面
+            测试--牧师--时装
             """
             try:
                 print(" Prof2-转职为牧师时装模块测试")

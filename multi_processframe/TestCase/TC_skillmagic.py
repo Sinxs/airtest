@@ -22,8 +22,7 @@ def Main(devices):
 
         def test_Prof1_11(self):
             """
-            这是测试Prof3-转职为魔法师分支、元素分支、冰灵分支
-            return:
+            技能测试--魔法师转职--冰灵
             """
             try:
                 print("测试Prof3-转职为魔法师分支、元素分支、冰灵分支")
@@ -37,8 +36,7 @@ def Main(devices):
 
         def test_Prof1_12(self):
             """
-            这是测试 Prof3-转职为魔法师分支、元素分支、火舞分支
-            return:
+              技能测试--魔法师转职--火舞
             """
             try:
                 print("测试Prof3-转职为魔法师分支、元素分支、火舞分支")
@@ -52,8 +50,7 @@ def Main(devices):
 
         def test_Prof1_13(self):
             """
-            这是测试Prof3-转职为魔法师分支、魔导师分支、黑暗女王分支
-            return: 返回关卡完成回到主界面
+            技能测试--魔法师转职--黑暗女王
             """
             try:
                 print("测试Prof3-转职为魔法师分支、元素分支、黑暗女王分支")
@@ -67,8 +64,7 @@ def Main(devices):
 
         def test_Prof1_14(self):
             """
-            这是测试Prof3-转职为魔法师分支、魔导师分支、时空领主分支
-            return: 返回关卡完成回到主界面
+            技能测试--魔法师转职--时空领主
             """
             try:
                 print("测试Prof3-转职为魔法师分支、元素分支、时空领主分支")

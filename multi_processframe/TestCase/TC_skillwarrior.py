@@ -22,47 +22,72 @@ def Main(devices):
 
         def test_Prof1_1(self):
             """
-            这是测试转职为战士分支、剑圣分支、月之领主职业:
-            return:
+            战士转职为月之领主的技能测试
             """
-            print("测试转职为战士分支、剑圣分支、月之领主职业")
-            self.assertEqual("月之领主", Skill.test_warrior_1(devices))
-            screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+            try:
+                print("测试转职为战士分支、剑圣分支、月之领主职业")
+                self.assertEqual("月之领主", Skill.test_warrior_1(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
+
 
         def test_Prof1_2(self):
             """
-            这是测试转转职为战士分支、剑圣分支、剑皇职业
-            return: 返回关卡完成回到主界面
+            战士转职为剑皇的技能测试
             """
-            print("是测试转转职为战士分支、剑圣分支、剑皇职业")
-            self.assertEqual("剑皇", Skill.test_warrior_2(devices))
-            screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+            try:
+                print("是测试转转职为战士分支、剑圣分支、剑皇职业")
+                self.assertEqual("剑皇", Skill.test_warrior_2(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
+
 
         def test_Prof1_3(self):
             """
-            这是测试转职为战士分支、剑圣分支、复仇者、黑暗复仇者职业
-            return:
+            战士转职为黑暗复仇者的技能测试
             """
-            print("测试转职为战士分支、剑圣分支、复仇者、黑暗复仇者职业")
-            self.assertEqual("黑暗复仇者", Skill.test_warrior_3(devices))
-            screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+            try:
+                print("测试转职为战士分支、剑圣分支、复仇者、黑暗复仇者职业")
+                self.assertEqual("黑暗复仇者", Skill.test_warrior_3(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
+
 
         def test_Prof1_4(self):
             """
-            这是测试 Prof1- 转职为战士分支、战皇分支、狂战士职业
-            return:
+            战士转职为狂战士的技能测试
             """
-            self.assertEqual("狂战士", Skill.test_warrior_4(devices))
-            screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+            try:
+                self.assertEqual("狂战士", Skill.test_warrior_4(devices))
+                screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
 
         def test_Prof1_5(self):
             """
-            这是测试  Prof1- 转职为战士分支、战神分支、毁灭者者职业
-            return: 返回关卡完成回到主界面
+            战士转职为毁灭者的技能测试
             """
-            print(" Prof1- 转职为战士分支、战神分支、毁灭者者职业")
-            self.assertEqual("毁灭者", Skill.test_warrior_5(devices))
-            screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+            try:
+                print(" Prof1- 转职为战士分支、战神分支、毁灭者者职业")
+                self.assertEqual("毁灭者", Skill.test_warrior_5(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "战士角色技能测试脚本")
+                self.assertEqual("此条的信息请忽略", start_Screenshot)
+
+
 
 
         def tearDown(self):

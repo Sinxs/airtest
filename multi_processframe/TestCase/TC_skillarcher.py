@@ -22,7 +22,7 @@ def Main(devices):
 
         def test_Archer_1(self):
             """
-            这是测试Prof2-转职为弓箭手分支、箭神分支、魔羽分支
+            技能测试--弓箭手转职--魔羽
             """
             try:
                 print("测试Prof2-转职为弓箭手分支、箭神分支、魔羽分支")
@@ -34,11 +34,10 @@ def Main(devices):
 
         def test_Archer_2(self):
             """
-            这  Prof2-转职为弓箭手分支、箭神分支、魔羽分支
-            return:
+            技能测试--弓箭手转职--狙翎
             """
             try:
-                print("测试Prof2-转职为弓箭手分支、箭神分支、魔羽分支")
+                print("测试Prof2-转职为弓箭手分支、箭神分支、狙翎分支")
                 self.assertEqual("狙翎", Skill.test_Archer_2(devices))
             except:
                 start_Screenshot = "这里是启动报错场景截图的功能"
@@ -49,8 +48,7 @@ def Main(devices):
 
         def test_Archer_3(self):
             """
-            这是测试Prof2-转职为弓箭手分支、猎人分支、银色猎人分支
-            return:
+            技能测试--弓箭手转职--银色猎人
             """
             try:
                 print("测试Prof2-转职为弓箭手分支、猎人分支、银色猎人分支")
@@ -62,8 +60,7 @@ def Main(devices):
 
         def test_Archer_4(self):
             """
-            这是测试 Prof2-转职为弓箭手分支、游侠分支、风行者分支
-            return:
+            技能测试--弓箭手转职--风行者
             """
             try:
                 print("测试Prof2-转职为弓箭手分支、猎人分支、风行者分支")
@@ -77,8 +74,7 @@ def Main(devices):
 
         def test_Archer_5(self):
             """
-            这是测试Prof2-转职为弓箭手分支、游侠分支、影舞者分支
-            return:
+            技能测试--弓箭手转职--影舞者
             """
             try:
                 print("测试Prof2-转职为弓箭手分支、猎人分支、影舞者分支")
