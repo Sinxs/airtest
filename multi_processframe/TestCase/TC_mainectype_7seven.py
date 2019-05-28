@@ -22,7 +22,7 @@ def Main(devices):
 
         def test_Chapter_Seven(self):
             """
-            主线关卡第七章战斗流程测试
+            主线关卡第七章战斗流程测试--测试自动通关副本，检测地图卡点，对于没有自动战斗的关卡进入副本后退出
             """
             try:
                 self.assertEqual("Duck", main_ectype.test_Chapter_Seven(devices))

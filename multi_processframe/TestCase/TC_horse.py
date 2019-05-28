@@ -21,7 +21,7 @@ def Main(devices):
 
         def  test_Horse(self):
             """
-            返回最后一个坐骑的按钮状态
+            坐骑功能测试模块--主要检测每个坐骑是否报错，坐骑模型是否存在
             """
             try:
                 self.assertEqual("Btnhave", horse.test_Horse(devices))

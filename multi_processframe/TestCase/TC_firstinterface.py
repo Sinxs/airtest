@@ -23,8 +23,7 @@ def Main(devices):
 
         def test_SignInReward(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--签到模块判断
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SignInReward(devices))
@@ -36,8 +35,7 @@ def Main(devices):
 
         def test_SysStrengthen(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--变强模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysStrengthen(devices))
@@ -48,8 +46,7 @@ def Main(devices):
 
         def test_SysAward(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--奖励模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysAward(devices))
@@ -60,8 +57,7 @@ def Main(devices):
 
         def test_SysAuction(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--交易所模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysAuction(devices))
@@ -72,8 +68,7 @@ def Main(devices):
 
         def test_SysGameMall(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--商城模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysGameMall(devices))
@@ -84,8 +79,7 @@ def Main(devices):
 
         def test_SysLimitDragon(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--极限龙本模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysLimitDragon(devices))
@@ -96,8 +90,7 @@ def Main(devices):
 
         def test_SysSevenActivity(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--登陆奖励模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysSevenActivity(devices))
@@ -108,8 +101,7 @@ def Main(devices):
 
         def test_SysLive(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--观看模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysLive(devices))
@@ -120,8 +112,7 @@ def Main(devices):
 
         def test_SysOperatingActivity(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--精彩活动模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysOperatingActivity(devices))
@@ -132,8 +123,7 @@ def Main(devices):
 
         def test_SysFirstRecharge(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--首冲模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysFirstRecharge(devices))
@@ -144,8 +134,7 @@ def Main(devices):
 
         def test_SysCarnival(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysCarnival(devices))
@@ -156,8 +145,7 @@ def Main(devices):
 
         def test_SysPVP(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--竞技场模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysPVP(devices))
@@ -168,8 +156,7 @@ def Main(devices):
 
         def test_SysGuild(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--公会模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysGuild(devices))
@@ -180,8 +167,7 @@ def Main(devices):
 
         def test_SysActivity(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--日常模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysActivity(devices))
@@ -193,8 +179,7 @@ def Main(devices):
 
         def test_SysItem(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+             一级界面--角色模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysItem(devices))
@@ -205,8 +190,7 @@ def Main(devices):
 
         def test_SysSkill(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+             一级界面--技能模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysSkill(devices))
@@ -217,8 +201,7 @@ def Main(devices):
 
         def test_SysSprite(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+             一级界面--精灵模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysSprite(devices))
@@ -229,8 +212,7 @@ def Main(devices):
 
         def test_SysEquipCreate(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+             一级界面--制作模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysEquipCreate(devices))
@@ -241,8 +223,7 @@ def Main(devices):
 
         def test_SysHorse(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+             一级界面--坐骑模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysHorse(devices))
@@ -253,8 +234,7 @@ def Main(devices):
 
         def test_SysFriends(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+             一级界面--好友模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysFriends(devices))
@@ -265,8 +245,7 @@ def Main(devices):
 
         def test_SysHome(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+             一级界面--家园模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysHome(devices))
@@ -277,8 +256,7 @@ def Main(devices):
 
         def test_SysRank(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--排行榜模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysRank(devices))
@@ -289,8 +267,7 @@ def Main(devices):
 
         def test_SysCardCollect(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--图鉴模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysCardCollect(devices))
@@ -301,8 +278,7 @@ def Main(devices):
 
         def test_SysNPCFavor(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--头衔模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysNPCFavor(devices))
@@ -313,8 +289,7 @@ def Main(devices):
 
         def test_ChatContent(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--聊天模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_ChatContent(devices))
@@ -325,8 +300,7 @@ def Main(devices):
 
         def test_SysPhoto(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--拍照模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysPhoto(devices))
@@ -337,8 +311,7 @@ def Main(devices):
 
         def test_SysLoverDance(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--双人动作模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysLoverDance(devices))
@@ -349,8 +322,7 @@ def Main(devices):
 
         def test_SysDance(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--跳舞模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysDance(devices))
@@ -361,8 +333,7 @@ def Main(devices):
 
         def test_SysHorseRide(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--坐骑骑乘模块打开是否正常
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysHorseRide(devices))
@@ -373,8 +344,8 @@ def Main(devices):
 
         def test_SysChange(self):
             """
-            这是测试一级界面的用例:
-            return: 返回关卡完成回到主界面
+            一级界面--变强模块打开是否正常
+
             """
             try:
                 self.assertEqual("1", Firstinterface.test_SysChange(devices))
