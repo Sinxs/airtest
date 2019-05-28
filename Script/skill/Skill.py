@@ -77,11 +77,16 @@ def Skillpng(poco):
         print("被动技能不能预览")
 
     else:
-        poco("Play").click()
-        if poco("Play").wait_for_appearance():
-            print("播放技能预览视频")
-            print("----------下一个技能----------")
-
+        if poco("Play").exists():
+            poco("Play").click()
+            for i in range(5):
+                sleep(1)
+                if poco("Play").exists():
+                    break
+            else:
+                print("视频预览损坏，请检查...")
+        print("播放技能预览视频")
+        print("----------下一个技能----------")
 
 
 def Skill(poco):
