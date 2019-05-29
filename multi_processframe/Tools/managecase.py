@@ -15,6 +15,7 @@ from multi_processframe.TestCase import TC_mainectype_1one,TC_mainectype_2two,TC
 
 from multi_processframe.TestCase import TC_firstinterface  # 一级界面
 from multi_processframe.TestCase import TC_template
+from multi_processframe.TestCase import TC_exchange
 
 
 
