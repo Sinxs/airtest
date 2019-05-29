@@ -105,16 +105,18 @@ def Skill(poco):
         for item2 in range(len(poco("Skill").child())):  # 判断当前职业的所有技能控件元素
             item21 = "Skill" + str(item2 + 1)
             Skillpos_1 = poco("SkillTree(Clone)").offspring(str(item21)).child("Bg").get_position()
-            if Skillpos_1[1] > 0.9:  # 判断当前技能元素是不是在屏幕以内
-                swipe((950, 770), (950, 480), 10)
-                swipe((950, 770), (950, 480), 10)
-                poco("SkillTree(Clone)").offspring(str(item21)).child("Bg").click()
-                print("点击" + poco("SkillTree(Clone)").offspring("Name").get_text() + "技能")
-                Skillpng(poco)  # 点击视频预览
-            else:
-                poco("SkillTree(Clone)").offspring(str(item21)).child("Bg").click()
-                print("点击" + poco("SkillTree(Clone)").offspring("Name").get_text() + "技能")
-                Skillpng(poco)  # 点击视频预览
+            for i in range(10):
+                if Skillpos_1[1] > 0.9:  # 判断当前技能元素是不是在屏幕以内
+                    swipe((950, 770), (950, 480), 10)  # todo：滑动五次保证不会出错
+                else:
+                    break
+            poco("SkillTree(Clone)").offspring(str(item21)).child("Bg").click()
+            print("点击" + poco("SkillTree(Clone)").offspring("Name").get_text() + "技能")
+            Skillpng(poco)  # 点击视频预览
+            # else:Sinxs
+            #     poco("SkillTree(Clone)").offspring(str(item21)).child("Bg").click()
+            #     print("点击" + poco("SkillTree(Clone)").offspring("Name").get_text() + "技能")
+            #     Skillpng(poco)  # 点击视频预览
     return poco("SkillTree(Clone)").offspring("Tabs").child("item2").child("SelectedTextLabel").get_text()  # 返回一个当前角色的二转职业
 
 
