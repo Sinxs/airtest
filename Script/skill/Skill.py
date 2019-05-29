@@ -104,10 +104,12 @@ def Skill(poco):
         print("选择" + poco("SkillTree(Clone)").offspring("Tabs").child(item1).child("SelectedTextLabel").get_text() + "职业，开始测试技能模块")
         for item2 in range(len(poco("Skill").child())):  # 判断当前职业的所有技能控件元素
             item21 = "Skill" + str(item2 + 1)
-            Skillpos_1 = poco("SkillTree(Clone)").offspring(str(item21)).child("Bg").get_position()
-            for i in range(10):
-                if Skillpos_1[1] > 0.9:  # 判断当前技能元素是不是在屏幕以内
-                    swipe((950, 770), (950, 480), 10)  # todo：滑动五次保证不会出错
+            for i in range(10):  # todo：滑动十次保证不会出错
+                Skillpos_1 = poco("SkillTree(Clone)").offspring(str(item21)).child("Bg").get_position()
+                if Skillpos_1[1] > 0.88:  # 判断当前技能元素是不是在屏幕以内
+                    swipe((950, 770), (950, 480), 10)
+                elif Skillpos_1[1] < 0.12:
+                    swipe((950, 480), (950, 770), 10)
                 else:
                     break
             poco("SkillTree(Clone)").offspring(str(item21)).child("Bg").click()
