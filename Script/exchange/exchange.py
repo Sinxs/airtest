@@ -11,11 +11,12 @@ def Auction(devices):  # 点击交易所按钮
     poco = UnityPoco(device=dev)  # 链接设备，并且重置poco
     poco("SysCAuction").click()  # 点击交易所
     poco("AuctionDlg(Clone)").offspring("Buy").child("Selected").click()  # 点击我要购买
-    poco("AuctionDlg(Clone)").offspring("ItemLevel").child("Arrow").click()  # 仅显示当前可用
-    poco("AuctionDlg(Clone)").offspring("ItemBlock").child("Arrow").click()  # 仅显示有货，他俩一起点击可以把几乎所有的货物显示出来
+    if poco("ailin").exists() and not poco("AuctionDlg(Clone)").offspring("item9").offspring("ItemTpl").offspring("Name").exists():  # 如果选中框没有勾掉，他俩一起点击可以把所有的货物显示出来
+        poco("AuctionDlg(Clone)").offspring("ItemLevel").child("Arrow").click()  # 仅显示当前可用
+        poco("AuctionDlg(Clone)").offspring("ItemBlock").child("Arrow").click()  # 仅显示有货
     name = poco("AuctionDlg(Clone)").offspring("TypeList").offspring("1").child("Label")
     name.click()  # 点击装备
-    for item in range(6,9):
+    for item in range(6, 9):
         item1 = str(item)
         poco(f"{item1}").click()
         for item in range(10):  # 因为apk功能机制问题，所以只选择前10中商品进行抽样测试
@@ -67,7 +68,7 @@ def Auction(devices):  # 点击交易所按钮
                         "Name").get_text() + "   道具显示存在")
                 else:
                     pass
-
+    poco("5").click()  # todo:点击恢复其他按钮
     poco("9").click()  # todo:点击菜肴按钮
     for item in range(10):  # 因为apk功能机制问题，所以只选择前10中商品进行抽样测试
         item1 = "item" + str(item)
