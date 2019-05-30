@@ -5,22 +5,14 @@ import unittest, sys, math
 from airtest.core.api import *
 from BeautifulReport import BeautifulReport
 from multi_processframe.Tools import multiprocessing, analysis, emali
-# from multi_processframe.TestCase import TC_horse # 坐骑
-# from multi_processframe.TestCase import TC_title # 称号
-# from multi_processframe.TestCase import TC_skilldance,TC_skillmagic,TC_skillpastor,TC_skillscholar,TC_skillthug,TC_skillarcher,TC_skillwarrior
-#                                         #  舞娘        法师          牧师            学者            刺客          弓箭手          战士
-# from multi_processframe.TestCase import TC_fashiondance,TC_fashionmagic,TC_fashionpastor,TC_fashionscholar,TC_fashionthug,TC_fashionarcher,TC_fashionwarrior
-#                                         #  舞娘           法师           牧师              学者               刺客           弓箭手            战士
-# from multi_processframe.TestCase import TC_mainectype_1one,TC_mainectype_2two,TC_mainectype_3three,TC_mainectype_4four,TC_mainectype_5five,TC_mainectype_6six,TC_mainectype_7seven,TC_mainectype_8eight,TC_mainectype_9nine,TC_mainectype_10ten
-#
-# from multi_processframe.TestCase import TC_firstinterface  # 一级界面
-# from multi_processframe.TestCase import TC_template
 from multi_processframe.TestCase import *
 
-
-
-
 def run_testcase(devices):
+    """
+    实现用例分配到设备以及多进程管理的方法
+    :param devices: main方法传过来的单独设备
+    :return: 没有返回值
+    """
     config_Path = os.path.join(os.getcwd(), "config.ini")
     case_Path = os.path.join(os.getcwd(), "TestCase")
     devices_List = analysis.analysis_config(config_Path, "deviceslist")  # 设备的数量

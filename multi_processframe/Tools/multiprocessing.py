@@ -6,7 +6,7 @@ from airtest.core.error import *
 from poco.exceptions import *
 from multi_processframe.Tools import gettimer, analysis, managecase
 
-def  entrance(processNo,devices):
+def entrance(processNo,devices):
     start_Time = gettimer.get_time()
     print(start_Time,f"进入第《-{processNo}-》进程----{devices}")
     is_Connect = ""
