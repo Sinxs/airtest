@@ -18,7 +18,7 @@ def run_testcase(devices):
     devices_List = analysis.analysis_config(config_Path, "deviceslist")  # 设备的数量
     if not os.path.exists(case_Path):
         print("测试用例需要放到‘TestCase’文件目录下")
-    report_Path = os.path.join(os.getcwd(), "Report") # D:\AirtestIDE\Case\Common\Report
+    report_Path = os.path.join(os.getcwd(), "Report")
     if not os.path.exists(report_Path):
         os.mkdir(report_Path)  # 创建Report文件夹
         os.mkdir(report_Path + "/Screenshot") # 创建Screen文件夹
@@ -26,7 +26,6 @@ def run_testcase(devices):
     script_List = analysis.get_script_list(case_Path) # 获取TestCase下文件可用的测试文件
     suite = unittest.TestSuite()
     cases = [] # 定义一个空的待测用例列表
-    # local = devices_List.index(devices)
     for i in range(len(config_Test_List)):  #循环遍历
         file_Name = "TC_" + config_Test_List[i] # 把配置列表中的用例加上tc标志
         if file_Name in script_List:
@@ -45,4 +44,4 @@ def run_testcase(devices):
     nowtime=time.strftime("%H-%M-%S")
     report_Name = devices_name.split()[0] + "_" + str(nowtime)
     unittest_Report.report(filename=report_Name, description="龙之谷-东南亚+8版本", report_dir=report_Path)
-    # emali.sendemail(report_Name,report_Path)
+    # emali.sendemail(report_Name,report_Path) # 项目实战的时候需要打开邮件发送功能

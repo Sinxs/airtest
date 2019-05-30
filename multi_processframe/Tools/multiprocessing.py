@@ -23,8 +23,6 @@ def entrance(processNo,devices):
         print(f"连接设备{devices}失败")
     if is_Connect == "Pass":
         try:
-            # startApp.startgame(devices)
-            # sleep(1)
             managecase.run_testcase(devices)
             print( devices,"完成测试")
         except Exception as e:
@@ -32,7 +30,7 @@ def entrance(processNo,devices):
             print(f"初始化游戏失败，{devices}")
 
 def main():
-    config_Path = os.path.join(os.getcwd(), "config.ini") # 获取配置路径 D:\AirtestIDE\Case\Common\config.ini
+    config_Path = os.path.join(os.getcwd(), "config.ini") # 获取配置路径
     devices_List = analysis.analysis_config(config_Path, "deviceslist")
     print(gettimer.get_time(), "测试开始")
     try:
@@ -46,8 +44,6 @@ def main():
         pool.join()
         print(gettimer.get_time(), "进程回收完毕")
         print(gettimer.get_time(), "测试结束")
-        # report_Path = os.path.join(os.getcwd(), "Report")
-        # os.system(f"start explorer {report_Path}")
     except AirtestError as ae:
         print(gettimer.get_time(), "Airtest发生错误" + ae)
     except PocoException as pe:
