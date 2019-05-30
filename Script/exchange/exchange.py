@@ -96,7 +96,25 @@ def Auction(devices):  # 点击交易所按钮
     poco("AuctionDlg(Clone)").offspring("Sell").child("SelectedTextLabel").click()  # TODO:点击我要出售
     if poco("ailin").exists() and poco("t").exists() and poco("AuctionSellFrame").child("Title ").exists():
         print(poco("AuctionDlg(Clone)").offspring("Sell").child("SelectedTextLabel").get_text() + "界面显示正确")
-
+        # 以下为出售道具
+        if poco("AuctionDlg(Clone)").offspring("item0").child("Icon").exists():
+            poco("AuctionDlg(Clone)").offspring("item0").child("Icon").click()
+            print("准备上架" + poco(texture="kuang_dj_1").child("Name").get_text())
+            if poco(texture="l_tip_00").exists():
+                poco("RightButton").click()
+                print(poco("AuctionDlg(Clone)").offspring("item0").offspring("ItemTpl").offspring(
+                    "Name").get_text() + "上架成功---测试完成，准备下架")
+        if poco("AuctionDlg(Clone)").offspring("item0").offspring("ItemTpl").offspring("Name").exists():
+            poco("AuctionDlg(Clone)").offspring("item0").offspring("ItemTpl").offspring("Name").click()
+            if poco(texture="l_tip_00").exists():
+                print("准备下架---" + poco("AuctionDlg(Clone)").offspring("item0").offspring("ItemTpl").offspring(
+                    "Name").get_text())
+                poco("LeftButton").click()
+                print("下架成功")
+                if poco("SellListEmpty").exists():
+                    print("上架下架测试完成")
+        else:
+            print("没有道具可以出售....")
     poco("AuctionDlg(Clone)").offspring("GuildAuc").child("SelectedTextLabel").click()  # TODO:点击拍卖行
 
     poco("AuctionDlg(Clone)").offspring("Table").child("item0").child("Label").click()  # TODO:点击工会拍卖
