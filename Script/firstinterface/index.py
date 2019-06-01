@@ -37,6 +37,8 @@ def test_Close(poco):
     return "1"
 
 
+
+
 def test_sysPromote(devices):  # 提升
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
