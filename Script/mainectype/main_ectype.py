@@ -13,8 +13,16 @@ def EnterEctype(conut_time,poco): # 进入主线深渊
     2.每次都会进入主界面，然后在进入深渊副本
     """
     # InitialGame.Startgame() # 初始化游戏
-    poco("Duck").click() # 进入日常
-    poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item111").child("JoinBtn").click() # 进入主线副本
+    poco("Duck").click()  # 进入日常
+    for i in range(5):
+        posite = poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item111").child("JoinBtn").get_position()
+        if posite[1]>0.77:
+            swipe((562, 376), (562, 150))
+        elif posite[1]<0.17:
+            swipe((562, 376), (562, 550))
+        else:
+            break
+    poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item111").child("JoinBtn").click()  # 进入主线副本
     poco("DungeonSelect(Clone)").offspring("Normal").child(texture="ICON-XT-gkzx2").click() # 点击主线
     for i in range(conut_time):
         poco("DungeonSelect(Clone)").offspring("Bg").child("Left").click()
@@ -149,9 +157,12 @@ def test_Chapter_One(devices):
     Complete_Map(9,poco)
     return poco("Duck").get_name()
 
-#
-# devices = '127.0.0.1:62001'
-# test_Chapter_One(devices)
+try:
+    devices = '127.0.0.1:62001'
+    test_Chapter_One(devices)
+except:
+    devices = '127.0.0.1:62001'
+    test_Chapter_One(devices)
 
 def test_Chapter_Two(devices):
     """ 主线第二章
