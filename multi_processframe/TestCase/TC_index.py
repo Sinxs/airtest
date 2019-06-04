@@ -5,7 +5,7 @@ import unittest
 from airtest.core.api import *
 from Script.mainectype import main_ectype
 from multi_processframe.Tools import initial, screenshot
-from Script.firstinterface import index
+from Script.index import index
 
 
 def Main(devices):
