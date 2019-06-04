@@ -4,6 +4,7 @@ from poco.drivers.unity3d import UnityPoco
 
 def darkness(poco):
     for i in range(200):
+        sleep(1)
         if not poco("InfoBack").offspring("Level").get_text() == "200":
             if poco("Avatar").exists():  # 呼出GM
                 poco("Avatar").click()
@@ -93,3 +94,4 @@ def darkness_ectype(devices):
         darkness(poco)
         sleep(15)
         return poco("Title").get_text()
+w
