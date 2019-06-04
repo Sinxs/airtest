@@ -13,7 +13,7 @@ def test_Horse(devices):
     """
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
-    comparepoMenuExists("SysEHorse",poco) # 调用函数查看主界面坐骑按钮是否可点击
+    check_menu("SysEHorse", poco) # 调用函数查看主界面坐骑按钮是否可点击
     poco("NewBtn").child("BtnBg").click() # 打开坐骑列表
     petgrid = poco("Grid").child() # 获取目前所有坐骑数量
     swipe((486, 170), (486, 889), 4)
@@ -32,7 +32,7 @@ def test_Horse(devices):
         time.sleep(1)
     return poco("Btnhave").get_name() # 返回值
 
-def comparepoMenuExists(sysmenu,poco):
+def check_menu(sysmenu, poco):
     position = poco(sysmenu).get_position()
     if position[0] > 1:  # 对比pos点，得到的pos列表中，第一个元素 > 1 说明在屏幕外面
         poco(texture="switch").click()
