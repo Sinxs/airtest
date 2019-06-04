@@ -89,19 +89,6 @@ def create_role(devicces):
 def establish_account2(devicces):
     dev = connect_device("android:///" + devicces)
     poco = UnityPoco(device=dev)
-    if poco("Overlay").exists():
-        poco("Overlay").click()
-        sleep(3)
-        poco("Skip").click()
-
-    else:
-        print("没找到跳过直接跑吧....")
-    if poco(text="点击屏幕继续").exists():
-        poco(text="点击屏幕继续").click()
-    if poco("Pause").child("p")[1].exists():
-        poco("Pause").child("p")[1].click()
-        poco(text="退出副本").click()
-        sleep(30)
     if poco("Avatar").exists():
         poco("Avatar").click()
         text("god")
