@@ -8,16 +8,15 @@ devicces = "127.0.0.1:62001"
 0、把以上 devices 后面的设备名改成自己的，没错，就是离介绍上面最近的哪一行代码
 1、手动创建一个账号
 2、进入角色选择界面
-3、运行当前脚本 establish_account 模块
+3、运行当前脚本 create_role 模块
 4、如果中途报错，就把游戏放到初始界面，运行establish_account2 模块
 """
 
-def establish_account1(poco):
+def action(poco):
     if poco("Overlay").exists():
         poco("Overlay").click()
         sleep(3)
         poco("Skip").click()
-
     else:
         print("没找到跳过直接跑吧....")
     if poco(text="点击屏幕继续").exists():
@@ -38,23 +37,18 @@ def establish_account1(poco):
             else:
                 break
         poco("Open").click()
-
         sleep(3)
-
         poco(text=">").click()
         text("level 130")
         Androidpoco("android.widget.Button").click()
         sleep(8)
-
         poco(text=">").click()
         text("item 42 1000")
         Androidpoco("android.widget.Button").click()
         sleep(3)
-
         poco(text=">").click()
         text("item 9999 1")
         Androidpoco("android.widget.Button").click()
-
         poco(text=">").click()
         text("item 9998 1")
         Androidpoco("android.widget.Button").click()
@@ -73,8 +67,7 @@ def establish_account1(poco):
     poco(text="切换角色").click()
     sleep(20)
 
-
-def establish_account(devicces):
+def create_role(devicces):
     dev = connect_device("android:///" + devicces)
     poco = UnityPoco(device=dev)
     for i in range(4, 8):
@@ -87,10 +80,10 @@ def establish_account(devicces):
                 if poco("EnterGame").exists():
                     poco("EnterGame").click()
             sleep(45)
-            establish_account1(poco)
+            action(poco)
 
 
-# establish_account(devicces)
+# create_role(devicces)
 
 
 def establish_account2(devicces):
