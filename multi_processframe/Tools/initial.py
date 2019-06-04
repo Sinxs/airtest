@@ -34,6 +34,7 @@ def startgame(devices):
     l_close = poco(texture="l_close_00")
     Close = poco("Close")
     for x in range(4):
+        sleep(1)
         if l_close.exists() and Close.exists():
             sleep(1.5)
             poco(texture="l_close_00").click()
