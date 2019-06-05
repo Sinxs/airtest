@@ -105,8 +105,8 @@ def Complete_Map(action,poco): # 跑图功能
     """
     EnterEctype(action,poco) # 进入副本的函数
     chapter = "chapter" + str(10 - action)
-    freeeze = poco.freeze()
-    levels = freeeze("DungeonSelect(Clone)").offspring(chapter).offspring("Levels").child() # 获取当前关卡数量
+    with poco.freeze() as freeze_poco:
+        levels = freeze_poco("DungeonSelect(Clone)").offspring(chapter).offspring("Levels").child() # 获取当前关卡数量
     temporarylist = [] # 定义一个临时的空列表
     for x in levels: # 循环把获取的class中的元素添加到空列表中
         temporarylist.append(x.get_name())
