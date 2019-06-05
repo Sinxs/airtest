@@ -8,11 +8,11 @@ def startgame(devices):
     dev = connect_device("android:///" + devices)
     sleep(3)
     poco = UnityPoco(device=dev)
-    if os.system(f"adb -s {devices} shell pidof com.playfungame.ggplay.lzgsea") == 1:
+    if os.system(f"adb -s {devices} shell pidof com.tencent.tmgp.dragonnest") == 1:
         print("游戏未启动，开始启动游戏...")
-        stop_app('com.playfungame.ggplay.lzgsea')
+        stop_app('com.tencent.tmgp.dragonnest')
         sleep(1)
-        start_app('com.playfungame.ggplay.lzgsea')
+        start_app('com.tencent.tmgp.dragonnest')
         sleep(40)
         poco = UnityPoco(device=dev)
         touch([int(get_screen_size._get_screen_size(devices)[0]*0.5),int(get_screen_size._get_screen_size(devices)[1]*0.5)])

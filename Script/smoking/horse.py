@@ -3,9 +3,10 @@ __author__ = "Lee.li"
 
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
+from multi_processframe.Tools import screenshot, printcolor
 
 
-def test_Horse(devices):
+def horse(devices):
     """
     1.进入主界面
     2.点击坐骑按钮
@@ -17,17 +18,31 @@ def test_Horse(devices):
     poco("NewBtn").child("BtnBg").click() # 打开坐骑列表
     petgrid = poco("Grid").child() # 获取目前所有坐骑数量
     swipe((486, 170), (486, 889), 4)
+    swipe((486, 170), (486, 889), 4)
+    swipe((486, 170), (486, 889), 4)
     for i in range(len(petgrid)):
-        if i == 22:
+        if i == 22 or i == 42 or i ==62:
             swipe((486,889),(486,170),6)
-            swipe((486,889),(486,170),4)# 滑动界面确保未出现在界面内的坐骑可以点击到
             time.sleep(2)
         item = "item" + str(i)
         time.sleep(2)
         poco("Grid").offspring(item).click() # 点击坐骑icon
-        if poco("vehicle_crazydugswing_red").exists(): #判断坐骑模型是否存在
+        if poco("Btnhave").exists() or poco("BtnMount").exists(): #判断坐骑打开是否正常是否存在
             petname = poco("PetName").offspring("Name").get_text() # 获得当前坐骑的名称
-            print(f"{petname}坐骑模型显示正常")
+            printcolor.printgreen(f"{petname}坐骑查看正常")
+            if poco("Btnhave").exists():
+                poco("Btnhave").click()
+                name = poco("ItemToolTipDlg(Clone)").child("Bg").offspring("TopFrame").child("Name").get_text()
+                printcolor.printgreen(f"{name}获取界面打开正常")
+                touch([1140,540],times=2)
+            else:
+                if poco("BtnMount").exists():
+                    print("坐骑已经获得，没有获取途径")
+                else:
+                    printcolor.printred("没有相关坐骑信息，请查具体查看该坐骑！")
+        else:
+            printcolor.printred("没有获取到该坐骑相关信息")
+            # screenshot.get_screen_shot(time.time(), devices, "没有拿到这个坐骑的模型")
         poco("NewBtn").child("BtnBg").click() # 打开坐骑列表
         time.sleep(1)
     return poco("Btnhave").get_name() # 返回值
@@ -40,3 +55,6 @@ def check_menu(sysmenu, poco):
         poco(sysmenu).click()
     else:
         poco(sysmenu).click()
+
+# devices = "127.0.0.1:62001"
+# horse(devices)
