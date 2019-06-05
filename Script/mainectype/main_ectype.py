@@ -157,13 +157,6 @@ def test_Chapter_One(devices):
     Complete_Map(9,poco)
     return poco("Duck").get_name()
 
-try:
-    devices = '127.0.0.1:62001'
-    test_Chapter_One(devices)
-except:
-    devices = '127.0.0.1:62001'
-    test_Chapter_One(devices)
-
 def test_Chapter_Two(devices):
     """ 主线第二章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
