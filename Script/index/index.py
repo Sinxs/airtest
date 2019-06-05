@@ -41,7 +41,7 @@ def sign_in(devices):
     return result
 sign_in(devices)
 
-def test_sysPromote(devices):  # 提升
+def sys_promote(devices):  # 提升
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
     if poco("SysAAFPromote").exists():

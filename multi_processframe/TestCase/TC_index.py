@@ -32,6 +32,16 @@ def Main(devices):
                 screenshot.get_screen_shot(time.time(), devices, "通用测试截图名称")
                 self.assertEqual("此条的信息请忽略",start_Screenshot)
 
+        def test_sys_promote(self):
+            """
+            一级界面--变强模块
+            """
+            try:
+                self.assertEqual("P", index.sys_promote(devices))
+            except:
+                start_Screenshot = "这里是启动报错场景截图的功能"
+                screenshot.get_screen_shot(time.time(), devices, "通用测试截图名称")
+                self.assertEqual("此条的信息请忽略",start_Screenshot)
 
         def test_SysStrengthen(self):
             """
