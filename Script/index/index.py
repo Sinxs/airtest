@@ -2,8 +2,9 @@
 __author__ = "Lee.li"
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
+from multi_processframe.Tools import screenshot
 import time
-
+import random
 devices = "127.0.0.1:62001"
 
 def sign_in(devices):
@@ -39,17 +40,38 @@ def sign_in(devices):
             sign_in_late()
     result = poco("LoginFrame").child("P").get_name()
     return result
-sign_in(devices)
 
 def sys_promote(devices):  # 提升
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
     if poco("SysAAFPromote").exists():
-        poco("SysAAFPromote").click()
-        print("提升按钮点击正常")
-    else:
-        print("暂时没有可提升项目")
-    return "1"
+        with poco.freeze() as freeze_poco:
+            count = freeze_poco("GameSysFPromote").offspring("Promote").child()
+        if poco("SysAAFPromote").exists():
+            poco("SysAAFPromote").click()
+            print("提升按钮点击正常")
+            with poco.freeze() as freeze_poco:
+                count = freeze_poco("GameSysFPromote").offspring("Promote").child()
+            print(f'一共有{len(count)}个变强途径，随机点击一个查看跳转')
+            randomnumber = random.randint(0, 6)
+            name = poco("GameSysFPromote").offspring(f"item{randomnumber}").child("T").get_text()
+            print(f"点击{name}查看跳转")
+            poco("GameSysFPromote").offspring(f"item{randomnumber}").click()
+            if poco("Close").exists():
+                print(f"{name}界面打开正常，关闭界面")
+                poco("Close").click()
+            if poco("Duck").exists():
+                print("回到主界面，提升流程正常")
+            else:
+                print("流程异常，请查看截图")
+                screenshot.get_screen_shot(time.time(), devices, "流程异常，请查看截图")
+        else:
+            print("暂时没有可提升项目")
+    result = poco("Duck").get_name()
+    return result
+
+# sys_promote(devices)
+
   # 变强
 def test_SysStrengthen(devices):
     dev = connect_device("android:///" + devices)

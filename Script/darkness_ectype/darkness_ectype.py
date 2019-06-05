@@ -94,4 +94,3 @@ def darkness_ectype(devices):
         darkness(poco)
         sleep(15)
         return poco("Title").get_text()
-w
