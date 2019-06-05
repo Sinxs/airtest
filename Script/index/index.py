@@ -5,7 +5,7 @@ from poco.drivers.unity3d import UnityPoco
 from multi_processframe.Tools import screenshot
 import time
 import random
-devices = "127.0.0.1:62001"
+# devices = "127.0.0.1:62001"
 
 def sign_in(devices):
     """1.每天第一次登陆弹出签到窗口进行签到
@@ -64,7 +64,6 @@ def sys_promote(devices):  # 提升
                 print("回到主界面，提升流程正常")
             else:
                 print("流程异常，请查看截图")
-                screenshot.get_screen_shot(time.time(), devices, "流程异常，请查看截图")
         else:
             print("暂时没有可提升项目")
     result = poco("Duck").get_name()
