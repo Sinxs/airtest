@@ -29,7 +29,7 @@ def horse(devices):
         poco("Grid").offspring(item).click() # 点击坐骑icon
         if poco("Btnhave").exists() or poco("BtnMount").exists(): #判断坐骑打开是否正常是否存在
             petname = poco("PetName").offspring("Name").get_text() # 获得当前坐骑的名称
-            printcolor.printgreen(f"{petname}坐骑查看正常")
+            printcolor.printgreen(f"{petname}坐骑查看正常",end=",")
             if poco("Btnhave").exists():
                 poco("Btnhave").click()
                 name = poco("ItemToolTipDlg(Clone)").child("Bg").offspring("TopFrame").child("Name").get_text()

@@ -8,18 +8,43 @@ __author__ = "Lee.li"
 4.变量名首字母尽量小写, 如有多个单词，用下划线隔开，后续字母大写
 5.常量采用全大写，如有多个单词，使用下划线隔开
 """
-def printred(mes):
+def printred(mes,end='\n'):
     """
     这是打印红色加粗字体，在html显示报错信息信息d函数
     :param mes: 需要打印的信息
     :return: 返回加工后的打印内容
     """
-    return print(f"<font color=\"red\" ><b>{mes}</b></font>")
+    if end == "，" or end == ",":
+        return print(f"<font color=\"red\" ><b>ERROR：</b>{mes}</font>",end="，")
+    elif end == "":
+        return print(f"<font color=\"red\" ><b>ERROR：</b>{mes}</font>", end=" ")
+    else:
+        return print(f"<font color=\"red\" ><b>ERROR：</b>{mes}</font>")
 
-def printgreen(mes):
+def printgreen(mes,end='\n'):
     """
     这是打印绿色字体，在html显示正确信息的函数
     :param mes: 需要打印的信息
     :return: 返回加工后的打印内容
     """
-    return print(f"<font color=\"green\" >{mes}</font>")
+    if end == "，" or end ==",":
+        return print(f"<font color=\"green\" >{mes}</font>",end="，")
+    elif end == "":
+        return print(f"<font color=\"green\" >{mes}</font>", end=" ")
+    else:
+        return print(f"<font color=\"green\" >{mes}</font>")
+
+def printcolor(mes,color,end='\n'):
+    """
+    这是打印定制颜色字体，在html显示正确信息的函数
+    :param mes: 需要打印的信息
+    :return: 返回加工后的打印内容
+    red=红
+    green=绿
+    """
+    if end == "，" or end ==",":
+        return print(f"<font color=\"{color}\" >{mes}</font>",end="，")
+    elif end == "":
+        return print(f"<font color=\"{color}\" >{mes}</font>", end=" ")
+    else:
+        return print(f"<font color=\"{color}\" >{mes}</font>")
