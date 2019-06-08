@@ -26,10 +26,8 @@ def Main(devices):
             """
             try:
                 self.assertEqual("Btnhave", horse.horse(devices))
-            except:
-                start_Screenshot = "这里是启动报错场景截图的功能"
+            finally:
                 screenshot.get_screen_shot(time.time(), devices, "坐骑功能测试脚本")
-                self.assertEqual("此条的信息请忽略", start_Screenshot)
 
         def tearDown(self):
             u'''这里放需要在每条用例后执行的部分'''

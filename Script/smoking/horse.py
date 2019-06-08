@@ -20,7 +20,7 @@ def horse(devices):
     swipe((486, 170), (486, 889), 4)
     swipe((486, 170), (486, 889), 4)
     swipe((486, 170), (486, 889), 4)
-    for i in range(len(petgrid)):
+    for i in range(3):
         if i == 22 or i == 42 or i ==62:
             swipe((486,889),(486,170),6)
             time.sleep(2)

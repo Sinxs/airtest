@@ -9,9 +9,28 @@ __author__ = "Lee.li"
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
 from multi_processframe.Tools import screenshot, printcolor
+import traceback
 
-def setting():
+def connect_devices(devices):
+    dev = connect_device("android:///" + devices)
+    poco = UnityPoco(device=dev)
+    return poco
 
-    print()
-printcolor.printred("123456789",end="")
-printcolor.printred("12345565656789")
+def setting(devices):
+    poco = connect_devices(devices)
+
+    poco("Avatar").click()
+    touch([1140, 540], times=2)
+
+    if poco("SettingDlg(Clone)").exists():
+        uiname = poco("SettingDlg(Clone)").offspring("Bg").offspring("Bg1").child("T").get_text()
+        printcolor.printgreen(f"{uiname}  界面打开成功")
+    else:
+        printcolor.printred("设置界面打开失败！")
+    poco("OptionTab")
+    poco("PushTab")
+    poco("CameraTab")
+    poco("PasswordTab")
+
+devices = "127.0.0.1:62001"
+setting(devices)

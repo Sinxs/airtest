@@ -36,7 +36,6 @@ def main():
     try:
         pool = multiprocessing.Pool(processes=len(devices_List))
         print(gettimer.get_time(), "启动进程池")
-        processNo = 1 # 设备循环变量
         for i in range(len(devices_List)):
             pool.apply_async(entrance,(i+1, devices_List[i]))
 

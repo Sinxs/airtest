@@ -27,10 +27,9 @@ def Main(devices):
             try:
                 print("开始测试商城模块")
                 self.assertEqual("充 值", gamemall.gamemall(devices))
-            except:
-                start_Screenshot = "这里是启动报错场景截图的功能"
+            finally:
                 screenshot.get_screen_shot(time.time(), devices, "商城-冒烟测试")
-                self.assertEqual("此条的信息请忽略",start_Screenshot)
+
 
         def tearDown(self):
             u'''这里放需要在每条用例后执行的部分'''
