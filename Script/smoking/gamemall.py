@@ -4,7 +4,7 @@ __author__ = "Sinwu"
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
 from multi_processframe.Tools import printcolor
-
+devices = "127.0.0.1:62025"
 def butpos(butpos,pos1=0.4,pos2=0.81,high=1330,low=930,lows=482):
     """
 把不在屏幕内部的控件滑动到屏幕内，使之可被操作
@@ -79,7 +79,7 @@ def mall(devices):
     for item in range(len(poco("Grid").child())):
         item1 = "item"+str(item)
         if poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).exists():
-            printcolor.printgreen("点击-->>"+poco("GameMall(Clone)").offspring("ShopFrame").offspring("item0").offspring("shopname"))
+            printcolor.printgreen("点击-->>"+poco("GameMall(Clone)").offspring("ShopFrame").offspring("item0").offspring("shopname").get_text())
             poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).click()
             if poco("ShopName").exists():
                 poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").click()
@@ -87,11 +87,15 @@ def mall(devices):
                     printcolor.printgreen(poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").offspring("TextLabel").get_text()+" 界面显示正常")
                 else:
                     printcolor.printred(poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").offspring("TextLabel").get_text()+" 界面没有商品")
-
+                if poco("MallDlg(Clone)").offspring("Panel").child("item1").exists():
+                    printcolor.printgreen(poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").offspring("TextLabel").get_text()+" 界面显示正常")
+                else:
+                    printcolor.printred(poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").offspring("TextLabel").get_text()+" 界面没有商品")
         else:
             printcolor.printred("商店界面缺少子页签，请检查...")
 
 
 
+mall(devices)
 
 
