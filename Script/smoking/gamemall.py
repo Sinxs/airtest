@@ -29,7 +29,6 @@ def butpos(butpos,pos1=0.4,pos2=0.81,high=1330,low=930,lows=482):
 def gamemall(devices):
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
-    Mallbutlist = ["XSys_GameMall_Diamond", "XSys_GameMall_Dragon", "XSys_GameMall_CRYSTAL", "XSys_Mall", "XSys_GameMall_Pay"]
     if poco("SysAGameMall").exists():
         poco("SysAGameMall").click()
     else:
@@ -63,23 +62,24 @@ def gamemall(devices):
             printcolor.printred("商城界面缺少子页签，请检查")
     return poco("GameMall(Clone)").child("Bg").child("T").get_text()
 
-def mall(devices):
+
+def mall(devices):  # 商店功能测试
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
-    Mallbutlist = ["XSys_GameMall_Diamond", "XSys_GameMall_Dragon", "XSys_GameMall_CRYSTAL", "XSys_Mall",
-                   "XSys_GameMall_Pay"]
     if poco("SysAGameMall").exists():
         poco("SysAGameMall").click()
         if poco("XSys_Mall").exists():
             poco("XSys_Mall").click()
         else:
             printcolor.printred("商城界面找不到商店页签，请检查")
+            return
     else:
         printcolor.printred("主界面找不到商城按钮，请检查")
+        return
     for item in range(len(poco("Grid").child())):
         item1 = "item"+str(item)
-        if poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).exists():
-            printcolor.printgreen("点击-->>"+poco("GameMall(Clone)").offspring("ShopFrame").offspring("item0").offspring("shopname").get_text())
+        if poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).exists():  # 商店的子页签
+            printcolor.printgreen("点击-->>"+poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).offspring("shopname").get_text())
             poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).click()
             if poco("ShopName").exists():
                 poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").click()
@@ -88,9 +88,10 @@ def mall(devices):
                 else:
                     printcolor.printred(poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").offspring("TextLabel").get_text()+" 界面没有商品")
                 if poco("MallDlg(Clone)").offspring("Panel").child("item1").exists():
-                    printcolor.printgreen(poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").offspring("TextLabel").get_text()+" 界面显示正常")
+                    poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").click()
+                    printcolor.printgreen(poco("MallDlg(Clone)").offspring("TabShopFrame").child("item1").offspring("TextLabel").get_text()+" 界面显示正常")
                 else:
-                    printcolor.printred(poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").offspring("TextLabel").get_text()+" 界面没有商品")
+                    printcolor.printred(poco("MallDlg(Clone)").offspring("TabShopFrame").child("item1").offspring("TextLabel").get_text()+" 界面没有商品")
         else:
             printcolor.printred("商店界面缺少子页签，请检查...")
 
