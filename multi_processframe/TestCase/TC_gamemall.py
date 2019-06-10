@@ -20,16 +20,25 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_Intensify(self):
+        # def test_gamemall(self):
+        #     """
+        #     商城-冒烟测试
+        #     """
+        #     try:
+        #         print("开始测试商店模块")
+        #         self.assertEqual("充 值", gamemall.mall(devices))
+        #     finally:
+        #         screenshot.get_screen_shot(time.time(), devices, "商城-冒烟测试")
+
+        def test_mall(self):
             """
-            商城-冒烟测试
+            商店-冒烟测试
             """
             try:
-                print("开始测试商城模块")
-                self.assertEqual("充 值", gamemall.gamemall(devices))
+                print("开始测试商店模块")
+                self.assertEqual("商 店", gamemall.mall(devices))
             finally:
-                screenshot.get_screen_shot(time.time(), devices, "商城-冒烟测试")
-
+                screenshot.get_screen_shot(time.time(), devices, "商店-冒烟测试")
 
         def tearDown(self):
             u'''这里放需要在每条用例后执行的部分'''
