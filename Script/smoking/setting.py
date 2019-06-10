@@ -21,12 +21,42 @@ def setting(devices):
     if poco("SettingDlg(Clone)").exists():
         uiname = poco("SettingDlg(Clone)").offspring("Bg").offspring("Bg1").child("T").get_text()
         printcolor.printgreen(f"{uiname}  界面打开成功")
+        if poco("PrerogativeBtn").exists():
+            poco("PrerogativeBtn").click()
+            if poco("PrerogativeFrame(Clone)").offspring("Bg").child("Bg1").exists():
+                uiname = poco("PrerogativeFrame(Clone)").offspring("Bg").offspring("Bg1").child("T").get_text()
+                printcolor.printgreen(f"{uiname}  界面打开成功")
+            else:
+                printcolor.printred("个性展示打开失败")
+                screenshot.get_screen_shot(time.time(), devices, "个性战士打开失败")
+
+        else:
+            printcolor.printred("个性信息打开失败")
+            screenshot.get_screen_shot(time.time(), devices, "个性战士打开失败")
+
+
+
+
+
+
+        if poco("OptionTab").exists():
+            poco("OptionTab").click()
+            printcolor.printgreen("系统设置界面打开成功")
+        if poco("PushTab").exists():
+            poco("PushTab").click()
+            printcolor.printgreen("推送设置界面打开成功")
+        if poco("CameraTab").exists():
+            poco("CameraTab").click()
+            printcolor.printgreen("视角设置界面打开成功")
+        if poco("PasswordTab").exists():
+            poco("PasswordTab").click()
+            printcolor.printgreen("二级密码界面打开成功")
     else:
         printcolor.printred("设置界面打开失败！")
-    poco("OptionTab")
-    poco("PushTab")
-    poco("CameraTab")
-    poco("PasswordTab")
 
-devices = "127.0.0.1:62001"
-setting(devices)
+
+
+#
+#
+# devices = "127.0.0.1:62001"
+# setting(devices)

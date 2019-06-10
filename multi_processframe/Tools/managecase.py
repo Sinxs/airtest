@@ -43,5 +43,5 @@ def run_testcase(devices):
     devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.name").read()
     nowtime=time.strftime("%H-%M-%S")
     report_Name = devices_name.split()[0] + "_" + str(nowtime)
-    unittest_Report.report(filename=report_Name, description="龙之谷-东南亚+8版本", report_dir=report_Path)
+    unittest_Report.report(filename=report_Name, description="龙之谷国内版本", report_dir=report_Path)
     # emali.sendemail(report_Name,report_Path) # 项目实战的时候需要打开邮件发送功能
