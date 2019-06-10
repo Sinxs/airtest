@@ -8,17 +8,13 @@ __author__ = "Lee.li"
 
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
-from multi_processframe.Tools import screenshot, printcolor
+from multi_processframe.Tools import screenshot, printcolor, adb_connect
 import traceback
 
-def connect_devices(devices):
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
-    return poco
 
 def setting(devices):
-    poco = connect_devices(devices)
 
+    poco = adb_connect.device(devices)
     poco("Avatar").click()
     touch([1140, 540], times=2)
 
