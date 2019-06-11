@@ -18,7 +18,9 @@ def setting(devices):
     if poco("SettingDlg(Clone)").exists(): # 打开设置
         uiname = poco("SettingDlg(Clone)").offspring("Bg").offspring("Bg1").child("T").get_text()
         printcolor.printgreen(f"{uiname}  界面打开成功")
-        if poco("PrerogativeBtn").exists(): # 个人信息
+
+        if poco("InfoTab").exists(): # 个人信息
+            poco("InfoTab").click()
             poco("PrerogativeBtn").click()
             if poco("PrerogativeFrame(Clone)").offspring("Bg").child("Bg1").exists(): # 个性展示
                 if poco("DebugDlg(Clone)").offspring("Close").exists():
@@ -155,29 +157,29 @@ def setting(devices):
                 if poco("PushPanel").exists():
                     poco("SettingDlg(Clone)").offspring("Scroll1").offspring("item0").offspring("Checked").click()
                     printcolor.printgreen("推送设置界面打开成功，操作每日领取体力的提醒")
-                else:
-                    printcolor.printred("推送设置界面异常")
-                    screenshot.get_screen_shot(time.time(), devices, "推送设置界面异常")
+            else:
+                printcolor.printred("推送设置界面异常")
+                screenshot.get_screen_shot(time.time(), devices, "推送设置界面异常")
             if poco("CameraTab").exists():
                 poco("CameraTab").click()
                 if poco("BattlePanel").exists():
                     poco("SettingDlg(Clone)").offspring("3DFree").child("Normal").click()
                     printcolor.printgreen("视角设置界面打开成功，切换视角未3D自由视角")
-                else:
-                    printcolor.printred("视角设置界面异常")
-                    screenshot.get_screen_shot(time.time(), devices, "视角设置界面异常")
+            else:
+                printcolor.printred("视角设置界面异常")
+                screenshot.get_screen_shot(time.time(), devices, "视角设置界面异常")
             if poco("PasswordTab").exists():
                 poco("PasswordTab").click()
                 if poco("PasswordPanel").exists():
                     poco("SettingDlg(Clone)").offspring("Open").child("Selected").click()
                     if poco("SettingPanel").exists():
-                        poco("TwoLevelPassword(Clone)").offspring("Close")
+                        poco("TwoLevelPassword(Clone)").offspring("Close").click()
                         printcolor.printgreen("二级密码界面打开成功,操作回收保护功能，界面打开关闭正常")
-                        poco(texture="l_close_00").click()
-                else:
-                    printcolor.printred("二级密码界面异常")
-                    screenshot.get_screen_shot(time.time(), devices, "二级密码界面异常")
-                    poco(texture="l_close_00").click()
+                        poco("SettingDlg(Clone)").child("Bg").child("Close").click()
+            else:
+                printcolor.printred("二级密码界面异常")
+                screenshot.get_screen_shot(time.time(), devices, "二级密码界面异常")
+                poco("SettingDlg(Clone)").child("Bg").child("Close").click()
     else:
         printcolor.printred("设置界面打开失败！")
 
