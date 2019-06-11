@@ -21,6 +21,9 @@ def setting(devices):
         if poco("PrerogativeBtn").exists(): # 个人信息
             poco("PrerogativeBtn").click()
             if poco("PrerogativeFrame(Clone)").offspring("Bg").child("Bg1").exists(): # 个性展示
+                if poco("DebugDlg(Clone)").offspring("Close").exists():
+                    poco("DebugDlg(Clone)").offspring("Close").click()
+                swipe((335, 260), (335, 576))
                 uiname = poco("PrerogativeFrame(Clone)").offspring("Bg").offspring("Bg1").child("T").get_text()
                 printcolor.printgreen(f"{uiname}  界面打开成功")
                 if poco("RuleBtn").exists(): # 规则详情
@@ -81,8 +84,10 @@ def setting(devices):
                 screenshot.get_screen_shot(time.time(), devices, "个性展示打开失败")
             poco("Avatar").click()
             touch([1140, 540], times=2)
-            if  poco("PersonalCareerBtn").exists():
+            if  poco("PersonalCareerBtn").exists(): # 个人生涯
                 poco("PersonalCareerBtn").click()
+                if poco("DebugDlg(Clone)").offspring("Close").exists():
+                    poco("DebugDlg(Clone)").offspring("Close").click()
                 time.sleep(3)
                 if len(poco("PersonalCareer(Clone)").offspring("Tabs").child()) == 3:
                     printcolor.printgreen("个人生涯界面存在3个按钮")
@@ -90,6 +95,7 @@ def setting(devices):
                     printcolor.printgreen("角色名称是"+poco("Username").get_text())
                     poco("Tabs").child("item1").click()
                     time.sleep(3)
+                    poco("Season").click()
                     poco("PKDetail").click()
                     if poco(text="挑战记录").exists():
                         printcolor.printgreen("挑战记录界面打开成功")
@@ -113,11 +119,13 @@ def setting(devices):
                         childnumber = poco("ScrollView").child()
                         if len(childnumber) >5:
                             printcolor.printgreen("荣誉等级奖励的条目大于5个")
-                            poco(texture="l_close_00")
+                            poco(texture="l_close_00").click()
+                            poco("Close").click()
                         else:
                             printcolor.printred("荣誉等级奖励的条目小于5个")
                             screenshot.get_screen_shot(time.time(), devices, "荣誉等级奖励的条目小于5个")
-                            poco(texture="l_close_00")
+                            poco(texture="l_close_00").click()
+                            poco("Close").click()
                     else:
                         printcolor.printred("荣誉奖杯界面打开失败")
                         screenshot.get_screen_shot(time.time(), devices, "荣誉奖杯界面打开失败")
@@ -130,25 +138,51 @@ def setting(devices):
         else:
             printcolor.printred("个人信息打开失败")
             screenshot.get_screen_shot(time.time(), devices, "个人信息打开失败")
-        # if poco("OptionTab").exists():
-        #     poco("OptionTab").click()
-        #     printcolor.printgreen("系统设置界面打开成功")
-        # if poco("PushTab").exists():
-        #     poco("PushTab").click()
-        #     printcolor.printgreen("推送设置界面打开成功")
-        # if poco("CameraTab").exists():
-        #     poco("CameraTab").click()
-        #     printcolor.printgreen("视角设置界面打开成功")
-        # if poco("PasswordTab").exists():
-        #     poco("PasswordTab").click()
-        #     printcolor.printgreen("二级密码界面打开成功")
 
+        poco("Avatar").click()
+        touch([1140, 540], times=2)
+        if poco("SettingDlg(Clone)").exists():  # 判断设置界面是否打开
+            if poco("OptionTab").exists():  # 系统设置
+                poco("OptionTab").click()
+                if poco("SettingPanel").exists():
+                    poco("SettingDlg(Clone)").offspring("BtnMid").click()
+                    printcolor.printgreen("系统设置界面打开正常，设置画质未中")
+                else:
+                    printcolor.printred("系统设置界面异常")
+                    screenshot.get_screen_shot(time.time(), devices, "系统设置界面异常")
+            if poco("PushTab").exists():
+                poco("PushTab").click()
+                if poco("PushPanel").exists():
+                    poco("SettingDlg(Clone)").offspring("Scroll1").offspring("item0").offspring("Checked").click()
+                    printcolor.printgreen("推送设置界面打开成功，操作每日领取体力的提醒")
+                else:
+                    printcolor.printred("推送设置界面异常")
+                    screenshot.get_screen_shot(time.time(), devices, "推送设置界面异常")
+            if poco("CameraTab").exists():
+                poco("CameraTab").click()
+                if poco("BattlePanel").exists():
+                    poco("SettingDlg(Clone)").offspring("3DFree").child("Normal").click()
+                    printcolor.printgreen("视角设置界面打开成功，切换视角未3D自由视角")
+                else:
+                    printcolor.printred("视角设置界面异常")
+                    screenshot.get_screen_shot(time.time(), devices, "视角设置界面异常")
+            if poco("PasswordTab").exists():
+                poco("PasswordTab").click()
+                if poco("PasswordPanel").exists():
+                    poco("SettingDlg(Clone)").offspring("Open").child("Selected").click()
+                    if poco("SettingPanel").exists():
+                        poco("TwoLevelPassword(Clone)").offspring("Close")
+                        printcolor.printgreen("二级密码界面打开成功,操作回收保护功能，界面打开关闭正常")
+                        poco(texture="l_close_00").click()
+                else:
+                    printcolor.printred("二级密码界面异常")
+                    screenshot.get_screen_shot(time.time(), devices, "二级密码界面异常")
+                    poco(texture="l_close_00").click()
     else:
         printcolor.printred("设置界面打开失败！")
 
 
-
-
+    return poco("Duck").get_name()  # 返回值
 
 # devices = "127.0.0.1:62001"
 # setting(devices)

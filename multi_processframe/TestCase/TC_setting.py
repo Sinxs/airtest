@@ -20,12 +20,12 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_test_Horse(self):
+        def test_setting(self):
             """
             设置测试模块--主要检测每个按钮点击是否正常，界面是否可以打开
             """
             try:
-                self.assertEqual("Btnhave", setting.setting(devices))
+                self.assertEqual("Duck", setting.setting(devices))
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "设置模块截图")
 
