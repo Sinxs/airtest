@@ -4,11 +4,11 @@ __author__ = "Lee.li"
 
 import unittest
 from airtest.core.api import *
-from Script.smoking import auction
+from Script.smoking import intensify
 from multi_processframe.Tools import initial, screenshot
 
 def Main(devices):
-    class TC_auction(unittest.TestCase):
+    class TC_intensify(unittest.TestCase):
         u'''测试用例102的集合'''
 
         @classmethod
@@ -20,16 +20,15 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_auction(self):
+        def test_intensify(self):
             """
-            交易所-冒烟测试
+            变强-冒烟测试
             """
             try:
-                print("开始测试交易所模块")
-                self.assertEqual("当前没有商品哦！", auction.Auction(devices))
+                print("开始测试变强模块")
+                self.assertEqual("对应的活跃度宝箱打开随机获得水晶", intensify.Intensify(devices))
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "交易所-冒烟测试")
-
 
         def tearDown(self):
             u'''这里放需要在每条用例后执行的部分'''
@@ -40,5 +39,5 @@ def Main(devices):
             u'''这里放需要在所有用例后执行的部分'''
             pass
 
-    srcSuite = unittest.makeSuite(TC_auction)
+    srcSuite = unittest.makeSuite(TC_intensify)
     return srcSuite

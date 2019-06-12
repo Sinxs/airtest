@@ -20,7 +20,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_guild(self):
+        def test_card(self):
             """
             图鉴-冒烟测试
             """
