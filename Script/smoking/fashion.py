@@ -8,7 +8,7 @@ from multi_processframe.Tools import printcolor,adb_connect,screenshot
 devices = "127.0.0.1:62025"
 def fashion(devices):
     poco = adb_connect.device(devices)
-    if poco("SysAItem").get_position()[1] > 1:
+    if poco("SysAItem").get_position()[0] > 1:
         poco(texture="halln_4").click()
     else:
         printcolor.printgreen("当前界面就有角色按钮")
@@ -23,10 +23,11 @@ def fashion(devices):
     if poco("UIRoot(Clone)").offspring("Title").exists():
         poco("BtnCompose").click()  # 点击时装合成界面
         fashionlist=["S","A","B"]
+        freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
         for i in fashionlist:
-            if poco("UIRoot(Clone)").offspring("FashionCompoundDlg").offspring(f"Level_{i}").child("UnSelectLab").exists():
-                printcolor.printgreen(f"检查 {i}"+poco("UIRoot(Clone)").offspring("FashionCompoundDlg").offspring(f"Level_{i}").child("UnSelectLab").get_text()+"存在")
-        printcolor.printgreen(+poco("UIRoot(Clone)").offspring("Title").get_text()+"界面检查完成")
+            if freeze_poco("UIRoot(Clone)").offspring("FashionCompoundDlg").offspring(f"Level_{i}").child("UnSelectLab").exists():
+                printcolor.printgreen(f"检查 {i}"+freeze_poco("UIRoot(Clone)").offspring("FashionCompoundDlg").offspring(f"Level_{i}").child("UnSelectLab").get_text()+"存在")
+        printcolor.printgreen(poco("UIRoot(Clone)").offspring("Title").get_text()+" 界面检查完成")
         poco(texture="l_close_00").click()
     else:
         printcolor.printred("没有弹出时装合成界面，请检查。。。")
@@ -37,20 +38,20 @@ def fashion(devices):
             if freeze_poco("OutLook").child("TextLabel").exists() and \
                     freeze_poco("FashionRecord").child("TextLabel").exists() and \
                     freeze_poco("EquipRecord").child("TextLabel").exists():
-                printcolor.printgreen("界面存在 "+freeze_poco("OutLook").child("TextLabel").get_text()+" 控件")
-                printcolor.printgreen("界面存在 " + freeze_poco("FashionRecord").child("TextLabel").get_text() + " 控件")
-                printcolor.printgreen("界面存在 " + freeze_poco("EquipRecord").child("TextLabel").get_text() + " 控件")
+                printcolor.printgreen("界面检查点   "+freeze_poco("OutLook").child("TextLabel").get_text()+" 存在")
+                printcolor.printgreen("界面检查点    " + freeze_poco("FashionRecord").child("TextLabel").get_text() + " 存在")
+                printcolor.printgreen("界面检查点    " + freeze_poco("EquipRecord").child("TextLabel").get_text() + " 存在")
                 printcolor.printgreen("时装收集界面检查完成")
                 poco("OutLook").child("TextLabel").click()  # 外形设置
                 with poco.freeze() as freeze_poco:
-                    for item in range(len(freeze_poco("WrapContent").child())):
+                    for item in range(len(freeze_poco("ScrollView").child("WrapContent").child())):
                         item1 = "item"+str(item)
-                        if freeze_poco("WrapContent").child(item1).exists():
-                            pass
+                        if freeze_poco("WrapContent").child(item1).child("Bg").exists() and freeze_poco("Bg2").exists():
+                            printcolor.printgreen("外形设置检查点 "+freeze_poco(item1).offspring("TextLabel").get_text() + "显示正确")
                         else:
                             printcolor.printred("外形设置界面缺少控件，请检查。。。")
                             screenshot.get_screen_shot(time.time(), devices, "外形设置界面缺少控件")
-                poco("FashionRecord").child("TextLabel")  # 时装收集
+                poco("FashionRecord").child("TextLabel").click()  # 时装收集
                 with poco.freeze() as freeze_poco:
                     if freeze_poco("Attribute").child("Title").exists() and \
                             freeze_poco("Attribute").exists() and \
@@ -59,20 +60,21 @@ def fashion(devices):
                     else:
                         printcolor.printred("时装收集界面缺少控件，请检查。。。")
                         screenshot.get_screen_shot(time.time(), devices, "时装收集界面缺少控件")
-                poco("EquipRecord").child("TextLabel").click()
+                poco("EquipRecord").child("TextLabel").click()  # 装备收集
+
                 with poco.freeze() as freeze_poco:
-                    if poco(texture="l_frame_09").exists() and \
-                        poco("Select").offspring("WrapContent").exists() and \
-                        poco("Bg2").exists() and \
-                        poco("EditPortrait").exists():
-                        printcolor.printgreen("装备收集界面显示正确")
-                    else:
-                        printcolor.printred("装备收集界面缺少控件，请检查。。。")
-                        screenshot.get_screen_shot(time.time(), devices, "装备收集界面缺少控件")
-
-
+                    if freeze_poco(texture="l_frame_09").exists() and \
+                            freeze_poco("Select").offspring("WrapContent").exists() and \
+                            freeze_poco("Bg2").exists() and \
+                            freeze_poco("EditPortrait").exists():
+                        for item in range(len(freeze_poco("Select").offspring("WrapContent").child())):
+                            item1 = "item"+str(item)
+                            if freeze_poco("Select").offspring(item1).offspring("TextLabel").exists():
+                                printcolor.printgreen("装备收集界面检查点  " + freeze_poco("Select").offspring(item1).offspring("TextLabel").get_text() + "  显示正确")
+                            else:
+                                printcolor.printred("装备收集界面缺少控件，请检查。。。")
+                                screenshot.get_screen_shot(time.time(), devices, "装备收集界面缺少控件")
     else:
         printcolor.printred("当前界面没有衣柜换装控件，请检查。。。")
         screenshot.get_screen_shot(time.time(), devices, "没有找到衣柜换装控件")
-
-fashion(devices)
+    return poco("Attribute").child("T").get_text()
