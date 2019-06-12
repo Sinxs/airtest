@@ -1,18 +1,4 @@
-# from airtest.core.api import *
-# from poco.drivers.unity3d import UnityPoco
-# from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-# Androidpoco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
-# from multi_processframe.Tools import printcolor,adb_connect
-#
-devices = "127.0.0.1:62025"
-# def auction(devices):
-#     poco = adb_connect.device(devices)
-#     if poco("SysCAuction").exists():
-#         poco("SysCAuction").click()
-#         poco("AuctionDlg(Clone)").offspring("DragonCoin").child("SelectedTextLabel")
-#
-#     else:
-#         printcolor.printred("界面没有交易所按钮，请检查...")
+from multi_processframe.Tools import printcolor,adb_connect
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
 
@@ -21,7 +7,7 @@ def auction(poco):
     for item in range(1):  # 因为apk功能机制问题，所以只选择前10中商品进行抽样测试
         item1 = "item" + str(item)
         if poco("AuctionDlg(Clone)").offspring(item1).exists():
-            print(poco("AuctionDlg(Clone)").offspring(item1).offspring("ItemTpl").offspring(
+            printcolor.printgreen(poco("AuctionDlg(Clone)").offspring(item1).offspring("ItemTpl").offspring(
                 "Name").get_text() + "   道具显示正常")
 
 def Auction(devices):  # 点击交易所按钮
@@ -77,18 +63,15 @@ def Auction(devices):  # 点击交易所按钮
                 pos = poco(f"{i}").get_position()
                 if pos[1] < 0.28:
                     swipe([686, 580], [686, 870], 5)
-                else:
-                    break
-            for ii in range(5):
-                pos = poco(f"{i}").get_position()
-                if pos[1] > 0.87:
+                elif pos[1] > 0.87:
                     swipe([686, 870], [686, 580], 5)
+                else:
                     break
             poco(f"{i}").click()
             for item in range(1):  # 因为apk功能机制问题，所以只选择前10中商品进行抽样测试
                 item1 = "item" + str(item)
                 if poco("AuctionDlg(Clone)").offspring(item1).offspring("ItemTpl").exists():
-                    print(poco("AuctionDlg(Clone)").offspring(item1).offspring("ItemTpl").offspring(
+                    printcolor.printgreen(poco("AuctionDlg(Clone)").offspring(item1).offspring("ItemTpl").offspring(
                         "Name").get_text() + "   道具显示正常")
                 else:
                     pass
@@ -97,7 +80,7 @@ def Auction(devices):  # 点击交易所按钮
     for item in range(1):  # 因为apk功能机制问题，所以只选择前10中商品进行抽样测试
         item1 = "item" + str(item)
         if poco("AuctionDlg(Clone)").offspring(item1).exists():
-            print(poco("AuctionDlg(Clone)").offspring(item1).offspring("ItemTpl").offspring(
+            printcolor.printgreen(poco("AuctionDlg(Clone)").offspring(item1).offspring("ItemTpl").offspring(
                 "Name").get_text() + "   道具显示存在")
 
 
@@ -150,33 +133,33 @@ def Auction(devices):  # 点击交易所按钮
 
     poco("AuctionDlg(Clone)").offspring("Sell").child("SelectedTextLabel").click()  # TODO:点击我要出售
     if poco("ailin").exists() and poco("t").exists() and poco("AuctionSellFrame").child("Title ").exists():
-        print(poco("AuctionDlg(Clone)").offspring("Sell").child("SelectedTextLabel").get_text() + "界面显示正确")
+        printcolor.printgreen(poco("AuctionDlg(Clone)").offspring("Sell").child("SelectedTextLabel").get_text() + "界面显示正确")
         # 以下为出售道具
         if poco("AuctionDlg(Clone)").offspring("item0").child("Icon").exists():
             poco("AuctionDlg(Clone)").offspring("item0").child("Icon").click()
-            print("准备上架" + poco(texture="kuang_dj_1").child("Name").get_text())
+            printcolor.printgreen("准备上架" + poco(texture="kuang_dj_1").child("Name").get_text())
             if poco(texture="l_tip_00").exists():
                 poco("RightButton").click()
-                print(poco("AuctionDlg(Clone)").offspring("item0").offspring("ItemTpl").offspring(
+                printcolor.printgreen(poco("AuctionDlg(Clone)").offspring("item0").offspring("ItemTpl").offspring(
                     "Name").get_text() + "上架成功---测试完成，准备下架")
         if poco("AuctionDlg(Clone)").offspring("item0").offspring("ItemTpl").offspring("Name").exists():
             poco("AuctionDlg(Clone)").offspring("item0").offspring("ItemTpl").offspring("Name").click()
             if poco(texture="l_tip_00").exists():
-                print("准备下架---" + poco("AuctionDlg(Clone)").offspring("item0").offspring("ItemTpl").offspring(
+                printcolor.printgreen("准备下架---" + poco("AuctionDlg(Clone)").offspring("item0").offspring("ItemTpl").offspring(
                     "Name").get_text())
                 poco("LeftButton").click()
-                print("下架成功")
+                printcolor.printgreen("下架成功")
                 if poco("SellListEmpty").exists():
-                    print("上架下架测试完成")
+                    printcolor.printgreen("上架下架测试完成")
         else:
-            print("没有道具可以出售....")
+            printcolor.printgreen("没有道具可以出售....")
     poco("AuctionDlg(Clone)").offspring("GuildAuc").child("SelectedTextLabel").click()  # TODO:点击拍卖行
 
     poco("AuctionDlg(Clone)").offspring("Table").child("item0").child("Label").click()  # TODO:点击工会拍卖
     if poco("Result").exists():  # 判断工会拍卖按钮是否存在
         poco("Result").click()
         if poco("AuctionDlg(Clone)").offspring("ResultWindow").child("Title").exists():  # 判断工会拍卖弹窗是否存在
-            print(poco("AuctionDlg(Clone)").offspring("ResultWindow").child("Title").get_text() + "显示正确")
+            printcolor.printgreen(poco("AuctionDlg(Clone)").offspring("ResultWindow").child("Title").get_text() + "显示正确")
             poco(texture="l_close_00").click()  # 判断完成后点击返回
     A = poco("AuctionDlg(Clone)").offspring("Table").child("item1").child("Label").get_position()  # TODO:点击世界拍卖
     B = poco("AuctionDlg(Clone)").offspring("Table").child("item1").offspring("item0").child("Label").get_position()
@@ -185,16 +168,16 @@ def Auction(devices):  # 点击交易所按钮
     for item in range(8):
         item1 = "item" + str(item)
         if poco("AuctionDlg(Clone)").offspring("Table").child("item1").offspring(item1).child("Label").exists():
-            print(poco("AuctionDlg(Clone)").offspring("Table").child("item1").offspring(item1).child("Label").get_text() + "显示正确")
+            printcolor.printgreen(poco("AuctionDlg(Clone)").offspring("Table").child("item1").offspring(item1).child("Label").get_text() + "显示正确")
     if poco("Result").exists():  # 判断世界拍卖是不是存在
         poco("Result").click()
         if poco("AuctionDlg(Clone)").offspring("ResultWindow").child("Title").exists():
             poco(texture="l_close_00").click()
-            print(poco("AuctionDlg(Clone)").offspring("GuildAuc").child("SelectedTextLabel").get_text()+"界面显示正确")
+            printcolor.printgreen(poco("AuctionDlg(Clone)").offspring("GuildAuc").child("SelectedTextLabel").get_text()+"界面显示正确")
     poco("AuctionDlg(Clone)").offspring("DragonCoin").child("SelectedTextLabel").click()  # 点击龙币交易所
     poco("AuctionDlg(Clone)").offspring("ItemLevel").child("Arrow").click()  # 仅显示当前可用
     poco("AuctionDlg(Clone)").offspring("ItemBlock").child("Arrow").click()  # 点上，等于微瑕疵重置环境准备
     return poco("Title").get_text()
 
 
-Auction(devices)
+
