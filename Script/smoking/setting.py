@@ -140,7 +140,6 @@ def setting(devices):
         else:
             printcolor.printred("个人信息打开失败")
             screenshot.get_screen_shot(time.time(), devices, "个人信息打开失败")
-
         poco("Avatar").click()
         touch([1140, 540], times=2)
         if poco("SettingDlg(Clone)").exists():  # 判断设置界面是否打开
@@ -182,9 +181,4 @@ def setting(devices):
                 poco("SettingDlg(Clone)").child("Bg").child("Close").click()
     else:
         printcolor.printred("设置界面打开失败！")
-
-
     return poco("Duck").get_name()  # 返回值
-
-# devices = "127.0.0.1:62001"
-# setting(devices)
