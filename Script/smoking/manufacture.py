@@ -2,33 +2,14 @@ from multi_processframe.Tools import printcolor,adb_connect,screenshot
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
 
-devices = "127.0.0.1:62025"
-def butpos(butpos,pos1=0.4,pos2=0.81,high=1330,low=930,lows=482):
-    """
-把不在屏幕内部的控件滑动到屏幕内，使之可被操作
-:param butpos: 控件的坐标值
-:param pos1: 希望控件所在屏幕上的最低限
-:param pos2: 希望控件所在屏幕上的最上限
-:param high: 固定坐标
-:param low: 滑动起始或终点位置
-:param lows: 滑动起始或终点位置
-:return:
-    """
-    for i in range(20):
-        but = butpos.get_position()
-        if but[1] < pos1:
-            swipe([high, lows], [high, low], 5)
-        elif but[1] > pos2:
-            swipe([high, low], [high, lows], 5)
-        else:
-            break
 
-def manufacture():
+def manufacture(devices):
     poco = adb_connect.device(devices)
-    if poco("SysDEquipCreate").get_position()[0] > 1:
+    if poco("SysDEquipCreate").get_position()[1] > 0.93:
         poco(texture="halln_4").click()
+        sleep(2)
     else:
-        printcolor.printgreen("当前界面就有角色按钮")
+        printcolor.printgreen("当前界面就有制作按钮")
     poco("SysDEquipCreate").click()
     freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
     if freeze_poco("XSys_EquipCreate_EquipSet").exists() and \
@@ -83,23 +64,69 @@ def manufacture():
         poco("XSys_EquipCreate_Upgrade").click()  # 装备升级界面
         freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
         if poco("WrapContent").exists() and \
-                poco(text="装备套装").exists() and \
-                poco("红龙套装").exists() and \
-                poco("冰龙套装").exists() and \
-                poco("符文龙套装").exists():
+                freeze_poco(text="装备套装").exists() and \
+                freeze_poco("红龙套装").exists() and \
+                freeze_poco("冰龙套装").exists() and \
+                freeze_poco("符文龙套装").exists():
             printcolor.printgreen("检查点  装备升级界面显示正确")
-            freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
             poco("红龙套装").click()
-            if 
+            if poco(texture="l_frame_01_0").exists():
+                printcolor.printgreen("检查点  红龙套装界面显示正确")
+            else:
+                printcolor.printred("红龙套装界面缺少控件，请检查")
+                screenshot.get_screen_shot(time.time(), devices, "红龙套装界面缺少控件")
+            poco("冰龙套装").click()
+            if poco(texture="l_frame_01_0").exists():
+                printcolor.printgreen("检查点  冰龙套装界面显示正确")
+            else:
+                printcolor.printred("冰龙套装界面缺少控件，请检查")
+                screenshot.get_screen_shot(time.time(), devices, "冰龙套装界面缺少控件")
+            poco("符文龙套装").click()
+            if poco(texture="l_frame_01_0").exists():
+                printcolor.printgreen("检查点  符文龙套装界面显示正确")
+            else:
+                printcolor.printred("符文龙套装界面缺少控件，请检查")
+                screenshot.get_screen_shot(time.time(), devices, "符文龙套装界面缺少控件")
+        poco("XSys_Equip_Inherit").click()  # 继承按钮
+        freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+        if freeze_poco("0").exists() and \
+                freeze_poco("Table").child("1").exists() and \
+                freeze_poco(texture="l_framew_01").exists():
+            printcolor.printgreen("检查点--继承界面--显示正确")
+            poco("0").offspring("1").child("Selected").click()  # 点击传说装备
+            freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+            for item in range(len(poco("WrapContent").child())):
+                item1 = "item" + str(item)
+                if freeze_poco(item1).offspring("Name").exists():
+                    printcolor.printgreen("检查点 " + freeze_poco(item1).offspring("Name").get_text() + " 存在")
+                else:
+                    printcolor.printred("传说装备缺少控件，请检查")
+                    screenshot.get_screen_shot(time.time(), devices, "传说装备缺少控件")
+            poco("0").offspring("2").child("Selected").click()  # 点击远古装备
+            freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+            for item in range(len(poco("WrapContent").child())):
+                item1 = "item" + str(item)
+                if freeze_poco(item1).offspring("Name").exists():
+                    printcolor.printgreen("检查点 " + freeze_poco(item1).offspring("Name").get_text() + " 存在")
+                else:
+                    printcolor.printred("远古装备缺少控件，请检查")
+                    screenshot.get_screen_shot(time.time(), devices, "远古装备缺少控件")
+            poco("Table").child("1").child("ChildList").offspring("Selected").click()  # 点击 135龙器
+            freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+            for item in range(len(poco("WrapContent").child())):
+                item1 = "item" + str(item)
+                if freeze_poco(item1).offspring("Name").exists():
+                    printcolor.printgreen("检查点 " + freeze_poco(item1).offspring("Name").get_text() + " 存在")
+                else:
+                    printcolor.printred("135龙器装备缺少控件，请检查")
+                    screenshot.get_screen_shot(time.time(), devices, "135龙器装备缺少控件")
+        else:
+            printcolor.printred("继承界面缺少控件，请检查")
+            screenshot.get_screen_shot(time.time(), devices, "继承界面缺少控件")
+        poco("L_ring_03").click()  # 点击继承介绍
 
     else:
         printcolor.printred("物品制作页面 缺少控件，请检查")
         screenshot.get_screen_shot(time.time(), devices, "物品制作页面缺少控件")
-    poco("XSys_EquipCreate_EquipSet").click()  # 点击装备制作
 
-
-
-
-
-
-
+    return poco("CommonHelpTip(Clone)").child("Title").get_text()
