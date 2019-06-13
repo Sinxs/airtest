@@ -25,7 +25,7 @@ def Main(devices):
             竞技功能测试模块--主要检测每个界面按钮元素是否存在以及是否可点击
             """
             try:
-                self.assertEqual("Btnhave", pvp.athletics(devices))
+                self.assertEqual("Btn_MobaRank", pvp.athletics(devices))
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "竞技功能测试脚本")
 

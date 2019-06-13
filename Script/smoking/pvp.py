@@ -328,6 +328,6 @@ def athletics(devices):
      else:
          printcolor.printred("竞技场暂未开放，请升级或者查看相关配置")
          # screenshot.get_screen_shot(time.time(), devices, "竞技功能未开放")
-
+     return poco("Btn_MobaRank").get_name()  # 返回值
 # devices = "127.0.0.1:62001"
 # athletics(devices)
