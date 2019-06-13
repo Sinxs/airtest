@@ -27,7 +27,7 @@ def fashion(devices):
         for i in fashionlist:
             if freeze_poco("UIRoot(Clone)").offspring("FashionCompoundDlg").offspring(f"Level_{i}").child("UnSelectLab").exists():
                 printcolor.printgreen(f"检查 {i}"+freeze_poco("UIRoot(Clone)").offspring("FashionCompoundDlg").offspring(f"Level_{i}").child("UnSelectLab").get_text()+"存在")
-        printcolor.printgreen(poco("UIRoot(Clone)").offspring("Title").get_text()+" 界面检查完成")
+        printcolor.printgreen(poco("UIRoot(Clone)").offspring("Title").get_text()+" -- 界面检查完成")
         poco(texture="l_close_00").click()
     else:
         printcolor.printred("没有弹出时装合成界面，请检查。。。")
@@ -41,7 +41,7 @@ def fashion(devices):
                 printcolor.printgreen("界面检查点   "+freeze_poco("OutLook").child("TextLabel").get_text()+" 存在")
                 printcolor.printgreen("界面检查点    " + freeze_poco("FashionRecord").child("TextLabel").get_text() + " 存在")
                 printcolor.printgreen("界面检查点    " + freeze_poco("EquipRecord").child("TextLabel").get_text() + " 存在")
-                printcolor.printgreen("时装收集界面检查完成")
+                printcolor.printgreen("衣柜换装  界面检查完成")
                 poco("OutLook").child("TextLabel").click()  # 外形设置
                 with poco.freeze() as freeze_poco:
                     for item in range(len(freeze_poco("ScrollView").child("WrapContent").child())):
