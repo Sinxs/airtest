@@ -5,7 +5,7 @@ from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
 from multi_processframe.Tools import printcolor,adb_connect,screenshot
 
-devices = "127.0.0.1:62025"
+
 def fashion(devices):
     poco = adb_connect.device(devices)
     if poco("SysAItem").get_position()[0] > 1:
