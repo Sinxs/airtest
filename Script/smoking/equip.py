@@ -55,7 +55,7 @@ def equip(devices):
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
     if poco("SysAItem").exists():  # 角色按钮存在
-        if poco("SysAItem").get_position()[1] > 1:  # 界面有角色按钮
+        if poco("SysAItem").get_position()[0] > 1:  # 界面有角色按钮
             poco(texture="halln_4").click()
             poco("SysAItem").click()
         else:
