@@ -181,7 +181,7 @@ def Auction(devices):  # 点击交易所按钮
     poco("AuctionDlg(Clone)").offspring("DragonCoin").child("SelectedTextLabel").click()  # 点击龙币交易所
     poco("AuctionDlg(Clone)").offspring("ItemLevel").child("Arrow").click()  # 仅显示当前可用
     poco("AuctionDlg(Clone)").offspring("ItemBlock").child("Arrow").click()  # 点上，等于微瑕疵重置环境准备
-    return poco("Title").get_text()
+    return poco("t2").get_text()  # 商品购买后绑定
 
 
 

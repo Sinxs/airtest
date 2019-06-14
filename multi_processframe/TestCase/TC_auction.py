@@ -26,7 +26,7 @@ def Main(devices):
             """
             try:
                 print("开始测试交易所模块")
-                self.assertEqual("当前没有商品哦！", auction.Auction(devices))
+                self.assertEqual("商品购买后绑定", auction.Auction(devices))
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "交易所-冒烟测试")
 

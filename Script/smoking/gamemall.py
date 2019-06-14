@@ -102,7 +102,7 @@ def mall(devices):  # 商店功能测试
         else:
             printcolor.printred("商店页面没有子页签，请检查...")
         poco("Close").click()
-    return poco("GameMall(Clone)").child("Bg").child("T").get_text()
+    return poco("item12").child("shopname").get_text()  # 战队商店
 
 
 
