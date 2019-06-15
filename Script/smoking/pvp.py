@@ -173,8 +173,8 @@ def athletics(devices):
                     except Exception as e:
                         printcolor.printred("天梯赛界面元素点击报错")
                         printcolor.printred(e)
-                        poco("Close").click()
                         screenshot.get_screen_shot(time.time(), devices, "天梯赛界面元素点击报错")
+                        poco("Close").click()
                 poco("MobaActivityDlg(Clone)").offspring("item1").click()  # 进入角斗场
                 with poco.freeze() as freezepoco:
                     if freezepoco("Help").exists() and \
@@ -205,7 +205,7 @@ def athletics(devices):
                             poco("GoldBoxBtn").click()
                         printcolor.printgreen("角斗场所有按钮点击关闭操作正常")
                         poco("MatchBtn").click()  # 进入角度场
-                        time.sleep(10)
+                        time.sleep(20)
                         if poco("Pause").exists():
                             time.sleep(5)
                             poco("Pause").click()
@@ -217,13 +217,13 @@ def athletics(devices):
                                 poco("SysEPVP").click()
                         else:
                             printcolor.printred("角斗场进入失败")
-                            poco("Close").click()
                             screenshot.get_screen_shot(time.time(), devices, "角斗场进入失败")
+                            poco("Close").click()
                     except Exception as e:
                         printcolor.printred("角斗场界面元素点击报错")
                         printcolor.printred(e)
-                        poco("Close").click()
                         screenshot.get_screen_shot(time.time(), devices, "角斗场界面元素点击报错")
+                        poco("Close").click()
                 poco("MobaActivityDlg(Clone)").offspring("item2").click()  # 进入英雄战场
                 with poco.freeze() as freezepoco:
                     if freezepoco("Help").exists() and \
@@ -292,7 +292,7 @@ def athletics(devices):
                         printcolor.printred(e)
                         poco("Close").click()
                         screenshot.get_screen_shot(time.time(), devices, "全球竞技缺界面元素点击报错")
-                poco("MobaActivityDlg(Clone)").offspring("item4").click()  # 进入一个天梯赛
+                poco("MobaActivityDlg(Clone)").offspring("item4").click()  # 进入保护队长
                 with poco.freeze() as freezepoco:
                     if freezepoco("CaptainDlg(Clone)").offspring("WeekReward").child("ListPanel").exists() and \
                             freezepoco("CaptainDlg(Clone)").offspring("ExReward").child("ListPanel").exists() and \
