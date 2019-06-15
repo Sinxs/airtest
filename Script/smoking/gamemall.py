@@ -32,6 +32,7 @@ def gamemall(devices):
         poco("SysAGameMall").click()
     else:
         printcolor.printred("主界面找不到商城按钮，请检查")
+
     for but in Mallbutlist:
         if poco(but).exists():
             printcolor.printgreen("开始点击商城内 "+poco("GameMall(Clone)").offspring(but).offspring("SelectedTextLabel").get_text()+" 子页签")
@@ -65,6 +66,7 @@ def gamemall(devices):
 def mall(devices):  # 商店功能测试
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)
+    Mallbutlist = ["XSys_GameMall_Diamond", "XSys_GameMall_Dragon", "XSys_GameMall_CRYSTAL", "XSys_Mall", "XSys_GameMall_Pay"]
     if poco("SysAGameMall").exists():
         poco("SysAGameMall").click()
         if poco("XSys_Mall").exists():

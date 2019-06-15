@@ -29,17 +29,6 @@ def Main(devices):
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "商城-冒烟测试")
 
-        def test_mall(self):
-            """
-            商店-冒烟测试
-            """
-            try:
-                print("开始测试商店模块")
-                self.assertEqual("战队商店", gamemall.mall(devices))
-            finally:
-                screenshot.get_screen_shot(time.time(), devices, "商店-冒烟测试")
-
-
         def tearDown(self):
             u'''这里放需要在每条用例后执行的部分'''
             print(f"{devices}结束运行")
