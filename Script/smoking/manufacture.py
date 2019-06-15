@@ -5,7 +5,7 @@ from poco.drivers.unity3d import UnityPoco
 
 def manufacture(devices):
     poco = adb_connect.device(devices)
-    if poco("SysDEquipCreate").get_position()[1] > 0.93:
+    if poco("SysDEquipCreate").get_position()[0] > 0.93:
         poco(texture="halln_4").click()
         sleep(2)
     else:
