@@ -8,7 +8,7 @@ devices = "127.0.0.1:62025"
 
 def card(devices):
     poco = adb_connect.device(devices)
-    if poco("SysD_CardCollect").get_position()[1]>1:
+    if poco("SysD_CardCollect").get_position()[0] > 1:
         poco(texture="halln_4").click()
         poco("SysD_CardCollect").click()
     else:
