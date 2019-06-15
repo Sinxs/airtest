@@ -1,3 +1,10 @@
+"""
+头衔模块-判断头衔晋升各个界面元素和勋章的合成
+if 如果没有可以晋升的模块就不晋升
+if 如果没有可以合成的勋章就不合成
+环境准备：1、可以晋升头衔的账号，准备勋章 item 301 20、item 302 20 
+"""
+
 from multi_processframe.Tools import printcolor,adb_connect,screenshot
 from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
