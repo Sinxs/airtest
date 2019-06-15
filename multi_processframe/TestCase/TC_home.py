@@ -33,7 +33,7 @@ def Main(devices):
 
         def test_entrancehome(self):
             """
-            进入家园-冒烟测试
+            进入家园-控件判断-钓鱼一次
             """
             try:
                 print("开始测试进入家园模块")

@@ -22,7 +22,7 @@ def Main(devices):
 
         def test_auction(self):
             """
-            交易所-冒烟测试
+            交易所-界面控件判断-二级界面控件判断
             """
             try:
                 print("开始测试交易所模块")

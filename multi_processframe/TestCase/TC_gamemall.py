@@ -21,7 +21,7 @@ def Main(devices):
 
         def test_gamemall(self):
             """
-            商城-冒烟测试
+            商城-界面控件判断-售卖商品判断
             """
             try:
                 print("开始测试商店模块")

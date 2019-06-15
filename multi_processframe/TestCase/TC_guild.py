@@ -21,7 +21,7 @@ def Main(devices):
 
         def test_guild(self):
             """
-            公会-冒烟测试
+            公会-界面控件判断-二级界面控件判断
             """
             try:
                 print("开始测试公会相关模块")

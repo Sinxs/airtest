@@ -22,7 +22,7 @@ def Main(devices):
 
         def test_equip(self):
             """
-            装备-冒烟测试
+            装备-装备的各个选项界面控件判断
             """
             try:
                 print("开始测试装备相关模块")

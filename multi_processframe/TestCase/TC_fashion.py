@@ -22,7 +22,7 @@ def Main(devices):
 
         def test_card(self):
             """
-            时装-冒烟测试
+            时装-一级界面控件判断-二级界面控件判断
             """
             try:
                 print("开始测试时装模块")

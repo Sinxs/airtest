@@ -22,7 +22,7 @@ def Main(devices):
 
         def test_card(self):
             """
-            图鉴-冒烟测试
+            图鉴-界面控件判断，二级界面控件判断
             """
             try:
                 print("开始测试图鉴模块")

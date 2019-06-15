@@ -22,7 +22,7 @@ def Main(devices):
 
         def test_intensify(self):
             """
-            变强-冒烟测试
+            变强模块-一级界面控件控件判断
             """
             try:
                 print("开始测试变强模块")

@@ -22,7 +22,7 @@ def Main(devices):
 
         def test_mall(self):
             """
-            商店-冒烟测试
+            商店-二级界面控件判断-商店售卖商品判断
             """
             try:
                 print("开始测试商店模块")

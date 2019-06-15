@@ -22,7 +22,7 @@ def Main(devices):
 
         def test_card(self):
             """
-            巢穴-冒烟测试
+            巢穴模块 -- 巢穴排行榜控件判断--奖励控件判断--通关巢穴一次
             """
             try:
                 print("开始测试巢穴模块")

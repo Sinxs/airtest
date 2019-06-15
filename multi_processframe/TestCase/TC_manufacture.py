@@ -21,7 +21,7 @@ def Main(devices):
 
         def test_gamemall(self):
             """
-            制作-冒烟测试
+            制作-界面控件判断-二级界面控件判断
             """
             try:
                 print("开始测试制作模块")
