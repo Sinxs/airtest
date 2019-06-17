@@ -45,17 +45,17 @@ def UIjudge(poco,num, devices):
             freeze_poco("DragonNestDlg(Clone)").offspring("ItemList").child(item2).click()
             freeze_poco("DragonNestDlg(Clone)").offspring("ItemList").child(item2).click()
         if poco("ItemToolTipDlg(Clone)").child("Bg").exists():
+            poco("DragonNestDlg(Clone)").offspring("ItemList").child(item2).click()  # todo:进行两次判断，避免出现点击不及时的情况
+        if poco("ItemToolTipDlg(Clone)").child("Bg").exists():
             poco("DragonNestDlg(Clone)").offspring("ItemList").child(item2).click()
-            if poco("ItemToolTipDlg(Clone)").child("Bg").exists():
-                poco("DragonNestDlg(Clone)").offspring("ItemList").child(item2).click()
-        print("奖励icon点击完成，报不报红暂时我就不管了")
-        print("点击  组队进入")
+        printcolor.printgreen("奖励icon点击完成，报不报红暂时我就不管了")
+        printcolor.printgreen("点击  组队进入")
         poco("Enter").child("Text").click()
         if poco(text="队伍").exists():
-            print("进入组队界面，开始点击返回按钮")
+            printcolor.printgreen("进入组队界面，开始点击返回按钮")
             poco("Close").click()
             if poco("Enter").exists():
-                print("返回到龙穴界面")
+                printcolor.printgreen("返回到龙穴界面")
         else:
             printcolor.printred("点击组队后没有进入组队界面")
             screenshot.get_screen_shot(time.time(), devices, "点击组队后没有进入组队界面")
