@@ -39,7 +39,7 @@ def UIjudge(poco,num, devices):
         for item in range(len(freeze_poco("NestFrameNormal").child()) - num):
             item1 = "item" + str(item)
             printcolor.printgreen("检查点 "+freeze_poco("DragonNestDlg(Clone)").offspring("NestFrameNormal").child(item1).child("Name").get_text()+"  显示正确")
-        print("进行点击奖励icon的操作")
+        printcolor.printgreen("进行点击奖励icon的操作")
         for item in range(len(freeze_poco("ItemList").child()) - 2):
             item2 = "item" + str(item)
             freeze_poco("DragonNestDlg(Clone)").offspring("ItemList").child(item2).click()
