@@ -5,6 +5,7 @@ from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
 from poco.exceptions import PocoNoSuchNodeException
 import time
+from multi_processframe.Tools import adb_connect
 
 
 def EnterEctype(conut_time,poco): # 进入主线深渊
@@ -155,8 +156,7 @@ def chapter_one(devices):
     """ 主线第一章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(17,poco)
     return poco("Duck").get_name()
 
@@ -164,8 +164,7 @@ def chapter_two(devices):
     """ 主线第二章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(16,poco)
     return poco("Duck").get_name()
 
@@ -174,8 +173,7 @@ def chapter_three(devices):
     """ 主线第三章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(15,poco)
     return poco("Duck").get_name()
 
@@ -184,8 +182,7 @@ def chapter_four(devices):
     """ 主线第四章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(14,poco)
     return poco("Duck").get_name()
 
@@ -193,8 +190,7 @@ def chapter_five(devices):
     """ 主线第五章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(13,poco)
     return poco("Duck").get_name()
 
@@ -202,8 +198,7 @@ def chapter_six(devices):
     """ 主线第六章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(12,poco)
     return poco("Duck").get_name()
 
@@ -211,8 +206,7 @@ def chapter_seven(devices):
     """ 主线第七章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(11,poco)
     return poco("Duck").get_name()
 
@@ -220,8 +214,7 @@ def chapter_eight(devices):
     """ 主线第八章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(10,poco)
     return poco("Duck").get_name()
 
@@ -229,8 +222,7 @@ def chapter_nine(devices):
     """ 主线第九章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(9,poco)
     return poco("Duck").get_name()
 
@@ -238,8 +230,7 @@ def chapter_ten(devices):
     """ 主线第十章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(8,poco)
     poco("a").get_bounds()
     return poco("Duck").get_name()
@@ -248,8 +239,7 @@ def chapter_eleven(devices):
     """ 主线第十一章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(7,poco)
     poco("a").get_bounds()
     return poco("Duck").get_name()
@@ -258,8 +248,7 @@ def chapter_twelve(devices):
     """ 主线第十二章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(6,poco)
     poco("a").get_bounds()
     return poco("Duck").get_name()
@@ -268,8 +257,7 @@ def chapter_thirteen(devices):
     """ 主线第十三章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(5,poco)
     poco("a").get_bounds()
     return poco("Duck").get_name()
@@ -278,8 +266,7 @@ def chapter_fourteen(devices):
     """ 主线第十四章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(4,poco)
     poco("a").get_bounds()
     return poco("Duck").get_name()
@@ -288,8 +275,7 @@ def chapter_fifteen(devices):
     """ 主线第十五章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(3,poco)
     poco("a").get_bounds()
     return poco("Duck").get_name()
@@ -298,8 +284,7 @@ def chapter_sixteen(devices):
     """ 主线第十六章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(2,poco)
     poco("a").get_bounds()
     return poco("Duck").get_name()
@@ -308,8 +293,7 @@ def chapter_seventeen(devices):
     """ 主线第十七章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(1,poco)
     poco("a").get_bounds()
     return poco("Duck").get_name()
@@ -318,8 +302,7 @@ def chapter_eighteen(devices):
     """ 主线第十八章
     :return:Complete_Map（）参数表示移动多少次可以到达指定章节
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     Complete_Map(0,poco)
     poco("a").get_bounds()
     return poco("Duck").get_name()

@@ -3,7 +3,7 @@ __author__ = "Lee.li"
 
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
-from multi_processframe.Tools import screenshot, printcolor
+from multi_processframe.Tools import screenshot, printcolor, adb_connect
 
 
 def horse(devices):
@@ -12,8 +12,7 @@ def horse(devices):
     2.点击坐骑按钮
     3.依次点击坐骑图标，查看坐骑模型是否正常
     """
-    dev = connect_device("android:///" + devices)
-    poco = UnityPoco(device=dev)
+    poco = adb_connect.device(devices)
     check_menu("SysEHorse", poco) # 调用函数查看主界面坐骑按钮是否可点击
     poco("NewBtn").child("BtnBg").click() # 打开坐骑列表
     petgrid = poco("Grid").child() # 获取目前所有坐骑数量
