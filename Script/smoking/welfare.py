@@ -9,8 +9,8 @@ from multi_processframe.Tools import screenshot, printcolor, adb_connect
 def welfare(devices):
     poco = adb_connect.device(devices)
     if poco("SysGWelfare").exists():
-        print("测试福利模块")
         poco("SysGWelfare").click()
+        print("测试福利模块")
         with poco.freeze() as freezepoco:
             name = freezepoco("TabList").offspring("TabGrid").child()
             print(f"福利中一共有{len(name)}个模块，分别为：")
@@ -23,28 +23,26 @@ def welfare(devices):
             for i in name:
                 item = i.get_name()
                 uiname = freezepoco("WelfareDlg(Clone)").offspring(item).child("Title").get_text()
-                for x in range(len(name)):
-                    itemname = "item" + str(x)
-                    if poco("WelfareDlg(Clone)").offspring(itemname).child("Title").get_text() == "珍藏礼包":
-                        zhencang(poco,itemname)
-                    elif poco("WelfareDlg(Clone)").offspring(itemname).child("Title").get_text() == "潘多拉":
-                        panduola(poco,itemname)
-                    elif poco("WelfareDlg(Clone)").offspring(itemname).child("Title").get_text() == "异域集市":
-                        yiyu(poco,itemname)
-                    elif poco("WelfareDlg(Clone)").offspring(itemname).child("Title").get_text() == "王国特权":
-                        vip(poco,itemname)
-                    elif poco("WelfareDlg(Clone)").offspring(itemname).child("Title").get_text() == "王国礼包":
-                        wangguo(poco,itemname)
-                    elif poco("WelfareDlg(Clone)").offspring(itemname).child("Title").get_text() == "首充礼包":
-                        shouchong(poco,itemname)
-                    elif poco("WelfareDlg(Clone)").offspring(itemname).child("Title").get_text() == "签到奖励":
-                        qiandao(poco,itemname)
-                    elif poco("WelfareDlg(Clone)").offspring(itemname).child("Title").get_text() == "金币宝箱":
-                        jinbi(poco,itemname)
-                    elif poco("WelfareDlg(Clone)").offspring(itemname).child("Title").get_text() == "每日体力":
-                        tili(poco,itemname)
-                    elif poco("WelfareDlg(Clone)").offspring(itemname).child("Title").get_text() == "奖励找回":
-                        zhaohui(poco,itemname)
+                if uiname == "珍藏礼包":
+                    zhencang(poco,item)
+                elif uiname == "潘多拉":
+                    panduola(poco,item)
+                elif uiname == "异域集市":
+                    yiyu(poco,item)
+                elif uiname == "王国特权":
+                    vip(poco,item)
+                elif uiname == "王国礼包":
+                    wangguo(poco,item)
+                elif uiname == "首充礼包":
+                    shouchong(poco,item)
+                elif uiname == "签到奖励":
+                    qiandao(poco,item)
+                elif uiname == "金币宝箱":
+                    jinbi(poco,item)
+                elif uiname == "每日体力":
+                    tili(poco,item)
+                elif uiname == "奖励找回":
+                    zhaohui(poco,item)
             poco("Close").click()
     else:
         printcolor.printred("主界面没有找到福利模块")
@@ -56,9 +54,11 @@ def move(poco,item):
     for i in range(20):
         position = poco("WelfareDlg(Clone)").offspring(item).get_position()
         if position[1] < 0.12:
-             swipe((43,130),(43,400))
+            swipe((43,130),(43,400))
+            time.sleep(1)
         if position[1] > 0.95:
-             swipe((43, 400), (43, 130))
+            swipe((43, 400), (43, 130))
+            time.sleep(1)
         else:
             poco("WelfareDlg(Clone)").offspring(item).click()
             break
@@ -304,7 +304,7 @@ def jinbi(poco,item): # 金币宝箱
 def tili(poco,item): # 每日体力
     move(poco, item)
     with poco.freeze() as freezepoco:
-        if poco("GetReward").click().exists() or (poco("L").chile("T2").exists() and poco("R").chile("T2").exists()):
+        if poco("GetReward").exists() or ((poco("L").child("T2").exists() and poco("R").child("T2").exists())):
             printcolor.printgreen("每日体力UI元素显示正常")
         else:
             printcolor.printred("每日体力界面缺少UI元素，详情见截图")
@@ -336,6 +336,7 @@ def zhaohui(poco,item): # 奖励找回
                 poco("SelectNormal").click()
                 poco("SelectPerfect").click()
                 poco("WelfareDlg(Clone)").offspring("item0").child("Go").click()
+                poco("BtnOK").click()
                 printcolor.printgreen("奖励找回界面按钮点击正常")
             except Exception as e:
                 printcolor.printred("奖励找回界面按钮点击异常")
@@ -346,5 +347,5 @@ def zhaohui(poco,item): # 奖励找回
 
 
 
-devices = "127.0.0.1:62001"
-welfare(devices)
+# devices = "127.0.0.1:62001"
+# welfare(devices)
