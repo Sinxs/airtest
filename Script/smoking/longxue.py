@@ -72,7 +72,7 @@ def longxue(devices):
     if poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item526").offspring("Background").exists():
         pos = poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item526").offspring("Background")  # 龙穴参加按钮
         butpos(butpos=pos, pos1=0.4, pos2=0.79, high=1055, low=740, lows=466)  # 调用butpos方法
-        poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item526").offspring("Background").click()  # 点击副本参加按钮
+        pos.click()  # 点击副本参加按钮
     else:
         printcolor.printgreen("日常界面没有龙穴选项，请检查...")
         screenshot.get_screen_shot(time.time(), devices, "日常界面没有龙穴选项")
