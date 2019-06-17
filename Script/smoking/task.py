@@ -38,7 +38,7 @@ def task(devices):
     else:
         printcolor.printgreen("主界面缺少日常按钮，请检查...")
         screenshot.get_screen_shot(time.time(), devices, "主界面缺少日常按钮")
-    pos = poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item886").child("JoinBtn")  # 龙穴参加按钮
+    pos = poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item886").child("JoinBtn")  # 任务参加按钮
     if pos.exists():
         butpos(butpos=pos, pos1=0.4, pos2=0.79, high=1055, low=740, lows=466)  # 调用butpos方法
         pos.click()  # 点击日常任务参加按钮
