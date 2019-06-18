@@ -3,7 +3,7 @@ __author__ = "Lee.li"
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
 from multi_processframe.Tools import get_screen_size
-
+import time
 def startgame(devices):
     dev = connect_device("android:///" + devices)
     sleep(3)
@@ -20,7 +20,7 @@ def startgame(devices):
         if poco(text="进入游戏").exists():
             poco(text="进入游戏").click()
             print("点击进入游戏，开始选择角色。。。")
-            sleep(10)
+            time.sleep(10)
             if poco("Label").exists():
                 poco("Label").click()
                 print("角色自动寻则成功，点击开始游戏。。。")
@@ -34,10 +34,10 @@ def startgame(devices):
     l_close = poco(texture="l_close_00")
     Close = poco("Close")
     for x in range(4):
-        sleep(1)
+        time.sleep(3)
         if l_close.exists() and Close.exists():
-            sleep(1.5)
-            poco(texture="l_close_00").click()
+            time.sleep(1.5)
+            l_close.click()
         elif Close.exists():
             sleep(1.5)
             Close.click()
