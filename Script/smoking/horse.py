@@ -30,33 +30,30 @@ def horse(devices):
                     swipe((200, 560), (200, 180))
                 else:
                     break
-        with poco.freeze() as pocoone:
-            pocoone("Grid").offspring(item).click()  # 点击坐骑icon
-        with poco.freeze() as freezepoco:
-            if freezepoco("Btnhave").exists() or freezepoco("BtnMount").exists(): #判断坐骑打开是否正常是否存在
-                petname = freezepoco("PetName").offspring("Name").get_text() # 获得当前坐骑的名称
-                printcolor.printgreen(f"{petname}坐骑查看正常",end=",")
-                if freezepoco("Vehicle_horse").exists():
-                    printcolor.printgreen(f"坐骑显示模型", end=",")
-                else:
-                    printcolor.printred("坐骑模型不显示，请详细查看", end=",")
-                    screenshot.get_screen_shot(time.time(), devices, "坐骑模型不显示")
-                if freezepoco("Btnhave").exists():
-                    freezepoco("Btnhave").click()
-                    with poco.freeze() as pocotwo:
-                        name = pocotwo("ItemToolTipDlg(Clone)").child("Bg").offspring("TopFrame").child("Name").get_text()
-                    printcolor.printgreen("获取界面打开正常")
-                    touch([1140,540],times=2)
-                else:
-                    if freezepoco("BtnMount").exists():
-                        print("坐骑已经获得，没有获取途径")
-                    else:
-                        printcolor.printred("没有相关坐骑信息，请查具体查看该坐骑！")
+        poco("Grid").offspring(item).click()  # 点击坐骑icon
+        if poco("Btnhave").exists() or poco("BtnMount").exists(): #判断坐骑打开是否正常是否存在
+            petname = poco("PetName").offspring("Name").get_text() # 获得当前坐骑的名称
+            printcolor.printgreen(f"{petname}坐骑查看正常",end=",")
+            if poco("Vehicle_horse").exists():
+                printcolor.printgreen(f"坐骑显示模型", end=",")
             else:
-                printcolor.printred("没有获取到该坐骑相关信息")
-                screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
-            freezepoco("NewBtn").child("BtnBg").click() # 打开坐骑列表
-            time.sleep(1)
+                printcolor.printred("坐骑模型不显示，请详细查看", end=",")
+                screenshot.get_screen_shot(time.time(), devices, "坐骑模型不显示")
+            if poco("Btnhave").exists():
+                poco("Btnhave").click()
+                name = poco("ItemToolTipDlg(Clone)").child("Bg").offspring("TopFrame").child("Name").get_text()
+                printcolor.printgreen("获取界面打开正常")
+                touch([1140,540],times=2)
+            else:
+                if poco("BtnMount").exists():
+                    print("坐骑已经获得，没有获取途径")
+                else:
+                    printcolor.printred("没有相关坐骑信息，请查具体查看该坐骑！")
+        else:
+            printcolor.printred("没有获取到该坐骑相关信息")
+            screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
+        poco("NewBtn").child("BtnBg").click() # 打开坐骑列表
+        time.sleep(1)
     return poco("Btnhave").get_name() # 返回值
 
 def check_menu(sysmenu, poco):
