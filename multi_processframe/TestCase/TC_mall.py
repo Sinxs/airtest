@@ -26,7 +26,7 @@ def Main(devices):
             """
             try:
                 print("开始测试商店模块")
-                self.assertEqual("商 店", gamemall.mall(devices))
+                self.assertEqual("战队商店", gamemall.mall(devices))
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "商店-冒烟测试")
 
