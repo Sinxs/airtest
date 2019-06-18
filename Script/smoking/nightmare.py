@@ -49,6 +49,7 @@ def nightmare(devices):
             freeze_poco("Time4").exists() and freeze_poco("CurReachLv").exists() and \
             freeze_poco("Time").exists() and freeze_poco("Text").exists() and freeze_poco("Text1").exists() and \
             freeze_poco("Kaishi").exists() and freeze_poco("Time2").exists():  # 判断噩梦庭院界面的元素
+        printcolor.printgreen(poco("RightPanel").child("T").get_text())
         printcolor.printgreen("噩梦庭院界面判断完毕，显示正确")
         poco("GetRewardBtn").click()  # 点击领取按钮
         printcolor.printgreen("领取按钮点击。。。")
@@ -62,6 +63,9 @@ def nightmare(devices):
                     pass
             printcolor.printgreen("排名奖励显示正确")
             poco(texture="l_close_00").click()
+        else:
+            printcolor.printgreen("排名奖励控件缺失，请检查...")
+            screenshot.get_screen_shot(time.time(), devices, "排名奖励控件缺失")
         if not poco(text="排名奖励").exists():
             poco("DisplayAll").click()  # 点击显示全部奖励
             printcolor.printgreen("点击显示全部奖励")
@@ -72,5 +76,8 @@ def nightmare(devices):
                         pass
                 printcolor.printgreen("全部奖励显示正确")
                 poco(texture="l_close_00").click()
+        else:
+            printcolor.printgreen("全部奖励控件缺失，请检查...")
+            screenshot.get_screen_shot(time.time(), devices, "全部奖励控件缺失")
     printcolor.printgreen("没有进入战斗，因为进入战斗会导致重置脚本的时候存在影响下一个脚本的风险。。。可以单独做战斗方面的脚本还有就是排行榜。。没有信息")
     return poco("SeasonRewards").child("T").get_text()  # 赛季奖励
