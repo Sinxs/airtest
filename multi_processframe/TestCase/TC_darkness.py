@@ -4,11 +4,11 @@ __author__ = "Lee.li"
 
 import unittest
 from airtest.core.api import *
-from Script.smoking import nest
+from Script.smoking import darkness
 from multi_processframe.Tools import initial, screenshot
 
 def Main(devices):
-    class TC_nest(unittest.TestCase):
+    class TC_darkness_ectype(unittest.TestCase):
         u'''测试用例102的集合'''
 
         @classmethod
@@ -22,13 +22,13 @@ def Main(devices):
 
         def test_nest(self):
             """
-            巢穴模块 -- 巢穴排行榜控件判断--奖励控件判断--通关巢穴一次
+            黑暗神殿 -- 神殿界面判断--排行榜--通关黑暗神殿一次
             """
             try:
-                print("开始测试巢穴模块")
-                self.assertEqual("队伍", nest.nest(devices))
+                print("开始测试黑暗神殿模块")
+                self.assertEqual("黑暗神殿[-]", darkness.darkness_ectype(devices))
             finally:
-                screenshot.get_screen_shot(time.time(), devices, "巢穴-冒烟测试")
+                screenshot.get_screen_shot(time.time(), devices, "黑暗神殿-冒烟测试")
 
 
         def tearDown(self):
@@ -40,5 +40,5 @@ def Main(devices):
             u'''这里放需要在所有用例后执行的部分'''
             pass
 
-    srcSuite = unittest.makeSuite(TC_nest)
+    srcSuite = unittest.makeSuite(TC_darkness_ectype)
     return srcSuite

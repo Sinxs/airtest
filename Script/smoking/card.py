@@ -2,7 +2,7 @@ from multi_processframe.Tools import printcolor,adb_connect
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
 
-devices = "127.0.0.1:62025"
+
 
 
 
