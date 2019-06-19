@@ -23,7 +23,7 @@ def Main(devices):
 
         def test_home(self):
             """
-            家园-冒烟测试
+            家园-家园界面控件判断、按钮点击
             """
             try:
                 print("开始测试家园模块")
