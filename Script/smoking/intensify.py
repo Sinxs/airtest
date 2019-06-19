@@ -4,7 +4,6 @@ __author__ = "Sinwu"
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
 from multi_processframe.Tools import printcolor,adb_connect
-
 def butpos(butpos,pos1=0.4,pos2=0.81,high=1330,low=930,lows=482):
     """
 把不在屏幕内部的控件滑动到屏幕内，使之可被操作
@@ -46,17 +45,17 @@ def Intensify(devices):  # 主界面点击变强按钮
             pos.click()  # 点击变强子按钮
         else:
             printcolor.printred("没有找到"+poco("FpStrengthenDlg(Clone)").offspring(item1).offspring("TextLabel").get_text()+"按钮，请检查..")
-        for item2 in range(len(poco("Panel").child())):  # 获取子页签的按钮
+        freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+        for item2 in range(len(freeze_poco("Panel").child())):  # 获取子页签的按钮
             item2 = "item" + str(item2)
-            if poco("FpStrengthenDlg(Clone)").offspring(item2).child("Strengthen").child("TittleLab").exists():
-                pos = poco("FpStrengthenDlg(Clone)").offspring(item2).child("Strengthen").child("TittleLab")
-                butpos(butpos=pos,pos1=0.33,pos2=0.85,high=1330,low=930,lows=482)  # 调用butpos方法
-            elif poco("FpStrengthenDlg(Clone)").offspring(item2).child("Other").child("Label").exists():
-                pos = poco("FpStrengthenDlg(Clone)").offspring(item2).child("Other").child("Label")
-                butpos(butpos=pos, pos1=0.33, pos2=0.85, high=1330, low=930, lows=482)  # 调用butpos方法
+            if freeze_poco("FpStrengthenDlg(Clone)").offspring(item2).child("Strengthen").child("TittleLab").exists():
+                pos = freeze_poco("FpStrengthenDlg(Clone)").offspring(item2).child("Strengthen").child("TittleLab")
+                # butpos(butpos=pos,pos1=0.33,pos2=0.85,high=1330,low=930,lows=482)  # 调用butpos方法
+            elif freeze_poco("FpStrengthenDlg(Clone)").offspring(item2).child("Other").child("Label").exists():
+                pos = freeze_poco("FpStrengthenDlg(Clone)").offspring(item2).child("Other").child("Label")
+                # butpos(butpos=pos, pos1=0.33, pos2=0.85, high=1330, low=930, lows=482)  # 调用butpos方法
             if pos.exists():
-                printcolor.printgreen(poco("FpStrengthenDlg(Clone)").offspring(f"{item1}").offspring("TextLabel").get_text()+"-->>"+pos.get_text()+"-->>显示成功")
+                printcolor.printgreen(freeze_poco("FpStrengthenDlg(Clone)").offspring(f"{item1}").offspring("TextLabel").get_text()+"-->>"+pos.get_text()+"-->>显示成功")
             else:
                 printcolor.printred("无法获取"+poco("FpStrengthenDlg(Clone)").offspring(f"{item1}").offspring("TextLabel").get_text()+f"选项第{item}个子页签。赶紧检查..")
     return pos.get_text()  # 变强功能最后一个检查点--对应的活跃度宝箱打开随机获得水晶显示成功
-
