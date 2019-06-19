@@ -58,7 +58,7 @@ def horse(devices):
 
 def check_menu(sysmenu, poco):
     position = poco(sysmenu).get_position()
-    if position[0] > 1:  # 对比pos点，得到的pos列表中，第一个元素 > 1 说明在屏幕外面
+    if position[0] > 0.82:  # 对比pos点，得到的pos列表中，第一个元素 > 1 说明在屏幕外面
         poco(texture="switch").click()
         time.sleep(1)
         poco(sysmenu).click()
