@@ -38,9 +38,12 @@ def bossrush(devices):
     pos = poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item927").offspring("Background")  # 无限幻境参加按钮
     if pos.exists():
         butpos(butpos=pos, pos1=0.4, pos2=0.79, high=1055, low=740, lows=466)  # 调用butpos方法
-        pos.click()  # 点击bossrush参加按钮
+        pos.click()  # 点击无限幻境参加按钮
     else:
         printcolor.printgreen("日常界面没有无限幻境选项，请检查...")
         screenshot.get_screen_shot(time.time(), devices, "日常界面没有无限幻境选项")
+    if poco("Title").exists():
+        printcolor.printgreen("进入无限幻境界面，开始检测界面控件元素")
+        
 
 bossrush(devices)
