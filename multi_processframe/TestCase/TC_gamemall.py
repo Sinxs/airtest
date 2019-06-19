@@ -24,7 +24,7 @@ def Main(devices):
             商城-界面控件判断-售卖商品判断
             """
             try:
-                print("开始测试商店模块")
+                print("开始测试商城模块")
                 self.assertEqual("充 值", gamemall.gamemall(devices))
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "商城-冒烟测试")
