@@ -77,13 +77,16 @@ def equip(devices):
                     item1 = "Button" + str(item)
                     item2 = poco(item1).child("Label")
                     equip.click()  # 点击装备
-                    printcolor.printgreen("进入  " + item2.get_text() + "  界面")
-                    poco(item1).click()  # 点击需要的装备操作选项
-                    if poco("ItemNewDlg(Clone)").offspring("Frame").child("p").child("p").exists():
-                        # printcolor.printgreen("进入界面测试完成")
-                        poco(texture="l_close_00").click()
+                    if item2.exists():
+                        printcolor.printgreen("进入  " + item2.get_text() + "  界面")
+                        poco(item1).click()  # 点击需要的装备操作选项
+                        if poco("ItemNewDlg(Clone)").offspring("Frame").child("p").child("p").exists():
+                            # printcolor.printgreen("进入界面测试完成")
+                            poco(texture="l_close_00").click()
+                        else:
+                            printcolor.printred("没有显示" + item2.get_text() + "界面，请检查---")
                     else:
-                        printcolor.printred("没有显示" + item2.get_text() + "界面，请检查---")
+                        printcolor.printgreen("当前装备没有" + item2.get_text() + " 选项，请更换更高级的装备")
                 return poco("Title").get_text()
         else:  # 先获取时装在穿戴后
             printcolor.printred("角色没有穿装备，请准备好测试环境在跑当前脚本，测试环境准备条件在当前脚本的最上方..")
