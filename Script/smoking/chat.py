@@ -18,21 +18,25 @@ def chat(devices):
     freeze_poco = poco.freeze()  # TODO：定义冻结poco
     for tab in chatlist:
         tab1 = "tab" + str(tab)
-        printcolor.printgreen("检查点 "+freeze_poco("ChatNewDlg_ani").offspring(tab1).offspring("Bg").child("name").get_text()+" 聊天选项 显示正确")
-        poco("ChatNewDlg_ani").offspring(tab1).offspring("Bg").child("name").click()
-        if poco("chattext").exists():
-            printcolor.printgreen("点击输入框")
-            poco("chattext").click()  # 点击输入框
-            text("聊五毛钱的天。。。")
-            Androidpoco("android.widget.Button").click()
-            poco("sendchat").click()  # 点击发送
-            if poco("addBtn").exists():
-                poco("addBtn").click()  # 表情
-                sleep(1)
-                item1 = "item" + str(random.randint(0, 23))
-                poco(item1).child("template").click()
+        if freeze_poco("ChatNewDlg_ani").offspring(tab1).offspring("Bg").child("name").exists():
+            printcolor.printgreen("检查点 "+freeze_poco("ChatNewDlg_ani").offspring(tab1).offspring("Bg").child("name").get_text()+" 聊天选项 显示正确")
+            poco("ChatNewDlg_ani").offspring(tab1).offspring("Bg").child("name").click()
+            if poco("chattext").exists():
+                printcolor.printgreen("点击输入框")
+                poco("chattext").click()  # 点击输入框
+                text("聊五毛钱的天。。。")
+                Androidpoco("android.widget.Button").click()
                 poco("sendchat").click()  # 点击发送
-                sleep(2)
+                if poco("addBtn").exists():
+                    poco("addBtn").click()  # 表情
+                    sleep(1)
+                    item1 = "item" + str(random.randint(0, 23))
+                    poco(item1).child("template").click()
+                    poco("sendchat").click()  # 点击发送
+                    sleep(2)
+            else:
+                printcolor.printgreen("当前聊天选项没有输入选项")
         else:
-            printcolor.printgreen("当前聊天选项没有输入选项")
+            printcolor.printred("检查点 "+freeze_poco("ChatNewDlg_ani").offspring(tab1).offspring("Bg").child("name").get_text()+" 聊天选项 不存在，检查一下吧")
+            screenshot.get_screen_shot(time.time(), devices, "聊天选项控件缺失")
     return poco("ChatNewDlg_ani").offspring("tab4").offspring("Selected").child("name").get_text()

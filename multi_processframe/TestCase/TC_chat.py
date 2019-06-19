@@ -20,7 +20,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_nest(self):
+        def test_chat(self):
             """
             聊天 -- 每个聊天选项都进行聊天和发送表情，表情随机发送
             """
