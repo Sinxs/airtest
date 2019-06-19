@@ -38,7 +38,7 @@ def nightmare(devices):
         screenshot.get_screen_shot(time.time(), devices, "主界面缺少日常按钮")
     pos = poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item519").offspring("Background")  # 噩梦庭院参加按钮
     if pos.exists():
-        butpos(butpos=pos, pos1=0.4, pos2=0.79, high=565, low=511, lows=240)  # 调用butpos方法
+        butpos(butpos=pos, pos1=0.4, pos2=0.79, high=879, low=511, lows=240)  # 调用butpos方法
         pos.click()  # 点击bossrush参加按钮
     else:
         printcolor.printgreen("日常界面没有噩梦庭院选项，请检查...")

@@ -108,7 +108,7 @@ def nest(devices):
                 if poco("BtnStart").exists():
                     printcolor.printgreen("队伍已经创建，开始进入战斗")
                     poco("BtnStart").click()  # 点击进入战斗
-                    sleep(50)
+                    sleep(65)
                     if poco("Indicate").child("Bg").exists() and poco("BtnDamageStatistics").exists():
                         printcolor.printgreen("进入巢穴，因为没有自动战斗，所以直接GM结束战斗....")
                         poco("Avatar").click()  # 点击头像，输入MG指令结束战斗
