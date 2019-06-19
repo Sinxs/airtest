@@ -13,7 +13,7 @@ Androidpoco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_ac
 def honor(devices):
     poco = adb_connect.device(devices)
     if poco("SysAItem").exists():
-        if poco("SysAItem").get_position()[1] > 1:  # 界面有角色按钮
+        if poco("SysAItem").get_position()[0] > 1:  # 界面有角色按钮
             poco(texture="halln_4").click()
         poco("SysAItem").click()  # 点击角色按钮
     else:
