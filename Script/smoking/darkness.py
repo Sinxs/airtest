@@ -37,15 +37,15 @@ def darkness(poco):
     """
     for i in range(200):
         sleep(1)
-        if int(poco("InfoBack").offspring("Level").get_text()) < 30:
+        if int(poco("InfoBack").offspring("Level").get_text()) < 10:
             if poco("Avatar").exists():  # 呼出GM
                 poco("Avatar").click()
                 text("killall")  # 再次输入killall
                 printcolor.printgreen("开始通过第 " + poco("InfoBack").offspring("Level").get_text() + " 关！！！")
                 Androidpoco("android.widget.Button").click()
                 sleep(18)
-        elif int(poco("InfoBack").offspring("Level").get_text()) >= 30:
-            printcolor.printgreen("关卡数量大于30")
+        elif int(poco("InfoBack").offspring("Level").get_text()) >= 10:
+            printcolor.printgreen("关卡数量大于10")
             if poco("Avatar").exists():
                 poco("Avatar").click()
                 text("killall")
@@ -116,7 +116,7 @@ def darkness_ectype(devices):
             printcolor.printred("连第一层都没有打过，不能重置。。。")
             screenshot.get_screen_shot(time.time(), devices, "不能重置")
     else:
-        printcolor.printred("当前没有重置次数，接着打吧....")
+        printcolor.printgreen("当前没有重置次数，接着打吧....")
         screenshot.get_screen_shot(time.time(), devices, "当前没有重置次数")
     if poco("GoBattle").exists():
         poco("GoBattle").click()
