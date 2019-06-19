@@ -14,7 +14,8 @@ def card_collect(devices):
     if poco("SpriteSystemDlg(Clone)").exists():  # 判断精灵界面是否存在
         try:
             poco("XSys_SpriteSystem_Shop").click() # 先抽精灵
-            poco("SpriteShopHandler")
+            poco("SpriteSystemDlg(Clone)").offspring("SpriteShopHandler").offspring("SpecialLottery").offspring("Ten").click()
+            poco("XSys_SpriteSystem_Lottery").click()
             if poco("SpriteSystemDlg(Clone)").offspring("SpriteShopHandler").offspring("SpecialLottery").offspring("Button").child("Free").exists():
                 poco("SpriteSystemDlg(Clone)").offspring("SpriteShopHandler").offspring("SpecialLottery").child("Button").click()
                 if poco("SpriteShowDlg(Clone)").offspring("Bg").offspring("Close").child("Label").exists():
@@ -22,7 +23,7 @@ def card_collect(devices):
                     if poco("ShareBtn").exists():
                         poco("Close").click()
                     poco("OkButton").click()
-            poco("Ten").click()
+            poco("SpriteSystemDlg(Clone)").offspring("SpriteLotteryHandler").offspring("SpecialLottery").offspring("Ten").click()
             time.sleep(1)
             poco("OkButton").click()
             time.sleep(2)
@@ -35,7 +36,7 @@ def card_collect(devices):
                 poco("OkButton").click()
             printcolor.printgreen("购买精灵蛋，抽精灵流程正常")
         except Exception as e:
-            printcolor.printred("购买精灵蛋，抽精灵流程正常异常")
+            printcolor.printred("购买精灵蛋，抽精灵流程异常")
             printcolor.printred(e)
             # screenshot.get_screen_shot(time.time(), devices, "购买精灵蛋，抽精灵流程正常异常")
         with poco.freeze() as freeze_poco:

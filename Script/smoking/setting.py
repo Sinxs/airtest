@@ -182,3 +182,6 @@ def setting(devices):
     else:
         printcolor.printred("设置界面打开失败！")
     return poco("Duck").get_name()  # 返回值
+
+# devises = "127.0.0.1:62001"
+# setting(devises)

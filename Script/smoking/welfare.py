@@ -279,7 +279,7 @@ def qiandao(poco,item): # 签到奖励
         except Exception as e:
             printcolor.printred("签到奖励界面按钮点击异常")
             printcolor.printred(e)
-            # screenshot.get_screen_shot(time.time(), devices, "签到奖励界面按钮点击异常")
+            screenshot.get_screen_shot(time.time(), devices, "签到奖励界面按钮点击异常")
 
 def jinbi(poco,item): # 金币宝箱
     move(poco, item)

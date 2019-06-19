@@ -8,7 +8,7 @@ from multi_processframe.Tools import initial, screenshot
 
 
 def Main(devices):
-    class TClongqi(unittest.TestCase):
+    class TC_longqi(unittest.TestCase):
         u'''测试用例102的集合'''
 
         @classmethod
@@ -20,7 +20,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_longyu(self):
+        def test_longqi(self):
             """
             龙器功能测试模块--主要检测龙器界面按钮，龙器穿戴，龙器获取，龙器神炉个按钮点击操作
             """

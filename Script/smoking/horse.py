@@ -14,14 +14,13 @@ def horse(devices):
     """
     poco = adb_connect.device(devices)
     check_menu("SysEHorse", poco) # 调用函数查看主界面坐骑按钮是否可点击
-    with poco.freeze() as freeze_poco:
-        freeze_poco("NewBtn").child("BtnBg").click() # 打开坐骑列表
-        petgrid = freeze_poco("Grid").child() # 获取目前所有坐骑数量
-        for x in range(20):
-            if poco("Grid").child("item0").get_position()[1] < 0.145:
-                swipe((486, 170), (486, 889))
-            else:
-                break
+    poco("NewBtn").child("BtnBg").click() # 打开坐骑列表
+    petgrid = poco("Grid").child() # 获取目前所有坐骑数量
+    for x in range(20):
+        if poco("Grid").child("item0").get_position()[1] < 0.145:
+            swipe((486, 170), (486, 889))
+        else:
+            break
     for i in range(len(petgrid)):
         item = "item" + str(i)
         if i >= 25:

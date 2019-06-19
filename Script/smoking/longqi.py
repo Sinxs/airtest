@@ -70,7 +70,7 @@ def Artifact(devices):
                 printcolor.printred("龙器神炉点击异常")
                 printcolor.printred(e)
                 screenshot.get_screen_shot(time.time(), devices, "龙器神炉点击异常")
-        if poco("empty0").exists():
+        if poco("empty0").exists() and (not poco("ItemNewDlg(Clone)").offspring("item0").child("Icon").exists()):
             poco("Artifact0").click()  # 点击槽位
             poco("ListPanel").click()  # 点击跳转龙魂
             if poco("item0").child("value").get_text() == "0":
@@ -92,39 +92,22 @@ def Artifact(devices):
             poco("Close").click()
             check_menu("SysAItem", poco)
             poco("XSys_Artifact").click()
-            with poco.freeze() as freeze_poco:
-                equipchild = freeze_poco("WrapContent").child()
-                for i in equipchild:
-                    name = i.get_name()
-                    if name[:5] != "empty":
-                        equipname = name
-                        break
-            poco(equipname).click() # 点击装备
-            poco("Button1").click() # 穿戴装备
-            for i in range(4):
-                item = "item" + str(i)
-                if poco("ItemNewDlg(Clone)").offspring(item).child("Icon").exists():
-                    printcolor.printgreen("龙器穿戴成功")
+        with poco.freeze() as freeze_poco:
+            equipchild = freeze_poco("WrapContent").child()
+            for i in equipchild:
+                name = i.get_name()
+                if name[:5] != "empty":
+                    equipname = name
                     break
-                else:
-                    printcolor.printred("龙器穿戴失败")
-        else:
-            with poco.freeze() as freeze_poco:
-                equipchild = freeze_poco("WrapContent").child()
-                for i in equipchild:
-                    name = i.get_name()
-                    if name[:5] != "empty":
-                        equipname = name
-                        break
-            poco(equipname).click() # 点击装备
-            poco("Button1").click() # 穿戴装备
-            for i in range(4):
-                item = "item" + str(i)
-                if poco("ItemNewDlg(Clone)").offspring(item).child("Icon").exists():
-                    printcolor.printgreen("龙器穿戴成功")
-                    break
-                if i == 3:
-                    printcolor.printred("龙器穿戴失败")
+        poco(equipname).click() # 点击装备
+        poco("Button1").click() # 穿戴装备
+        for i in range(4):
+            item = "item" + str(i)
+            if poco("ItemNewDlg(Clone)").offspring(item).child("Icon").exists():
+                printcolor.printgreen("龙器穿戴成功")
+                break
+            if i == 3:
+                printcolor.printred("龙器穿戴失败")
     else:
         printcolor.printred("龙器功能暂未开放，请提升等级角色")
         # screenshot.get_screen_shot(time.time(), devices, "龙器功能暂未开放")
