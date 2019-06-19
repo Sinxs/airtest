@@ -1,3 +1,9 @@
+"""
+制作模块
+脚本环境
+1、
+"""
+
 from multi_processframe.Tools import printcolor,adb_connect,screenshot
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
@@ -17,28 +23,41 @@ def manufacture(devices):
             freeze_poco("XSys_EquipCreate_Upgrade").exists() and \
             freeze_poco("XSys_EquipCreate_ArtifactSet").exists():
         printcolor.printgreen("界面检查点 装备制作-文章制作-龙器制作-装备制作-继承  控件显示正确")
+
         freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
-        if freeze_poco("EquipCreateDlg(Clone)").offspring("4").offspring("SelectLab").exists() and \
-                freeze_poco("EquipCreateDlg(Clone)").offspring("95023").child("Selected").child("P").exists() and \
-                freeze_poco("EquipCreateDlg(Clone)").offspring("95223").child("Selected").child("P").exists() and \
-                freeze_poco("0").exists() and \
-                freeze_poco("1").exists() and \
-                freeze_poco("2").exists():
+        if freeze_poco("0").exists() and freeze_poco("1").exists() and freeze_poco("2").exists():
             printcolor.printgreen("装备制作-魔化符文龙套·首饰 各个检查点 显示正确")
         else:
             printcolor.printred("装备制作-魔化符文龙套·首饰 界面 缺少控件，请检查")
             screenshot.get_screen_shot(time.time(), devices, "装备制作-魔化符文龙套·首饰  缺少控件")
-        poco("EquipCreateDlg(Clone)").offspring("95023").child("Selected").child("P").click()  # 魔化符文龙套
-        freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
-        if freeze_poco("0").exists() and \
-                freeze_poco("1").exists() and \
-                freeze_poco("2").exists() and \
-                freeze_poco("3").exists() and \
-                freeze_poco("4").exists():
-            printcolor.printgreen("装备制作-魔化付文龙套各个检查点 显示正确")
-        else:
-            printcolor.printred("装备制作-魔化付文龙套装界面 缺少控件，请检查")
-            screenshot.get_screen_shot(time.time(), devices, "装备制作-魔化付文龙套装界面 缺少控件")
+        if poco("EquipCreateDlg(Clone)").offspring("95023").child("Selected").child("P").exists():
+            poco("EquipCreateDlg(Clone)").offspring("95023").child("Selected").child("P").click()  # 魔化符文龙套
+            printcolor.printgreen("当前角色有魔化付文龙套装备")
+            freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+            if freeze_poco("0").exists() and \
+                    freeze_poco("1").exists() and \
+                    freeze_poco("2").exists() and \
+                    freeze_poco("3").exists() and \
+                    freeze_poco("4").exists():
+                printcolor.printgreen("装备制作-魔化付文龙套各个检查点 显示正确")
+            else:
+                printcolor.printred("装备制作-魔化付文龙套装界面 缺少控件，请检查")
+                screenshot.get_screen_shot(time.time(), devices, "装备制作-魔化付文龙套装界面 缺少控件")
+
+        if poco("EquipCreateDlg(Clone)").offspring("95027").child("P").exists():
+            poco("EquipCreateDlg(Clone)").offspring("95027").child("P").click()  # 在没有获得装备的时候
+            printcolor.printgreen("当前角色没有魔化付文龙套装备，请尽快给角色装备上...")
+            freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+            if freeze_poco("0").exists() and \
+                    freeze_poco("1").exists() and \
+                    freeze_poco("2").exists() and \
+                    freeze_poco("3").exists() and \
+                    freeze_poco("4").exists():
+                printcolor.printgreen("装备制作-魔化付文龙套各个检查点 显示正确")
+            else:
+                printcolor.printred("装备制作-魔化付文龙套装界面 缺少控件，请检查")
+                screenshot.get_screen_shot(time.time(), devices, "装备制作-魔化付文龙套装界面 缺少控件")
+
         poco("XSys_EquipCreate_EmblemSet").click()  # 点击纹章制作
         freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
         if freeze_poco("WrapContent").exists() and \
@@ -49,6 +68,8 @@ def manufacture(devices):
         else:
             printcolor.printred("纹章制作界面 缺少控件，请检查")
             screenshot.get_screen_shot(time.time(), devices, "纹章制作界面 缺少控件")
+
+
         poco("XSys_EquipCreate_ArtifactSet").click()  # 点击龙器制作
         freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
         for item in range(len(freeze_poco("TypeList").offspring("Table").child())):
@@ -61,6 +82,8 @@ def manufacture(devices):
             else:
                 printcolor.printred("龙器制作界面缺少控件，请检查")
                 screenshot.get_screen_shot(time.time(), devices, "龙器制作界面缺少控件")
+
+
         poco("XSys_EquipCreate_Upgrade").click()  # 装备升级界面
         freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
         if poco("WrapContent").exists() and \
@@ -87,6 +110,8 @@ def manufacture(devices):
             else:
                 printcolor.printred("符文龙套装界面缺少控件，请检查")
                 screenshot.get_screen_shot(time.time(), devices, "符文龙套装界面缺少控件")
+
+
         poco("XSys_Equip_Inherit").click()  # 继承按钮
         freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
         if freeze_poco("0").exists() and \

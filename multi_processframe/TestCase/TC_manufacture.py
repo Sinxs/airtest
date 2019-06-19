@@ -19,7 +19,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_gamemall(self):
+        def test_manufacture(self):
             """
             制作-界面控件判断-二级界面控件判断
             """
