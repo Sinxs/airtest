@@ -40,7 +40,7 @@ def Intensify(devices):  # 主界面点击变强按钮
         item1 = "item"+str(item)
         pos = poco("FpStrengthenDlg(Clone)").offspring(item1)  # 获取当前控件
         if pos.exists():
-            butpos(butpos=pos, pos1=0.32,pos2=0.81,high=436, low=838, lows=482)  # 调用butpos方法
+            butpos(butpos=pos, pos1=0.32,pos2=0.81,high=158, low=544, lows=290)  # 调用butpos方法
             printcolor.printgreen("进入" + poco("FpStrengthenDlg(Clone)").offspring(item1).offspring("TextLabel").get_text() + "功能，开始检查子页签")
             pos.click()  # 点击变强子按钮
         else:

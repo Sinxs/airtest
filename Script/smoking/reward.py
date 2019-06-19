@@ -40,7 +40,7 @@ def reward(devices):
         screenshot.get_screen_shot(time.time(), devices, "主界面缺少日常按钮")
     pos = poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item904").offspring("Background")  # 悬赏任务参加按钮
     if pos.exists():
-        butpos(butpos=pos, pos1=0.4, pos2=0.79, high=1055, low=740, lows=466)  # 调用butpos方法
+        butpos(butpos=pos, pos1=0.4, pos2=0.79, high=565, low=511, lows=240)  # 调用butpos方法
         pos.click()  # 点击日常任务参加按钮
     else:
         printcolor.printgreen("日常界面没有悬赏任务选项，请检查...")

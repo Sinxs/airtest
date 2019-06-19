@@ -47,7 +47,7 @@ def nest(devices):
             screenshot.get_screen_shot(time.time(), devices, "主界面缺少日常按钮")
         if poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item110").offspring("Background").exists():
             pos = poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item110").offspring("Background")  # 副本参加按钮
-            butpos(butpos=pos, pos1=0.4, pos2=0.79, high=1055, low=740, lows=466)  # 调用butpos方法
+            butpos(butpos=pos, pos1=0.4, pos2=0.79, high=565, low=511, lows=240)  # 调用butpos方法
             poco("DailyActivityDlg(Clone)").offspring("XActivityHandler").offspring("Item110").offspring("Background").click()  # 点击副本参加按钮
             sleep(2)
             poco("Hard").click()  # 点击巢穴按钮

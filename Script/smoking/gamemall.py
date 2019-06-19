@@ -82,7 +82,7 @@ def mall(devices):  # 商店功能测试
         if poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).exists():  # 商店的子页签
             # if poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).offspring("shopname").exists():
             pos = poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1)
-            butpos(butpos=pos,pos1=0.38,pos2=0.75,high=1302,low=848,lows=394)  # 调用butpos方法
+            butpos(butpos=pos,pos1=0.38,pos2=0.75,high=558,low=643,lows=366)  # 调用butpos方法
             poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).offspring("shopname").click()  # 点击商店子页签
             sleep(1)
             printcolor.printgreen("----------------进入"+poco("ShopName").get_text()+"界面----------------")

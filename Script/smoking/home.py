@@ -130,7 +130,7 @@ def entrancehome(devices):
                 printcolor.printgreen("没有进入我的家园，请检查..")
                 screenshot.get_screen_shot(time.time(), devices, "没有进入我的家园")
             poco("Fishing").child("T").click()  # 点击钓鱼
-            sleep(5)
+            sleep(10)
             if poco("StartFishingBtn").exists() and poco("SweepBtn").exists():
                 poco("StartFishingBtn").click()  # 点击单次钓鱼
                 if poco(texture="l_frame_02").child("T").exists():
