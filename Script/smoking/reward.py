@@ -34,6 +34,7 @@ def reward(devices):
     if poco("Duck").exists():
         poco("Duck").click()
         sleep(2)
+        poco("XSys_Activity").click()  # 点击日常按钮
     else:
         printcolor.printgreen("主界面缺少日常按钮，请检查...")
         screenshot.get_screen_shot(time.time(), devices, "主界面缺少日常按钮")

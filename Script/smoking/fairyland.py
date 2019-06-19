@@ -32,6 +32,7 @@ def bossrush(devices):
     if poco("Duck").exists():
         poco("Duck").click()
         sleep(2)
+        poco("XSys_Activity").click()  # 点击日常按钮
     else:
         printcolor.printgreen("主界面缺少日常按钮，请检查...")
         screenshot.get_screen_shot(time.time(), devices, "主界面缺少日常按钮")
@@ -44,6 +45,6 @@ def bossrush(devices):
         screenshot.get_screen_shot(time.time(), devices, "日常界面没有无限幻境选项")
     if poco("Title").exists():
         printcolor.printgreen("进入无限幻境界面，开始检测界面控件元素")
-        
+
 
 bossrush(devices)
