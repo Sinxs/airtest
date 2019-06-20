@@ -8,7 +8,7 @@ from multi_processframe.Tools import initial, screenshot
 
 
 def Main(devices):
-    class TCpvp(unittest.TestCase):
+    class TC_pvp(unittest.TestCase):
         u'''测试用例102的集合'''
 
         @classmethod
@@ -20,7 +20,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_horse(self):
+        def test_pvp(self):
             """
             竞技功能测试模块--主要检测每个界面按钮元素是否存在以及是否可点击
             """
@@ -38,5 +38,5 @@ def Main(devices):
             u'''这里放需要在所有用例后执行的部分'''
             pass
 
-    srcSuite = unittest.makeSuite(TCpvp)
+    srcSuite = unittest.makeSuite(TC_pvp)
     return srcSuite

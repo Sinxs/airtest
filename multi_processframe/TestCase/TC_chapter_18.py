@@ -20,7 +20,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_Chapter_Ten(self):
+        def test_Chapter_18(self):
             """
             主线关卡第十八章战斗流程测试--测试自动通关副本，检测地图卡点，对于没有自动战斗的关卡进入副本后退出
             """
