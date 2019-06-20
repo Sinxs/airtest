@@ -38,5 +38,5 @@ def Main(devices):
             u'''这里放需要在所有用例后执行的部分'''
             pass
 
-    srcSuite = unittest.makeSuite(TClongqi)
+    srcSuite = unittest.makeSuite(TC_longqi)
     return srcSuite
