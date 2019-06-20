@@ -99,7 +99,7 @@ def nest(devices):
             if poco("Do").exists():
                 poco("Do").click()  # 点击进入游戏
                 if poco(texture="l_frame_00").exists():
-                    printcolor.printgreen("脚本环境没有调整好，战力不足，接下来强制运行剩余脚本")
+                    printcolor.printred("脚本环境没有调整好，战力不足，接下来强制运行剩余脚本")
                     poco(text="强行闯关").click()
                 if poco("BtnCreate").exists():
                     printcolor.printgreen("没有队伍，开始创建队伍")
@@ -108,13 +108,20 @@ def nest(devices):
                 if poco("BtnStart").exists():
                     printcolor.printgreen("队伍已经创建，开始进入战斗")
                     poco("BtnStart").click()  # 点击进入战斗
-                    sleep(65)
+                    sleep(40)
                     if poco("Indicate").child("Bg").exists() and poco("BtnDamageStatistics").exists():
                         printcolor.printgreen("进入巢穴，因为没有自动战斗，所以直接GM结束战斗....")
+                        printcolor.printgreen("呼出GM选项")
                         poco("Avatar").click()  # 点击头像，输入MG指令结束战斗
+                        printcolor.printgreen("输入GMwin指令")
                         text("gmwin")  # 输入GM指令
+                        printcolor.printgreen("点击确定")
+                        sleep(1)
                         Androidpoco("android.widget.Button").click()
                         sleep(50)
+                        if poco("bt").exists():  # 如果还是没有返回主界面
+                            poco("Box2").click()
+                            sleep(20)
                         if poco("Title").exists():
                             printcolor.printgreen("已经跑完巢穴模块，回到主界面，脚本完成...开始离开队伍")
                             if poco("BtnLeave").exists():
@@ -132,7 +139,7 @@ def nest(devices):
         initial.startgame(devices)
         if poco("Team").child("Selected").exists():
             poco("Team").child("Selected").click()  # 点击队伍
-            poco("BtnCreate").click()  # 点击创建队伍
+            poco("Team").click()  # 点击创建队伍
             if poco("BtnLeave").exists():
                 poco("BtnLeave").click()  # 点击退出组队
                 if poco("BtnCreate").exists():
