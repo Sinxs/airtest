@@ -82,8 +82,7 @@ def card_collect(devices):
                     num = poco("SpriteSystemDlg(Clone)").offspring(item).child("Num").get_text()
                     if int(num) > 0:
                         break
-                print(item)
-                poco("SpriteSystemDlg(Clone)").child(item).click()
+                poco("SpriteSystemDlg(Clone)").offspring(item).child("Quality").click()
                 printcolor.printgreen("精灵升级正常")
                 poco("SpriteSystemDlg(Clone)").offspring("SpriteMainFrame").offspring("TabsFrame").child(
                     "item0").click()
@@ -98,23 +97,63 @@ def card_collect(devices):
                 poco("SpriteSystemDlg(Clone)").offspring("SpriteElves").offspring("item0").child("Icon").click()
                 poco("Free").click()
                 poco("XSys_SpriteSystem_Main").click()
-                poco("equip1302010").click()  # 这里需要分析点击第一个装备
+                with poco.freeze() as freeze_poco:  # 获取装备中的第一件，进行穿戴操作
+                    equipchild = freeze_poco("SpriteSystemDlg(Clone)").offspring("SpriteMainFrame").offspring(
+                        "Items").offspring("WrapContent").child()
+                    for i in equipchild:
+                        name = i.get_name()
+                        if name[:5] != "empty":
+                            equipname = name
+                            break
+                poco("SpriteSystemDlg(Clone)").offspring("SpriteMainFrame").offspring(equipname)[0].click()
+                poco("FuncFrame").child("Button1").click() # 卸下穿戴的装备
+                poco("SpriteSystemDlg(Clone)").offspring("SpriteMainFrame").child("Bg").child("Spriteequip").child("Spriteequip").child(equipname).click()
                 poco("Button1").click()
-                poco("equip1302010").click()
-                poco("Button1").click()
-                poco("SpriteSystemDlg(Clone)").child("XSys_SpriteSystem_Fight").click()
+
+
+                poco("XSys_SpriteSystem_Fight").click()
                 poco("SpriteSystemDlg(Clone)").offspring("item0").click()
                 poco("SpriteSystemDlg(Clone)").offspring("item1").click()
                 poco("SpriteSystemDlg(Clone)").offspring("Avatar0").offspring("AvatarBtn").click()
                 poco("CBtn").click()
                 poco("SpriteSystemDlg(Clone)").offspring("Avatar0").offspring("AvatarBtn").click()
-                poco("XSys_SpriteSystem_Resolve").click()
-                poco("SpriteSystemDlg(Clone)").offspring("item0").click()
-                poco("SpriteSystemDlg(Clone)").offspring("item1").child("Frame").click()
-                poco("ResolveBtn").click()
-                poco("GreyModalDlg(Clone)").offspring("OK").click()
-                poco("Illustration").click()
-                poco(texture="l_close_00").click()
+
+
+
+
+                # 分解
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                with poco.freeze() as freeze_poco:
+                    freeze_poco("XSys_SpriteSystem_Resolve").click()
+                    freeze_poco("SpriteSystemDlg(Clone)").offspring("item0").click()
+                    freeze_poco("SpriteSystemDlg(Clone)").offspring("item1").click()
+                    freeze_poco("FilterBtn").click()
+                    if len(poco("SpriteSystemDlg(Clone)").offspring("SpriteResolveFrame").child("ScrollView").child()) < 3:
+                        freeze_poco("SpriteSystemDlg(Clone)").offspring("ItemOperateFrame").offspring("C").child("Checked").click()
+                        freeze_poco("SpriteSystemDlg(Clone)").offspring("ItemOperateFrame").offspring("B").child("Checked").click()
+                        freeze_poco("SpriteSystemDlg(Clone)").offspring("ItemOperateFrame").offspring("A").child("Checked").click()
+                        freeze_poco("SpriteSystemDlg(Clone)").offspring("ItemOperateFrame").offspring("S").child("Checked").click()
+                        freeze_poco("FilterBtn").click()
+                    freeze_poco("ResolveBtn").click()
+                    if poco("GreyModalDlg(Clone)").offspring("OK").exists():
+                        poco("GreyModalDlg(Clone)").offspring("OK").click()
+                    printcolor.printgreen("精灵分解成功")
+                    freeze_poco("Illustration").click()
+                    poco(texture="l_close_00").click()
             except  Exception as e:
                 printcolor.printred("精灵操作流程异常")
                 printcolor.printred(e)

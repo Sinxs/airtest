@@ -20,7 +20,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_longyu(self):
+        def test_bag(self):
             """
             背包功能测试模块--背包分类，背包扩展的操作
             """
