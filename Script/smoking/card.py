@@ -1,9 +1,9 @@
+"""
+图鉴模块-判断图鉴功能中的界面元素-进行按钮点击
+"""
 from multi_processframe.Tools import printcolor,adb_connect
 from airtest.core.api import *
 from poco.drivers.unity3d import UnityPoco
-
-
-
 
 
 def card(devices):
@@ -62,6 +62,7 @@ def card(devices):
 
     else:
         printcolor.printred("没有进入图鉴界面，请检查...")
+        screenshot.get_screen_shot(time.time(), devices, "没有进入图鉴界面")
     return poco("CardCollectDlg(Clone)").offspring("Shop").offspring("Title").get_text()  # 兑 换
 
 
