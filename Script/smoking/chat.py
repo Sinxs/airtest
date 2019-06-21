@@ -23,9 +23,7 @@ def chat(devices):
             poco("ChatNewDlg_ani").offspring(tab1).offspring("Bg").child("name").click()
             if poco("chattext").exists():
                 printcolor.printgreen("点击输入框")
-                poco("chattext").click()  # 点击输入框
-                text("聊五毛钱的天。。。")
-                Androidpoco("android.widget.Button").click()
+                poco("textinput").wait().set_text("聊五毛钱的天。。。")
                 poco("sendchat").click()  # 点击发送
                 if poco("addBtn").exists():
                     poco("addBtn").click()  # 表情
