@@ -22,11 +22,12 @@ def Artifact(devices):
                 printcolor.printgreen("龙器界面，四个槽位，图册，帮助，数量，龙器页，龙器加成，龙器神炉UI元素显示正常")
             else:
                 printcolor.printred("龙器界面UI元素显示异常，详情见截图")
-                # screenshot.get_screen_shot(time.time(), devices, "龙器界面UI元素显示异常")
+                screenshot.get_screen_shot(time.time(), devices, "龙器界面UI元素显示异常")
             try:
                 freeze_poco("Prof").click() # 操作龙器页
                 poco("ItemNewDlg(Clone)").offspring("item1").child("BtnUse").click()
-                poco(texture="l_close_00")
+                if poco(texture="l_close_00").exists():
+                    poco(texture="l_close_00").click()
                 printcolor.printgreen("龙器页打开使用正常")
             except Exception as e:
                 printcolor.printred("龙器页打开使用异常")
@@ -79,8 +80,11 @@ def Artifact(devices):
                 poco("OK").click()
                 poco("Close").click()
                 poco("EnterBtn").click()  # 点击进入副本
+                printcolor.printgreen("龙魂禁地门票购买成功")
+                print("进入龙魂禁地副本大龙器")
             else:
                 poco("EnterBtn").click()
+                print("进入龙魂禁地副本大龙器")
             time.sleep(10)
             if poco("AutoPlayCancel").exists():
                 pass
@@ -89,28 +93,39 @@ def Artifact(devices):
             time.sleep(90)
             if poco("ItemIconListBattleDlg(Clone)").offspring("Bg").child("Close").exists():
                 poco("ItemIconListBattleDlg(Clone)").offspring("Bg").child("Close").click()
-            poco("Close").click()
-            check_menu("SysAItem", poco)
+                poco("Close").click()
+                check_menu("SysAItem", poco)
+                poco("XSys_Artifact").click()
+            else:
+                printcolor.printred("没有穿戴装备，龙魂禁地打不过去，请穿戴装备后再次执行脚本")
+                screenshot.get_screen_shot(time.time(), devices, "没有穿戴装备，龙魂禁地打不过去，请穿戴装备后再次执行脚本")
+        if poco("XSys_Artifact").exists():
             poco("XSys_Artifact").click()
-        with poco.freeze() as freeze_poco:
-            equipchild = freeze_poco("WrapContent").child()
-            for i in equipchild:
-                name = i.get_name()
-                if name[:5] != "empty":
-                    equipname = name
+            with poco.freeze() as freeze_poco:
+                equipchild = freeze_poco("WrapContent").child()
+                for i in equipchild:
+                    name = i.get_name()
+                    if name[:5] != "empty":
+                        equipname = name
+                        break
+            poco(equipname).click() # 点击装备
+            poco("Button1").click() # 穿戴装备
+            for i in range(4):
+                item = "item" + str(i)
+                if poco("ItemNewDlg(Clone)").offspring(item).child("Icon").exists():
+                    printcolor.printgreen("龙器穿戴成功")
+                    with poco.freeze() as freeze_poco:
+                        for x in freeze_poco("ArtifactFrame").child("Panel").child("Artifacts").offspring("Quality"):
+                            uiname = x.parent().get_name()
+                            freeze_poco(uiname).click()
+                            poco("Button1").click()  # 穿戴装备
+                    printcolor.printgreen("龙器卸下成功")
                     break
-        poco(equipname).click() # 点击装备
-        poco("Button1").click() # 穿戴装备
-        for i in range(4):
-            item = "item" + str(i)
-            if poco("ItemNewDlg(Clone)").offspring(item).child("Icon").exists():
-                printcolor.printgreen("龙器穿戴成功")
-                break
-            if i == 3:
-                printcolor.printred("龙器穿戴失败")
+                if i == 3:
+                    printcolor.printred("龙器穿戴失败")
     else:
         printcolor.printred("龙器功能暂未开放，请提升等级角色")
-        # screenshot.get_screen_shot(time.time(), devices, "龙器功能暂未开放")
+        screenshot.get_screen_shot(time.time(), devices, "龙器功能暂未开放")
     poco("Close").click()
     return poco("Duck").get_name()   # 返回值poco("Duck").get_name()
 

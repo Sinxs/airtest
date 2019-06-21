@@ -32,12 +32,13 @@ def bag_item(devices):
                     freeze_poco("add").click()
                     number = int(poco("GreyModalDlg(Clone)").offspring("Bg").child("Label").get_text()[4:7].split("个")[0]) # 获取需要几个背包扩充券
                     poco("OK").click()
-                    poco("ListPanel").click()
-                    for i in range(number+2):
+                    if poco("ListPanel").exists():
+                        poco("ListPanel").click()
+                        for i in range(number+2):
+                            poco("OK").click()
+                        poco("Close").click()
+                        freeze_poco("add").click()
                         poco("OK").click()
-                    poco("Close").click()
-                    freeze_poco("add").click()
-                    poco("OK").click()
                     countend = int(poco("BagNum").get_text().split("/", 1)[1])
                     if (countend-countbegin) == 5:
                         printcolor.printgreen("背包扩充成功")
@@ -64,5 +65,5 @@ def check_menu(sysmenu, poco):
         poco(sysmenu).click()
 
 
-# devices = "127.0.0.1:62001"
-# bag_item(devices)
+devices = "127.0.0.1:62001"
+bag_item(devices)
