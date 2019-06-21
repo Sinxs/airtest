@@ -65,5 +65,5 @@ def check_menu(sysmenu, poco):
         poco(sysmenu).click()
 
 
-devices = "127.0.0.1:62001"
-bag_item(devices)
+# devices = "127.0.0.1:62001"
+# bag_item(devices)

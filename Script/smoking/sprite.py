@@ -13,38 +13,42 @@ def sprite(devices):
     check_menu("SysCSprite", poco)  # 进入精灵
     if poco("SpriteSystemDlg(Clone)").exists():  # 判断精灵界面是否存在
         try:
-            poco("XSys_SpriteSystem_Shop").click() # 先抽精灵
-            poco("SpriteSystemDlg(Clone)").offspring("SpriteShopHandler").offspring("SpecialLottery").offspring("Ten").click()
-            poco("XSys_SpriteSystem_Lottery").click()
-            if poco("SpriteSystemDlg(Clone)").offspring("SpriteShopHandler").offspring("SpecialLottery").child("Button").child("Free").exists():
-                poco("SpriteSystemDlg(Clone)").offspring("SpriteShopHandler").offspring("SpecialLottery").child("Button").child("Free").click()
-                if poco("SpriteShowDlg(Clone)").offspring("Bg").offspring("Close").child("Label").exists():
-                    poco("SpriteShowDlg(Clone)").offspring("Bg").offspring("Close").child("Label").click()
-                    if poco("ShareBtn").exists():
-                        poco("Close").click()
-                    poco("OkButton").click()
-            poco("SpriteSystemDlg(Clone)").offspring("SpriteLotteryHandler").offspring("SpecialLottery").offspring("Ten").click()
-            time.sleep(5)
-            count = 0
-            with poco.freeze() as freezez_poco:
-                for i in range(10):
-                    item = "item" + str(i)
-                    if not freezez_poco("SpriteSystemDlg(Clone)").offspring("SpriteLotteryHandler").offspring(
-                            item).child("ItemTpl").exists():
-                        count += 1
-            printcolor.printgreen(f"抽到了{count}个A级以上的坐骑")
-            if count == 0:
-                poco("OkButton").click()
+            poco("XSys_SpriteSystem_Shop").click() # 先买精灵蛋
+            if poco(texture="l_button_Act_1").exists(): # 判断免费次数存不存在
+                poco(texture="l_button_Act_1").click()
+                for i in range(5):
+                    poco("SpecialLottery").offspring("Ten").click()
             else:
-                poco("OkButton").click()
-                for i in range(count):
-                        time.sleep(3)
-                        if poco("SpriteShowDlg(Clone)").offspring("Bg").offspring("Close").child("Label").exists(): # 判断A级以上的精灵是否抽到
-                            poco("SpriteShowDlg(Clone)").offspring("Bg").offspring("Close").child("Label").click() # 抽到点击跳过
-                            if poco("ShareBtn").exists(): # 判断有没有分享图
-                                poco("Close").click() # 有分享图点掉
-                poco("OkButton").click()
-            printcolor.printgreen("购买精灵蛋，抽精灵流程正常")
+                for i in range(5):
+                    poco("SpecialLottery").offspring("Ten").click()
+            poco("XSys_SpriteSystem_Lottery").click() # 进入召唤界面抽精灵
+            for i in range(4):
+                poco("SpecialLottery").offspring("Ten").click()
+                if poco("GreyModalDlg(Clone)").child("Bg").child("OK").exists():
+                    poco("OK").click()
+                    print("您的精灵已达到上限80只，请先分解部分精灵 ")
+                    break
+                else:
+                    time.sleep(5)
+                    count = 0
+                    with poco.freeze() as freezez_poco:
+                        for i in range(10):
+                            item = "item" + str(i)
+                            if not freezez_poco("SpriteSystemDlg(Clone)").offspring("SpriteLotteryHandler").offspring(item).child("ItemTpl").exists():
+                                count += 1
+                    printcolor.printgreen(f"抽到了{count}个A级以上的坐骑")
+                    if count == 0:
+                        poco("OkButton").click()
+                    else:
+                        poco("OkButton").click()
+                        for i in range(count):
+                                time.sleep(3)
+                                if poco("SpriteShowDlg(Clone)").offspring("Bg").offspring("Close").child("Label").exists(): # 判断A级以上的精灵是否抽到
+                                    poco("SpriteShowDlg(Clone)").offspring("Bg").offspring("Close").child("Label").click() # 抽到点击跳过
+                                    if poco("ShareBtn").exists(): # 判断有没有分享图
+                                        poco("Close").click() # 有分享图点掉
+                        poco("OkButton").click()
+                        printcolor.printgreen("此次抽精灵操作正常")
         except Exception as e:
             printcolor.printred("购买精灵蛋，抽精灵流程异常")
             printcolor.printred(e)
@@ -94,26 +98,30 @@ def sprite(devices):
                 poco("SpriteSystemDlg(Clone)").offspring("SpriteMainFrame").offspring("TabsFrame").child("item1").click()
                 poco("AccessBtn").click()
                 poco("SpriteSystemDlg(Clone)").offspring("SpriteElves").offspring("item0").child("Icon").click()
-                poco("Free").click()
-                try:
-                    poco("XSys_SpriteSystem_Main").click()
-                    with poco.freeze() as freeze_poco:  # 获取装备中的第一件，进行穿戴操作
-                        equipchild = freeze_poco("SpriteSystemDlg(Clone)").offspring("SpriteMainFrame").offspring(
-                            "Items").offspring("WrapContent").child()
-                        for i in equipchild:
-                            name = i.get_name()
-                            if name[:5] != "empty":
-                                equipname = name
-                                break
-                    poco("SpriteSystemDlg(Clone)").offspring("SpriteMainFrame").offspring(equipname)[0].click()
-                    poco("FuncFrame").child("Button1").click() # 卸下穿戴的装备
-                    poco("SpriteSystemDlg(Clone)").offspring("SpriteMainFrame").child("Bg").child("Spriteequip").child("Spriteequip").child(equipname).click()
-                    poco("Button1").click()
-                    printcolor.printgreen("精灵装备打造穿戴正常")
-                except Exception as e:
-                    printcolor.printred("精灵装备打造穿戴异常")
-                    printcolor.printred(e)
-                    screenshot.get_screen_shot(time.time(), devices, "精灵准备打造穿戴异常")
+                if poco("SpriteSystemDlg(Clone)").offspring("SpriteElves").offspring("item0").child("Item").exists():
+                    poco("Free").click()
+                    try:
+                        poco("XSys_SpriteSystem_Main").click()
+                        with poco.freeze() as freeze_poco:  # 获取装备中的第一件，进行穿戴操作
+                            equipchild = freeze_poco("SpriteSystemDlg(Clone)").offspring("SpriteMainFrame").offspring(
+                                "Items").offspring("WrapContent").child()
+                            for i in equipchild:
+                                name = i.get_name()
+                                if name[:5] != "empty":
+                                    equipname = name
+                                    break
+                        poco("SpriteSystemDlg(Clone)").offspring("SpriteMainFrame").offspring(equipname)[0].click()
+                        poco("FuncFrame").child("Button1").click() # 卸下穿戴的装备
+                        poco("SpriteSystemDlg(Clone)").offspring("SpriteMainFrame").child("Bg").child("Spriteequip").child("Spriteequip").child(equipname).click()
+                        poco("Button1").click()
+                        printcolor.printgreen("精灵装备打造穿戴正常")
+                    except Exception as e:
+                        printcolor.printred("精灵装备打造穿戴异常")
+                        printcolor.printred(e)
+                        screenshot.get_screen_shot(time.time(), devices, "精灵准备打造穿戴异常")
+                else:
+                    printcolor.printred("精灵装备界面异常")
+                    screenshot.get_screen_shot(time.time(), devices, "精灵装备界面异常")
                 try:
                     poco("XSys_SpriteSystem_Fight").click()
                     count = 0 # 计数出去队长之外一共有多少个精灵在阵上
