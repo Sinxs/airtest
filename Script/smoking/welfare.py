@@ -46,7 +46,7 @@ def welfare(devices):
             poco("Close").click()
     else:
         printcolor.printred("主界面没有找到福利模块")
-    # screenshot.get_screen_shot(time.time(), devices, "竞技界面缺少元素，请详细查看")
+    screenshot.get_screen_shot(time.time(), devices, "竞技界面缺少元素，请详细查看")
     return poco("Duck").get_name()  # 返回主界面上的按钮
 
 
@@ -77,7 +77,7 @@ def zhencang(poco,item): # 珍藏礼包
             printcolor.printgreen("每日领奖按钮，购买按钮，礼包奖品数目UI元素显示正常")
         else:
             printcolor.printred("珍藏礼包界面缺少UI元素，详情见截图")
-            # screenshot.get_screen_shot(time.time(), devices, "珍藏礼包界面缺少UI元素")
+            screenshot.get_screen_shot(time.time(), devices, "珍藏礼包界面缺少UI元素")
         try:
             if freezepoco("DailyGift1").exists():
                 poco("DailyGift1").click()
@@ -88,7 +88,7 @@ def zhencang(poco,item): # 珍藏礼包
         except Exception as e:
             printcolor.printred("珍藏礼包界面按钮点击异常")
             printcolor.printred(e)
-            # screenshot.get_screen_shot(time.time(), devices, "珍藏礼包界面按钮点击异常")
+            screenshot.get_screen_shot(time.time(), devices, "珍藏礼包界面按钮点击异常")
 
 def panduola(poco,item): # 潘多拉
     move(poco, item)
@@ -105,7 +105,7 @@ def panduola(poco,item): # 潘多拉
             printcolor.printgreen("潘多拉模型框，名称，奖励预览，开箱按钮等UI元素显示正常")
         else:
             printcolor.printred("潘多拉界面缺少UI元素，详情见截图")
-            # screenshot.get_screen_shot(time.time(), devices, "潘多拉界面缺少UI元素")
+            screenshot.get_screen_shot(time.time(), devices, "潘多拉界面缺少UI元素")
         try:
             poco("ItemList").click()
             poco(texture="l_close_00").click()
@@ -125,7 +125,7 @@ def panduola(poco,item): # 潘多拉
         except Exception as e:
             printcolor.printred("潘多拉界面按钮点击异常")
             printcolor.printred(e)
-            # screenshot.get_screen_shot(time.time(), devices, "潘多拉界面按钮点击异常")
+            screenshot.get_screen_shot(time.time(), devices, "潘多拉界面按钮点击异常")
 
 def yiyu(poco,item): # 异域集市
     move(poco, item)
@@ -138,7 +138,7 @@ def yiyu(poco,item): # 异域集市
             printcolor.printgreen("商品框，查看商品，刷新UI元素显示正常")
         else:
             printcolor.printred("异域集市界面缺少UI元素，详情见截图")
-            # screenshot.get_screen_shot(time.time(), devices, "异域集市界面缺少UI元素")
+            screenshot.get_screen_shot(time.time(), devices, "异域集市界面缺少UI元素")
         try:
             poco("WelfareDlg(Clone)").offspring("item5").child("BtnBuy").click()
             if poco("Cancel").exists():
@@ -158,7 +158,7 @@ def yiyu(poco,item): # 异域集市
         except Exception as e:
             printcolor.printred("异域集市界面按钮点击异常")
             printcolor.printred(e)
-            # screenshot.get_screen_shot(time.time(), devices, "异域集市界面按钮点击异常")
+            screenshot.get_screen_shot(time.time(), devices, "异域集市界面按钮点击异常")
 
 def vip(poco,item): # 王国特权
     move(poco, item)
@@ -175,7 +175,7 @@ def vip(poco,item): # 王国特权
             printcolor.printgreen("购买按钮，详情介绍，会员标识UI元素显示正常")
         else:
             printcolor.printred("王国特权界面缺少UI元素，详情见截图")
-            # screenshot.get_screen_shot(time.time(), devices, "王国特权界面缺少UI元素")
+            screenshot.get_screen_shot(time.time(), devices, "王国特权界面缺少UI元素")
         try:
             poco("WelfareDlg(Clone)").offspring("item0").child("Detail").click()
             poco(texture="l_button_00").click()
@@ -190,7 +190,7 @@ def vip(poco,item): # 王国特权
         except Exception as e:
             printcolor.printred("王国特权界面按钮点击异常")
             printcolor.printred(e)
-            # screenshot.get_screen_shot(time.time(), devices, "王国特权界面按钮点击异常")
+            screenshot.get_screen_shot(time.time(), devices, "王国特权界面按钮点击异常")
 
 def wangguo(poco,item): # 王国礼包
     move(poco, item)
@@ -207,7 +207,7 @@ def wangguo(poco,item): # 王国礼包
             printcolor.printgreen("王国礼包图片，奖励列表，购买按钮UI元素显示正常")
         else:
             printcolor.printred("王国礼包界面缺少UI元素，详情见截图")
-            # screenshot.get_screen_shot(time.time(), devices, "王国礼包界面缺少UI元素")
+            screenshot.get_screen_shot(time.time(), devices, "王国礼包界面缺少UI元素")
         try:
             poco("WelfareDlg(Clone)").offspring("Grid").child("item0").child("Btn").click()
             poco("WelfareDlg(Clone)").offspring(item).click()
@@ -219,7 +219,7 @@ def wangguo(poco,item): # 王国礼包
         except Exception as e:
             printcolor.printred("王国礼包界面按钮点击异常")
             printcolor.printred(e)
-            # screenshot.get_screen_shot(time.time(), devices, "王国礼包界面按钮点击异常")
+            screenshot.get_screen_shot(time.time(), devices, "王国礼包界面按钮点击异常")
 
 def shouchong(poco,item): # 首充礼包
     move(poco, item)
@@ -234,7 +234,7 @@ def shouchong(poco,item): # 首充礼包
             printcolor.printgreen("充值按钮，6个奖励UI元素显示正常")
         else:
             printcolor.printred("首充礼包界面缺少UI元素，详情见截图")
-            # screenshot.get_screen_shot(time.time(), devices, "首充礼包界面缺少UI元素")
+            screenshot.get_screen_shot(time.time(), devices, "首充礼包界面缺少UI元素")
         try:
             poco("Background").click()
             poco("Close").click()
@@ -255,7 +255,7 @@ def shouchong(poco,item): # 首充礼包
         except Exception as e:
             printcolor.printred("首充礼包界面按钮点击异常")
             printcolor.printred(e)
-            # screenshot.get_screen_shot(time.time(), devices, "首充礼包界面按钮点击异常")
+            screenshot.get_screen_shot(time.time(), devices, "首充礼包界面按钮点击异常")
 
 def qiandao(poco,item): # 签到奖励
     move(poco, item)
@@ -268,7 +268,7 @@ def qiandao(poco,item): # 签到奖励
             printcolor.printgreen("会员特权，签到按钮，奖励列表UI元素显示正常")
         else:
             printcolor.printred("签到奖励界面缺少UI元素，详情见截图")
-            # screenshot.get_screen_shot(time.time(), devices, "签到奖励界面缺少UI元素")
+            screenshot.get_screen_shot(time.time(), devices, "签到奖励界面缺少UI元素")
         try:
             if poco("Check").child("Cost").exists():
                 poco("Check").click()
@@ -290,7 +290,7 @@ def jinbi(poco,item): # 金币宝箱
             printcolor.printgreen("帮助信息，兑换按钮UI元素显示正常")
         else:
             printcolor.printred("金币宝箱界面缺少UI元素，详情见截图")
-            # screenshot.get_screen_shot(time.time(), devices, "金币宝箱界面缺少UI元素")
+            screenshot.get_screen_shot(time.time(), devices, "金币宝箱界面缺少UI元素")
         try:
             poco("Btn_ExchangeOne").click()
             poco("Btn_ExchangeOne").click()
@@ -299,7 +299,7 @@ def jinbi(poco,item): # 金币宝箱
         except Exception as e:
             printcolor.printred("兑换按钮点击正常")
             printcolor.printred(e)
-            # screenshot.get_screen_shot(time.time(), devices, "兑换按钮点击异常")
+            screenshot.get_screen_shot(time.time(), devices, "兑换按钮点击异常")
 
 def tili(poco,item): # 每日体力
     move(poco, item)
@@ -308,7 +308,7 @@ def tili(poco,item): # 每日体力
             printcolor.printgreen("每日体力UI元素显示正常")
         else:
             printcolor.printred("每日体力界面缺少UI元素，详情见截图")
-            # screenshot.get_screen_shot(time.time(), devices, "每日体力界面缺少UI元素")
+            screenshot.get_screen_shot(time.time(), devices, "每日体力界面缺少UI元素")
         try:
             if freezepoco("GetReward").exists():
                 freezepoco("GetReward").click()
@@ -319,7 +319,7 @@ def tili(poco,item): # 每日体力
         except Exception as e:
             printcolor.printred("每日体力界面按钮点击异常")
             printcolor.printred(e)
-            # screenshot.get_screen_shot(time.time(), devices, "每日体力界面按钮点击异常")
+            screenshot.get_screen_shot(time.time(), devices, "每日体力界面按钮点击异常")
 
 def zhaohui(poco,item): # 奖励找回
     move(poco, item)
@@ -331,7 +331,7 @@ def zhaohui(poco,item): # 奖励找回
                 printcolor.printgreen("完美找回，普通找回，奖励显示正常")
             else:
                 printcolor.printred("奖励找回界面缺少UI元素，详情见截图")
-                # screenshot.get_screen_shot(time.time(), devices, "奖励找回界面缺少UI元素")
+                screenshot.get_screen_shot(time.time(), devices, "奖励找回界面缺少UI元素")
             try:
                 poco("SelectNormal").click()
                 poco("SelectPerfect").click()
@@ -341,7 +341,7 @@ def zhaohui(poco,item): # 奖励找回
             except Exception as e:
                 printcolor.printred("奖励找回界面按钮点击异常")
                 printcolor.printred(e)
-                # screenshot.get_screen_shot(time.time(), devices, "珍藏礼包界面按钮点击异常")
+                screenshot.get_screen_shot(time.time(), devices, "珍藏礼包界面按钮点击异常")
     else:
         print("奖励找回界面没有需要找回的内容")
 
