@@ -4,6 +4,8 @@ bossrush模块，有次数就先判断元素在进去然后出来，没有次数
 
 from multi_processframe.Tools import printcolor,adb_connect,screenshot
 from airtest.core.api import *
+from poco.drivers.android.uiautomation import AndroidUiautomationPoco
+Androidpoco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
 
 def butpos(butpos,pos1=0.4,pos2=0.81,high=1330,low=930,lows=482):
@@ -70,23 +72,29 @@ def bossrush(devices):
             poco("Refresh").click()  # 点击刷新按钮，没啥效果，特效我有看不出来
             printcolor.printgreen("点击刷新按钮，没啥效果，特效我又看不出来。。。")
             printcolor.printgreen("现在的bossrush更换为了  "+poco("BossRushNewDlg(Clone)").offspring("left").child("Name").get_text())
-            printcolor.printgreen("考虑了一下，不进副本了，每天最多进一次，对于自动化来说，意义更小。所以进入的代码屏蔽掉了")
-            # poco("Go").click()  # 进入副本
-            # sleep(18)
-            # if poco("Avatar").exists():
-            #     printcolor.printgreen("进入boosrush成功，并且检测完成，现在开始退出")
-            #     poco("Pause").child("p")[0].click()
-            #     if poco("Leave").exists():
-            #         poco("Leave").click()  # 退出副本
-            #         poco("OK").click()  # 确定退出
-            #         sleep(15)
-            # else:
-            #     printcolor.printred("没有进入副本，请检查。。。")
-            #     screenshot.get_screen_shot(time.time(), devices, "没有进入副本")
+            poco("Go").click()  # 点击挑战
+            printcolor.printgreen("进入副本")
+            sleep(15)  # 等待15秒进入副本时间
+            if poco("Avatar").exists():  # 头像，准备进行GM指令获取金属板
+                poco("Avatar").click()  # 点击头像
+                text("gmwin")  # 输入gm命令直接结束战斗
+                sleep(1)
+                Androidpoco("android.widget.Button").click()
+                sleep(20)
+                if poco("BattleContinueDlg(Clone)").offspring("Continue").exists():
+                    poco("BattleContinueDlg(Clone)").offspring("Continue").click()  # 点击奖励的确定按钮，副本打完会出现奖励弹窗
+                    sleep(3)
+                    poco("Continue").click()  # 返回主城
+                    printcolor.printgreen('返回主城')
+                    sleep(20)
+                    if poco("ToolTip").exists():
+                        poco("Open").click()  # 点击使用金属板袋子
+                        sleep(2)
+            else:
+                printcolor.printred("没有进入副本，请检查。。。")
+                screenshot.get_screen_shot(time.time(), devices, "没有进入副本")
     else:
         printcolor.printgreen("检测到没有进入bossrush界面，请检查...")
         screenshot.get_screen_shot(time.time(), devices, "检测到没有进入bossrush界面")
-    return poco("Go").child("T1").get_text()
-
-
+    return poco("Duck").get_name()
 

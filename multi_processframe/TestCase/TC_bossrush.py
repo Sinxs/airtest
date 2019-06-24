@@ -26,7 +26,7 @@ def Main(devices):
             """
             try:
                 print("开始测试bossrush模块")
-                self.assertEqual("挑  战", bossrush.bossrush(devices))
+                self.assertEqual("Duck", bossrush.bossrush(devices))
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "bossrush-冒烟测试")
 

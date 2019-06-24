@@ -7,7 +7,7 @@ from airtest.core.api import *
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 Androidpoco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
-def addheraldry(poco):
+def addheraldry(poco,devices):
     poco("Btn").click()
     but = poco("EquipCreateDlg(Clone)").offspring("WrapContent").offspring(name="Icon")  # 是否存在金属板
     if but.exists():
@@ -62,7 +62,7 @@ def addheraldry(poco):
                                                 "T").exists():
                                             printcolor.printgreen("进入金属板界面，开始进行纹章制作")
                                             # TODO：接下来进行纹章制作，纹章装备和卸下的操作已经完成
-                                            addheraldry(poco)  # 调用纹章制作
+                                            addheraldry(poco,devices)  # 调用纹章制作
                     else:
                         printcolor.printgreen("bossrush没有次数了，不打了")
                         poco("Close").click()  # 点击返回，返回到制作界面
@@ -82,7 +82,7 @@ def heraldry(devices):
             if poco("ItemNewDlg(Clone)").offspring("Items").child("Frame").offspring("T").exists():
                 printcolor.printgreen("进入金属板界面，开始进行纹章制作")
                 # TODO：接下来进行纹章制作，纹章装备和卸下的操作已经完成
-                addheraldry(poco)  # 调用纹章制作
+                addheraldry(poco,devices)  # 调用纹章制作
 
                 printcolor.printgreen("进入纹章界面，开始测试纹章")
                 if poco("ItemNewDlg(Clone)").offspring("Items").offspring("Icon").exists():
