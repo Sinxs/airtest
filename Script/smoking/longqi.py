@@ -99,6 +99,10 @@ def Artifact(devices):
             else:
                 printcolor.printred("没有穿戴装备，龙魂禁地打不过去，请穿戴装备后再次执行脚本")
                 screenshot.get_screen_shot(time.time(), devices, "没有穿戴装备，龙魂禁地打不过去，请穿戴装备后再次执行脚本")
+                poco("Pause").click()
+                poco("Leave").click()
+                time.sleep(8)
+                poco("Close").click()
         if poco("XSys_Artifact").exists():
             poco("XSys_Artifact").click()
             with poco.freeze() as freeze_poco:
