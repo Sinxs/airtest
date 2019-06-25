@@ -5,13 +5,13 @@ from multi_processframe.Tools import screenshot, printcolor, adb_connect
 
 def npcfavor(devices):
     """
-    伙伴测试脚本
+    佣兵测试脚本
     :param devices:
     :return:
     """
     poco = adb_connect.device(devices)
     check_menu("SysF_Machine", poco)  # 进入精灵
-    if poco("MachineArmorDlg(Clone)").exists():  # 判断伙伴界面是否存在
+    if poco("MachineArmorDlg(Clone)").exists():  # 判断佣兵界面是否存在
         with poco.freeze() as freeze_poco:
             if freeze_poco("MachineArmorDlg(Clone)").offspring("MachineScrollview").child("Wrapcontent").exists() and \
                     freeze_poco("Title1").exists() and \
@@ -24,7 +24,7 @@ def npcfavor(devices):
                 printcolor.printgreen("佣兵界面UI元素显示正常")
             else:
                 printcolor.printred("佣兵界面UI元素显示异常，详情见截图")
-                screenshot.get_screen_shot(time.time(), devices, "伙伴界面UI元素显示异常")
+                screenshot.get_screen_shot(time.time(), devices, "佣兵界面UI元素显示异常")
             try:
                 with poco.freeze() as freeze_poco:
                     for i in freeze_poco("MachineArmorDlg(Clone)").offspring("MachineScrollview").child("Wrapcontent").offspring("HeadIcon"):  # 循环有多少个佣兵
@@ -52,12 +52,12 @@ def npcfavor(devices):
                                     i.click()
                     printcolor.printgreen("佣兵模块所有按钮点击正常")
             except Exception as e:
-                printcolor.printred("伙伴界面按钮点击流程异常")
+                printcolor.printred("佣兵界面按钮点击流程异常")
                 printcolor.printred(e)
-                screenshot.get_screen_shot(time.time(), devices, "伙伴界面按钮点击流程异常")
+                screenshot.get_screen_shot(time.time(), devices, "佣兵界面按钮点击流程异常")
     else:
-        printcolor.printred("伙伴界面报错，详情见截图")
-        screenshot.get_screen_shot(time.time(), devices, "伙伴界面报错")
+        printcolor.printred("佣兵界面报错，详情见截图")
+        screenshot.get_screen_shot(time.time(), devices, "佣兵界面报错")
     poco("Close").click()
     return poco("Duck").get_name()   # 返回值poco("Duck").get_name()
 
