@@ -184,8 +184,8 @@ def test_warrior_1(devices):  # Prof1-转职为战士分支、剑圣分支、月
     """点击月之领主职业"""
     juexing(poco)  # 点击觉醒
     return Skill(poco,devices)  # 测试技能模块
-# devices='127.0.0.1:62025'
-# test_warrior_1(devices)
+
+
 def test_warrior_2(devices):  #  Prof1-转职为战士分支、剑圣分支、剑皇职业
     """
      转职为战士分支、剑圣分支、剑皇职业
