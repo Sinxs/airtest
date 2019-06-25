@@ -22,7 +22,6 @@ def chat(devices):
             printcolor.printgreen("检查点 "+freeze_poco("ChatNewDlg_ani").offspring(tab1).offspring("Bg").child("name").get_text()+" 聊天选项 显示正确")
             poco("ChatNewDlg_ani").offspring(tab1).offspring("Bg").child("name").click()
             if poco("chattext").exists():
-                printcolor.printgreen("点击输入框")
                 poco("textinput").wait().set_text("聊五毛钱的天。。。")
                 poco("sendchat").click()  # 点击发送
                 if poco("addBtn").exists():
@@ -35,6 +34,6 @@ def chat(devices):
             else:
                 printcolor.printgreen("当前聊天选项没有输入选项")
         else:
-            printcolor.printred("检查点 "+freeze_poco("ChatNewDlg_ani").offspring(tab1).offspring("Bg").child("name").get_text()+" 聊天选项 不存在，检查一下吧")
+            printcolor.printred(f"检查点  聊天选项 发{tab1} 不存在，检查一下.一个大选项,大概率是因为没有加工会造成")
             screenshot.get_screen_shot(time.time(), devices, "聊天选项控件缺失")
     return poco("ChatNewDlg_ani").offspring("tab4").offspring("Selected").child("name").get_text()
