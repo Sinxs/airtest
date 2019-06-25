@@ -18,6 +18,7 @@ def Switchroles_1(poco):
 
     if not poco("Open").exists():
         poco("Avatar").click()
+        sleep(3)
         Androidpoco("android.widget.Button").click()  # 点击GM出现的确定控件
         poco("InfoTab").click()  # 点击个人信息，不是个人信息的界面不存在切换角色选项
         poco(text="切换角色").click()
