@@ -15,8 +15,8 @@ def Switchroles_1(poco):
     2、点击头像进入角色选择界面
     :return:
     """
-
-    if not poco("Open").exists():
+    freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+    if not freeze_poco("Open").exists():
         poco("Avatar").click()
         sleep(3)
         # Androidpoco("android.widget.Button").click()  # 点击GM出现的确定控件

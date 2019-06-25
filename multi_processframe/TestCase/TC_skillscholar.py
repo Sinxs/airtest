@@ -75,9 +75,9 @@ def Main(devices):
             """
             try:
                 print("Prof5-转职为学者分支、机甲师分支、银色机甲师分支")
-                self.assertEqual("圣骑士", skill.test_scholar_5(devices))
+                self.assertEqual("银色机甲师", skill.test_scholar_5(devices))
             finally:
-                screenshot.get_screen_shot(time.time(), devices, "圣骑士-职业技能测试")
+                screenshot.get_screen_shot(time.time(), devices, "银色机甲师-职业技能测试")
 
 
         def tearDown(self):

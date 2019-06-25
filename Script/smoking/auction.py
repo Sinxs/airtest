@@ -7,7 +7,8 @@ def auction(poco):
     for item in range(1):  # 因为apk功能机制问题，所以只选择前10中商品进行抽样测试
         item1 = "item" + str(item)
         if poco("AuctionDlg(Clone)").offspring(item1).exists():
-            printcolor.printgreen(poco("AuctionDlg(Clone)").offspring(item1).offspring("ItemTpl").offspring(
+            freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+            printcolor.printgreen(freeze_poco("AuctionDlg(Clone)").offspring(item1).offspring("ItemTpl").offspring(
                 "Name").get_text() + "   道具显示正常")
 
 def Auction(devices):  # 点击交易所按钮
@@ -18,9 +19,11 @@ def Auction(devices):  # 点击交易所按钮
     """
     dev = connect_device("android:///" + devices)
     poco = UnityPoco(device=dev)  # 链接设备，并且重置poco
-    poco("SysCAuction").click()  # 点击交易所
+    freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+    freeze_poco("SysCAuction").click()  # 点击交易所
     poco("AuctionDlg(Clone)").offspring("DragonCoin").child("SelectedTextLabel").click()  # 点击龙币交易所
-    if poco("ailin").exists() and not poco("AuctionDlg(Clone)").offspring("item9").offspring("ItemTpl").offspring("Name").exists():  # 如果选中框没有勾掉，他俩一起点击可以把所有的货物显示出来
+    freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+    if freeze_poco("ailin").exists() and not poco("AuctionDlg(Clone)").offspring("item9").offspring("ItemTpl").offspring("Name").exists():  # 如果选中框没有勾掉，他俩一起点击可以把所有的货物显示出来
         poco("AuctionDlg(Clone)").offspring("ItemLevel").child("Arrow").click()  # 仅显示当前可用
         poco("AuctionDlg(Clone)").offspring("ItemBlock").child("Arrow").click()  # 仅显示有货
     Type = poco("AuctionDlg(Clone)").offspring("TypeList").offspring("1").child("Label").get_position()
@@ -59,12 +62,12 @@ def Auction(devices):  # 点击交易所按钮
     for i in A:
         # poco(f"{i}").click()
         if poco(f"{i}").exists():
-            for ii in range(5):
+            for ii in range(10):
                 pos = poco(f"{i}").get_position()
                 if pos[1] < 0.28:
-                    swipe([686, 580], [686, 870], 5)
+                    swipe([319, 256], [319, 577], 5)
                 elif pos[1] > 0.87:
-                    swipe([686, 870], [686, 580], 5)
+                    swipe([319, 577], [319, 256], 5)
                 else:
                     break
             poco(f"{i}").click()
@@ -169,15 +172,17 @@ def Auction(devices):  # 点击交易所按钮
     B = poco("AuctionDlg(Clone)").offspring("Table").child("item1").offspring("item0").child("Label").get_position()
     if A[1] - B[1] < 0.6:
         poco("AuctionDlg(Clone)").offspring("Table").child("item1").child("Label").click()
+    freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
     for item in range(8):
         item1 = "item" + str(item)
-        if poco("AuctionDlg(Clone)").offspring("Table").child("item1").offspring(item1).child("Label").exists():
-            printcolor.printgreen(poco("AuctionDlg(Clone)").offspring("Table").child("item1").offspring(item1).child("Label").get_text() + "显示正确")
+        if freeze_poco("AuctionDlg(Clone)").offspring("Table").child("item1").offspring(item1).child("Label").exists():
+            printcolor.printgreen(freeze_poco("AuctionDlg(Clone)").offspring("Table").child("item1").offspring(item1).child("Label").get_text() + "显示正确")
     if poco("Result").exists():  # 判断世界拍卖是不是存在
         poco("Result").click()
-        if poco("AuctionDlg(Clone)").offspring("ResultWindow").child("Title").exists():
-            poco(texture="l_close_00").click()
-            printcolor.printgreen(poco("AuctionDlg(Clone)").offspring("GuildAuc").child("SelectedTextLabel").get_text()+"界面显示正确")
+        freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+        if freeze_poco("AuctionDlg(Clone)").offspring("ResultWindow").child("Title").exists():
+            freeze_poco(texture="l_close_00").click()
+            printcolor.printgreen(freeze_poco("AuctionDlg(Clone)").offspring("GuildAuc").child("SelectedTextLabel").get_text()+"界面显示正确")
     poco("AuctionDlg(Clone)").offspring("DragonCoin").child("SelectedTextLabel").click()  # 点击龙币交易所
     poco("AuctionDlg(Clone)").offspring("ItemLevel").child("Arrow").click()  # 仅显示当前可用
     poco("AuctionDlg(Clone)").offspring("ItemBlock").child("Arrow").click()  # 点上，等于微瑕疵重置环境准备
