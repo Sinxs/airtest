@@ -4,6 +4,7 @@ __author__ = "Sinwu"
 # from airtest.core.api import *
 # from poco.drivers.unity3d import UnityPoco
 from multi_processframe.Tools import printcolor,adb_connect
+import random
 
 
 def guild(devices):
@@ -11,8 +12,13 @@ def guild(devices):
     guildbutlist = ["BtnSignIn", "BtnGz", "BtnSkill", "BtnRed", "Donation", "BtnMall", "BtnJoker", "Btnfish",
                     "BtnBuild", "BtnConsider", "GuildTreasureIcon"]
     if poco("SysCGuild").exists():
-        poco("SysCGuild").click()
-        printcolor.printgreen("进入"+poco(texture="tybg_h2Split").child("T").get_text())
+        poco("SysCGuild").click()  # 点击主界面公会按钮
+        if poco("Create").exists():  # 创建公会
+            poco("Create").click()
+            if poco("GuildListDlg(Clone)").offspring("CreateMenu").child("T")[0].exists():
+                poco("NameInput").set_text(f"{random.randint(100000,99999999)}")  # 输入公会名称
+                poco("Highlight").click()  # 点击创建公会
+        printcolor.printgreen("进入" + poco(texture="tybg_h2Split").child("T").get_text())
     for guildbut in guildbutlist:
         if poco(guildbut).exists():
             poco(guildbut).click()
