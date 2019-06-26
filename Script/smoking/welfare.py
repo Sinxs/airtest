@@ -24,25 +24,25 @@ def welfare(devices):
                 item = i.get_name()
                 uiname = freezepoco("WelfareDlg(Clone)").offspring(item).child("Title").get_text()
                 if uiname == "珍藏礼包":
-                    zhencang(poco,item)
+                    zhencang(poco,item,devices)
                 elif uiname == "潘多拉":
-                    panduola(poco,item)
+                    panduola(poco,item,devices)
                 elif uiname == "异域集市":
-                    yiyu(poco,item)
+                    yiyu(poco,item,devices)
                 elif uiname == "王国特权":
-                    vip(poco,item)
+                    vip(poco,item,devices)
                 elif uiname == "王国礼包":
-                    wangguo(poco,item)
+                    wangguo(poco,item,devices)
                 elif uiname == "首充礼包":
-                    shouchong(poco,item)
+                    shouchong(poco,item,devices)
                 elif uiname == "签到奖励":
-                    qiandao(poco,item)
+                    qiandao(poco,item,devices)
                 elif uiname == "金币宝箱":
-                    jinbi(poco,item)
+                    jinbi(poco,item,devices)
                 elif uiname == "每日体力":
-                    tili(poco,item)
+                    tili(poco,item,devices)
                 elif uiname == "奖励找回":
-                    zhaohui(poco,item)
+                    zhaohui(poco,item,devices)
             poco("Close").click()
     else:
         printcolor.printred("主界面没有找到福利模块")
@@ -56,14 +56,14 @@ def move(poco,item):
         if position[1] < 0.12:
             swipe((43,130),(43,400))
             time.sleep(1)
-        if position[1] > 0.95:
+        elif position[1] > 0.95:
             swipe((43, 400), (43, 130))
             time.sleep(1)
         else:
             poco("WelfareDlg(Clone)").offspring(item).click()
             break
 
-def zhencang(poco,item): # 珍藏礼包
+def zhencang(poco,item,devices): # 珍藏礼包
     move(poco,item)
     with poco.freeze() as freezepoco:
         if freezepoco("WelfareDlg(Clone)").offspring("Grid").child("item0").child("Btn").exists() and \
@@ -90,7 +90,7 @@ def zhencang(poco,item): # 珍藏礼包
             printcolor.printred(e)
             screenshot.get_screen_shot(time.time(), devices, "珍藏礼包界面按钮点击异常")
 
-def panduola(poco,item): # 潘多拉
+def panduola(poco,item,devices): # 潘多拉
     move(poco, item)
     with poco.freeze() as freezepoco:
         if freezepoco("WelfareDlg(Clone)").offspring("Pandora").offspring("Display0").offspring("Point").exists() and \
@@ -127,7 +127,7 @@ def panduola(poco,item): # 潘多拉
             printcolor.printred(e)
             screenshot.get_screen_shot(time.time(), devices, "潘多拉界面按钮点击异常")
 
-def yiyu(poco,item): # 异域集市
+def yiyu(poco,item,devices): # 异域集市
     move(poco, item)
     with poco.freeze() as freezepoco:
         if freezepoco("ShopItemList").exists() and \
@@ -160,7 +160,7 @@ def yiyu(poco,item): # 异域集市
             printcolor.printred(e)
             screenshot.get_screen_shot(time.time(), devices, "异域集市界面按钮点击异常")
 
-def vip(poco,item): # 王国特权
+def vip(poco,item,devices): # 王国特权
     move(poco, item)
     with poco.freeze() as freezepoco:
         if freezepoco("WelfareDlg(Clone)").offspring("item0").child("Detail").exists() and \
@@ -192,7 +192,7 @@ def vip(poco,item): # 王国特权
             printcolor.printred(e)
             screenshot.get_screen_shot(time.time(), devices, "王国特权界面按钮点击异常")
 
-def wangguo(poco,item): # 王国礼包
+def wangguo(poco,item,devices): # 王国礼包
     move(poco, item)
     with poco.freeze() as freezepoco:
         if freezepoco(texture="l_hy_02").exists() and \
@@ -221,7 +221,7 @@ def wangguo(poco,item): # 王国礼包
             printcolor.printred(e)
             screenshot.get_screen_shot(time.time(), devices, "王国礼包界面按钮点击异常")
 
-def shouchong(poco,item): # 首充礼包
+def shouchong(poco,item,devices): # 首充礼包
     move(poco, item)
     with poco.freeze() as freezepoco:
         if poco("Recharge").exists() and \
@@ -257,7 +257,7 @@ def shouchong(poco,item): # 首充礼包
             printcolor.printred(e)
             screenshot.get_screen_shot(time.time(), devices, "首充礼包界面按钮点击异常")
 
-def qiandao(poco,item): # 签到奖励
+def qiandao(poco,item,devices): # 签到奖励
     move(poco, item)
     with poco.freeze() as freezepoco:
         if poco("Panel").exists() and \
@@ -281,7 +281,7 @@ def qiandao(poco,item): # 签到奖励
             printcolor.printred(e)
             screenshot.get_screen_shot(time.time(), devices, "签到奖励界面按钮点击异常")
 
-def jinbi(poco,item): # 金币宝箱
+def jinbi(poco,item,devices): # 金币宝箱
     move(poco, item)
     with poco.freeze() as freezepoco:
         if freezepoco("WelfareDlg(Clone)").offspring("Help").exists() and \
@@ -301,7 +301,7 @@ def jinbi(poco,item): # 金币宝箱
             printcolor.printred(e)
             screenshot.get_screen_shot(time.time(), devices, "兑换按钮点击异常")
 
-def tili(poco,item): # 每日体力
+def tili(poco,item,devices): # 每日体力
     move(poco, item)
     with poco.freeze() as freezepoco:
         if poco("GetReward").exists() or ((poco("L").child("T2").exists() and poco("R").child("T2").exists())):
@@ -321,7 +321,7 @@ def tili(poco,item): # 每日体力
             printcolor.printred(e)
             screenshot.get_screen_shot(time.time(), devices, "每日体力界面按钮点击异常")
 
-def zhaohui(poco,item): # 奖励找回
+def zhaohui(poco,item,devices): # 奖励找回
     move(poco, item)
     if poco("buttons").exists():
         with poco.freeze() as freezepoco:
