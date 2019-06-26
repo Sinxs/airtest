@@ -85,32 +85,31 @@ def mall(devices):  # 商店功能测试
             butpos(butpos=pos,pos1=0.38,pos2=0.83,high=558,low=643,lows=366)  # 调用butpos方法
             poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).offspring("shopname").click()  # 点击商店子页签
             sleep(1)
-            printcolor.printgreen("----------------进入"+poco("ShopName").get_text()+"界面----------------")
-            if poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").exists():
-                for item in range((len(poco("TabShopFrame").child()) - 4)):  # 点击子商店的子页签
-                    item2 = "item" + str(item)
-                    if poco("MallDlg(Clone)").offspring(item2).offspring("TextLabel").exists():  # 商店子页签
-                        poco("MallDlg(Clone)").offspring(item2).offspring("TextLabel").click()
-                        if poco("MallDlg(Clone)").offspring("Panel").child("item0").exists():  # 商店商品
-                            printcolor.printgreen(poco("MallDlg(Clone)").offspring("TabShopFrame").child(item2).offspring(
-                                "TextLabel").get_text() + "  页签，显示正确")
-                        else:
-                            printcolor.printgreen(poco("MallDlg(Clone)").offspring("TabShopFrame").child(item2).offspring(
-                                "TextLabel").get_text() + "页签 没有找到任何售卖道具")
-            else:
-                if poco("MallDlg(Clone)").offspring("item0").exists():
-                    printcolor.printgreen(poco("ShopName").get_text() + "页面没有其他子页签，界面检测到售卖道具，显示正确")
+            if not poco("Create").exists():  # 创建公会
+                printcolor.printgreen("----------------进入"+poco("ShopName").get_text()+"界面----------------")
+                if poco("MallDlg(Clone)").offspring("TabShopFrame").child("item0").exists():
+                    for item in range((len(poco("TabShopFrame").child()) - 4)):  # 点击子商店的子页签
+                        item2 = "item" + str(item)
+                        if poco("MallDlg(Clone)").offspring(item2).offspring("TextLabel").exists():  # 商店子页签
+                            poco("MallDlg(Clone)").offspring(item2).offspring("TextLabel").click()
+                            if poco("MallDlg(Clone)").offspring("Panel").child("item0").exists():  # 商店商品
+                                printcolor.printgreen(poco("MallDlg(Clone)").offspring("TabShopFrame").child(item2).offspring(
+                                    "TextLabel").get_text() + "  页签，显示正确")
+                            else:
+                                printcolor.printgreen(poco("MallDlg(Clone)").offspring("TabShopFrame").child(item2).offspring(
+                                    "TextLabel").get_text() + "页签 没有找到任何售卖道具")
                 else:
-                    printcolor.printgreen(poco("ShopName").get_text() + "页面没有其他子页签，没有找到任何售卖道具")
+                    if poco("MallDlg(Clone)").offspring("item0").exists():
+                        printcolor.printgreen(poco("ShopName").get_text() + "页面没有其他子页签，界面检测到售卖道具，显示正确")
+                    else:
+                        printcolor.printgreen(poco("ShopName").get_text() + "页面没有其他子页签，没有找到任何售卖道具")
+                poco("Close").click()
+            else:
+                printcolor.printgreen("商店没有开启")
+                poco("Close").click()
         else:
             printcolor.printred("商店页面没有子页签，请检查...")
-        poco("Close").click()
     return poco("item12").child("shopname").get_text()  # 战队商店
-
-
-
-
-
 
 
 

@@ -87,27 +87,30 @@ def longxue(devices):
         # screenshot.get_screen_shot(time.time(), devices, "龙穴界面缺少控件元素")
     for item in range(len(poco("Panel").child())):
         item1 = "item" + str(item)
-        poco("DragonNestDlg(Clone)").offspring(item1).click()  # 点击各个巢穴
-        if poco("ToggleDiffEasy").exists():  # 判断是否有简单选项
-            poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
-            printcolor.printgreen("<<<<<<<--进入  "+poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()+"  简单模式-->>>>>>>>")
-            poco("ToggleDiffEasy").click()  # 点击简单选项
-            UIjudge(poco, 2, devices)  # 调用UIjudge判断当前界面的控件
+        if not poco("DragonNestDlg(Clone)").offspring(item1).offspring(texture="l_lock_01").exists():  # 如果等级足够，并且模块高亮显示
+            poco("DragonNestDlg(Clone)").offspring(item1).click()  # 点击各个巢穴
+            if poco("ToggleDiffEasy").exists():  # 判断是否有简单选项
+                poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
+                printcolor.printgreen("<<<<<<<--进入  "+poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()+"  简单模式-->>>>>>>>")
+                poco("ToggleDiffEasy").click()  # 点击简单选项
+                UIjudge(poco, 2, devices)  # 调用UIjudge判断当前界面的控件
+            else:
+                printcolor.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text() + "  没有简单模式")
+            if poco("ToggleDiffNormal").exists():  # 判断是否有普通选项
+                printcolor.printgreen("<<<<<<<--进入  "+poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()+"  普通模式-->>>>>>>>")
+                poco("ToggleDiffNormal").click()  # 点击普通选项
+                UIjudge(poco, 3, devices)  # 调用UIjudge判断当前界面的控件
+            else:
+                printcolor.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text() + "  没有普通模式")
+            if poco("ToggleDiffHard").exists():  # 判断是否有困难选项
+                printcolor.printgreen("<<<<<<<--进入  "+poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()+"  困难模式-->>>>>>>>")
+                poco("ToggleDiffHard").click()  # 点击困难选项
+                UIjudge(poco, 3, devices)  # 调用UIjudge判断当前界面的控件
+            else:
+                printcolor.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text() + "  没有困难模式")
         else:
-            printcolor.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text() + "  没有简单模式")
-        if poco("ToggleDiffNormal").exists():  # 判断是否有普通选项
-            printcolor.printgreen("<<<<<<<--进入  "+poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()+"  普通模式-->>>>>>>>")
-            poco("ToggleDiffNormal").click()  # 点击普通选项
-            UIjudge(poco, 3, devices)  # 调用UIjudge判断当前界面的控件
-        else:
-            printcolor.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text() + "  没有普通模式")
-        if poco("ToggleDiffHard").exists():  # 判断是否有困难选项
-            printcolor.printgreen("<<<<<<<--进入  "+poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()+"  困难模式-->>>>>>>>")
-            poco("ToggleDiffHard").click()  # 点击困难选项
-            UIjudge(poco, 3, devices)  # 调用UIjudge判断当前界面的控件
-        else:
-            printcolor.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text() + "  没有困难模式")
-    return poco("NestName").get_text()
-
+            printcolor.printred("等级不足，没有开启")
+    poco("Help").click()  # 点击帮助按钮
+    return poco("CommonHelpTip(Clone)").offspring("Title").get_text()  # 龙穴
 
 

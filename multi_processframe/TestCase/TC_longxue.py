@@ -27,7 +27,7 @@ def Main(devices):
             """
             try:
                 print("开始测试龙穴模块")
-                self.assertEqual("玛蒙的竞技场-困难", longxue.longxue(devices))
+                self.assertEqual("龙穴", longxue.longxue(devices))
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "龙穴-冒烟测试")
 
