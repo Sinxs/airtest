@@ -94,6 +94,27 @@ def nest(devices):
         else:
             printcolor.printgreen("奖励界面控件缺失，请检查...")
             screenshot.get_screen_shot(time.time(), devices, "奖励界面控件缺失")
+        freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+        for item in range(len(freeze_poco("ItemList").child())-1):
+            item = "item"+str(item)
+            if freeze_poco("TheExpDlg(Clone)").offspring(item).exists():
+                freeze_poco("TheExpDlg(Clone)").offspring(item).click()
+                freeze_poco("TheExpDlg(Clone)").offspring(item).click()
+            if poco("main").exists():
+                freeze_poco("TheExpDlg(Clone)").offspring(item).click()
+        for i in range(20):
+            if poco("Left").exists():
+                freeze_poco("Left").click()  # 点击下一个页签
+                freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+                for item in range(len(freeze_poco("ItemList").child()) - 1):
+                    item = "item" + str(item)
+                    if freeze_poco("TheExpDlg(Clone)").offspring(item).exists():
+                        freeze_poco("TheExpDlg(Clone)").offspring(item).click()
+                        freeze_poco("TheExpDlg(Clone)").offspring(item).click()
+                    if poco("main").exists():
+                        freeze_poco("TheExpDlg(Clone)").offspring(item).click()
+            else:
+                break
         if poco("Diff4").exists():
             poco("Diff4").click()  # 点击地狱模式
             if poco("Do").exists():
