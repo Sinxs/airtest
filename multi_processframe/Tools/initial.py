@@ -31,6 +31,10 @@ def startgame(devices):
             print("进入游戏失败，请检查。。。。")
     else:
         print("游戏已经启动，无需再次启动...")
+    if poco("Pause").exists():
+        poco("Pause").click()  # 准备退出副本
+        poco("Leave").click()  # 点击退出副本
+        sleep(20)
     l_close = poco(texture="l_close_00")
     Close = poco("Close")
     for x in range(4):
