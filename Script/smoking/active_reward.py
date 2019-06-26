@@ -66,6 +66,7 @@ def active(devices):
                                     printcolor.printgreen(f"【{name}】点击前往正常")
                                 else:
                                     printcolor.printred(f"【{name}】点击前往正常异常")
+                                    screenshot.get_screen_shot(time.time(), devices, "流程异常")
                                     initial(poco)
                             else:
                                 if poco("BuyFrame").exists():
@@ -76,7 +77,6 @@ def active(devices):
                                         touch([96, 486], times=2)
                     else:
                         print(f"【{name}】的任务已经完成")
-            poco("Close").click()
         except Exception as e:
             printcolor.printred("活跃奖励界面前往按钮点击流程异常")
             printcolor.printred(e)
@@ -118,5 +118,5 @@ def initial(poco):
 
 
 
-devices = "127.0.0.1:62001"
-active(devices)
+# devices = "127.0.0.1:62001"
+# active(devices)
