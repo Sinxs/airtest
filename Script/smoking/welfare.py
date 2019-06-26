@@ -46,7 +46,7 @@ def welfare(devices):
             poco("Close").click()
     else:
         printcolor.printred("主界面没有找到福利模块")
-    screenshot.get_screen_shot(time.time(), devices, "竞技界面缺少元素，请详细查看")
+        screenshot.get_screen_shot(time.time(), devices, "竞技界面缺少元素，请详细查看")
     return poco("Duck").get_name()  # 返回主界面上的按钮
 
 
