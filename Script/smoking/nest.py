@@ -110,18 +110,11 @@ def nest(devices):
                     poco("BtnStart").click()  # 点击进入战斗
                     sleep(40)
                     if poco("Indicate").child("Bg").exists() and poco("BtnDamageStatistics").exists():
-                        printcolor.printgreen("进入巢穴，因为没有自动战斗，所以直接GM结束战斗....")
-                        printcolor.printgreen("呼出GM选项")
-                        poco("Avatar").click()  # 点击头像，输入MG指令结束战斗
-                        printcolor.printgreen("输入GMwin指令")
-                        text("gmwin")  # 输入GM指令
-                        printcolor.printgreen("点击确定")
-                        sleep(1)
-                        Androidpoco("android.widget.Button").click()
-                        sleep(50)
-                        if poco("bt").exists():  # 如果还是没有返回主界面
-                            poco("Box2").click()
-                            sleep(20)
+                        printcolor.printgreen("进入巢穴，因为没有自动战斗，结束战斗....")
+                        if poco("Pause").exists():
+                            poco("Pause").click()  # 准备退出副本
+                            poco("Leave").click()  # 点击退出副本
+                        sleep(20)
                         if poco("Title").exists():
                             printcolor.printgreen("已经跑完巢穴模块，回到主界面，脚本完成...开始离开队伍")
                             if poco("BtnLeave").exists():
