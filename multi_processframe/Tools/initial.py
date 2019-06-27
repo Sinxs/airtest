@@ -65,5 +65,3 @@ def startgame(devices):
         else:
             break
     return None
-devices="127.0.0.1:62025"
-startgame(devices)
