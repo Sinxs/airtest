@@ -28,7 +28,7 @@ def Main(devices):
                 print("开始测试变强模块")
                 self.assertEqual("对应的活跃度宝箱打开随机获得水晶", intensify.Intensify(devices))
             finally:
-                screenshot.get_screen_shot(time.time(), devices, "交易所-冒烟测试")
+                screenshot.get_screen_shot(time.time(), devices, "变强模块-冒烟测试")
 
         def tearDown(self):
             u'''这里放需要在每条用例后执行的部分'''

@@ -1,3 +1,6 @@
+"""
+公会模块
+"""
 # -*- encoding=utf8 -*-
 __author__ = "Sinwu"
 

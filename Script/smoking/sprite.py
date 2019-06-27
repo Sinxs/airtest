@@ -1,3 +1,6 @@
+"""
+精灵测试脚本
+"""
 # -*- encoding=utf8 -*-
 __author__ = "Lee.li"
 from airtest.core.api import *

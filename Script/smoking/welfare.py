@@ -1,3 +1,6 @@
+"""
+福利模块
+"""
 # -*- encoding=utf8 -*-
 __author__ = "Lee.li"
 

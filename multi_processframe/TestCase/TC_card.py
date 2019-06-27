@@ -28,7 +28,7 @@ def Main(devices):
                 print("开始测试图鉴模块")
                 self.assertEqual("兑 换", card.card(devices))
             finally:
-                screenshot.get_screen_shot(time.time(), devices, "交易所-冒烟测试")
+                screenshot.get_screen_shot(time.time(), devices, "图鉴-冒烟测试")
 
 
         def tearDown(self):
