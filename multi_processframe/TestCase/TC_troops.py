@@ -26,7 +26,7 @@ def Main(devices):
             队伍模块 - 队伍的各个界面控件判断，按钮点击，功能操作 ps：单人操作，没有交互
             """
             try:
-                print("开始测试日常队伍模块")
+                print("开始测试队伍模块")
                 self.assertEqual("队友验证", troops.troops(devices))
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "队伍模块-冒烟测试")
