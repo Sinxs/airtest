@@ -28,8 +28,8 @@ def manufacture(devices):
         if freeze_poco("0").exists() and freeze_poco("1").exists() and freeze_poco("2").exists():
             printcolor.printgreen("装备制作-魔化符文龙套·首饰 各个检查点 显示正确")
         else:
-            printcolor.printred("装备制作-魔化符文龙套·首饰 界面 缺少控件，请检查")
-            screenshot.get_screen_shot(time.time(), devices, "装备制作-魔化符文龙套·首饰  缺少控件")
+            printcolor.printred("装备制作-魔化符文龙套首饰 界面 缺少控件，请检查")
+            screenshot.get_screen_shot(time.time(), devices, "装备制作-魔化符文龙套首饰  缺少控件")
         if poco("EquipCreateDlg(Clone)").offspring("95023").child("Selected").child("P").exists():
             poco("EquipCreateDlg(Clone)").offspring("95023").child("Selected").child("P").click()  # 魔化符文龙套
             printcolor.printgreen("当前角色有魔化付文龙套装备")
