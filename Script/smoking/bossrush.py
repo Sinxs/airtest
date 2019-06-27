@@ -67,6 +67,7 @@ def bossrush(devices):
         if int(freeze_poco("BossRushNewDlg(Clone)").child("Num").get_text()[-3]) == 0:  # 判断今日进入次数
             printcolor.printgreen("没有次数了，不能刷新")
             printcolor.printgreen("没有次数了，要不明天在打吧！！！")
+            return poco(text="今日剩余通关次数：").get_text()
         elif int(freeze_poco("BossRushNewDlg(Clone)").child("Num").get_text()[-3]) != 0:  # 判断今日进入次数
             printcolor.printgreen("今天的次数还没有用，现在开始点击刷新\n然后进入bossrush副本")
             poco("Refresh").click()  # 点击刷新按钮，没啥效果，特效我有看不出来
