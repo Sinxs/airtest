@@ -24,6 +24,7 @@ def get_screen_shot(start,devices,action):
     os.system("adb -s " + devices + " shell screencap -p /sdcard/screencap.png") # 调用adb命令实现截图
     file_Path = open(picture_PNG, "a+", encoding="utf-8") # 打开文件启用添加模式
     file_Path.close() # 关闭打开的文件路径
+    time.sleep(0.5)
     os.system(f"adb -s {devices} pull /sdcard/screencap.png {picture_PNG}")  # 把截图放到截图路径中去
     print("<img src='" + picture_PNG + "' width=600 />")  # 通过src路径获取图片，并显示出来
     return picture_PNG
