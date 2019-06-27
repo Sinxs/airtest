@@ -20,7 +20,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_card(self):
+        def test_fashion(self):
             """
             时装-一级界面控件判断-二级界面控件判断
             """

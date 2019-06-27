@@ -21,7 +21,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_home(self):
+        def test_honor(self):
             """
             头衔模块-头衔晋升and界面判断-勋章合成and界面判断
             """

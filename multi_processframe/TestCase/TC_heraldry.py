@@ -21,7 +21,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_home(self):
+        def test_heraldry(self):
             """
             纹章模块-纹章穿戴、纹章制作，
             """

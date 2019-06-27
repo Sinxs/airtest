@@ -21,7 +21,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_task(self):
+        def test_troops(self):
             """
             队伍模块 - 队伍的各个界面控件判断，按钮点击，功能操作 ps：单人操作，没有交互
             """

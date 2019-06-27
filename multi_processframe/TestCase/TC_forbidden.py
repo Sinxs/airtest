@@ -21,7 +21,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_longxue(self):
+        def test_longhunforbidden(self):
             """
             龙魂禁地-判断龙魂禁地界面的控件元素，掉落图鉴的物品道具，没有进入副本
             """
