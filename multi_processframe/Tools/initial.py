@@ -62,6 +62,8 @@ def startgame(devices):
                 if poco("Btn").get_position()[0] < 1 and poco("Btn").get_position()[0] > 0:
                     time.sleep(1.5)
                     poco("Btn").click()
+        elif poco("Cancel").exists():
+            poco("Cancel").click()
         else:
             break
     return None
