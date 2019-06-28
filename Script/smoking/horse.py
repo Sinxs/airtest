@@ -33,11 +33,18 @@ def horse(devices):
         if poco("Btnhave").exists() or poco("BtnMount").exists(): #判断坐骑打开是否正常是否存在
             petname = poco("PetName").offspring("Name").get_text() # 获得当前坐骑的名称
             printcolor.printgreen(f"{petname}坐骑查看正常",end=",")
-            if poco("Vehicle_horse").exists():
-                printcolor.printgreen(f"坐骑显示模型", end=",")
-            else:
-                printcolor.printred("坐骑模型不显示，请详细查看", end=",")
-                screenshot.get_screen_shot(time.time(), devices, "坐骑模型不显示")
+            try:
+                snapshotnumber = poco("PetMainDlg(Clone)").child("Bg").child("Snapshot").child().get_name()
+                if snapshotnumber.isnumeric() == True:
+                    printcolor.printgreen(f"坐骑模型编组存在", end=",")
+                else:
+                    printcolor.printred("坐骑模型编组不存在，请详细查看", end=",")
+                    # screenshot.get_screen_shot(time.time(), devices, "坐骑模型不显示")
+            except Exception as e:
+                print(e)
+                printcolor.printred("坐骑模型编组不存在，请详细查看", end=",")
+                # screenshot.get_screen_shot(time.time(), devices, "坐骑模型不显示")
+
             if poco("Btnhave").exists():
                 poco("Btnhave").click()
                 name = poco("ItemToolTipDlg(Clone)").child("Bg").offspring("TopFrame").child("Name").get_text()
@@ -50,7 +57,7 @@ def horse(devices):
                     printcolor.printred("没有相关坐骑信息，请查具体查看该坐骑！")
         else:
             printcolor.printred("没有获取到该坐骑相关信息")
-            screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
+            # screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
         poco("NewBtn").child("BtnBg").click() # 打开坐骑列表
         time.sleep(1)
     return poco("Btnhave").get_name() # 返回值
