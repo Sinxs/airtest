@@ -1,6 +1,7 @@
 """
 变强模块
 """
+
 # -*- encoding=utf8 -*-
 __author__ = "Sinwu"
 
@@ -21,9 +22,9 @@ def butpos(butpos,pos1=0.4,pos2=0.81,high=1330,low=930,lows=482):
     for i in range(20):
         but = butpos.get_position()
         if but[1] < pos1:
-            swipe([high, lows], [high, low], 5)
+            swipe([high, lows], [high, low], 1)
         elif but[1] > pos2:
-            swipe([high, low], [high, lows], 5)
+            swipe([high, low], [high, lows], 1)
         else:
             break
 

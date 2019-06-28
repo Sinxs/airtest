@@ -15,13 +15,13 @@ def startgame(devices):
         stop_app('com.tencent.tmgp.dragonnest')
         sleep(1)
         start_app('com.tencent.tmgp.dragonnest')
-        sleep(10)
+        Androidpoco("android:id/message").wait_for_appearance()
         if Androidpoco("android:id/message").exists():
             Androidpoco("android:id/button1").click()
         sleep(30)
         poco = UnityPoco(device=dev)
         touch([int(get_screen_size._get_screen_size(devices)[0]*0.5),int(get_screen_size._get_screen_size(devices)[1]*0.5)])
-        sleep(25)
+        poco("Title").wait_for_appearance()
         if poco("Title").exists():
             poco(text="知道啦").click()
         if poco("Texture").exists():
@@ -29,7 +29,7 @@ def startgame(devices):
         if poco(text="进入游戏").exists():
             poco(text="进入游戏").click()
             print("点击进入游戏，开始选择角色。。。")
-            time.sleep(10)
+            poco("Label").wait_for_appearance()
             if poco("Label").exists():
                 poco("Label").click()
                 print("角色自动寻找成功，点击开始游戏。。。")
@@ -40,7 +40,9 @@ def startgame(devices):
             print("进入游戏失败，请检查。。。。")
     else:
         print("游戏已经启动，无需再次启动...")
-    if poco("Pause").exists():
+    sleep(2)
+    freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+    if freeze_poco("Pause").exists():
         poco("Pause").click()  # 准备退出副本
         poco("Leave").click()  # 点击退出副本
         sleep(20)
@@ -56,21 +58,22 @@ def startgame(devices):
                     time.sleep(1.5)
                     freeze_poco("Btn").click()
         elif freeze_poco("Cancel").exists():
-            freeze_poco("Cancel").click()
+            poco("Cancel").click()
         elif freeze_poco(texture="l_close_00").exists() and freeze_poco("Close").exists():
             time.sleep(1)
             poco(texture="l_close_00").click()
         elif freeze_poco("RecruitPublishView(Clone)").offspring("Close").exists():
             time.sleep(1)
             poco("RecruitPublishView(Clone)").offspring("Close").click()
-        elif freeze_poco("Close").exists():
+        if poco("Close").exists():
             time.sleep(1)
             poco("Close").click()
-        elif freeze_poco("Btn").exists():
-            if freeze_poco("Btn").get_position()[1] < 1 and poco("Btn").get_position()[1] > 0:
-                if freeze_poco("Btn").get_position()[0] < 1 and poco("Btn").get_position()[0] > 0:
-                    time.sleep(1.5)
-                    poco("Btn").click()
+            if poco("Close").exists():
+                time.sleep(1)
+                poco("Close").click()
         else:
             break
     return None
+# devices="127.0.0.1:62025"
+# for x in range(10):
+#     startgame(devices)
