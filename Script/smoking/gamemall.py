@@ -114,9 +114,9 @@ def mall(devices):  # 商店功能测试
         item1 = "item"+str(item)
         if poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).exists():  # 商店的子页签
             # if poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1).offspring("shopname").exists():
-            pos = poco(item1)
-            butpos(butpos=pos,pos1=0.25,pos2=0.93,high=558,low=643,lows=366)  # 调用butpos方法
-            poco(item1).click()  # 点击商店子页签
+            pos = poco("GameMall(Clone)").offspring("ShopFrame").offspring(item1)
+            butpos(butpos=pos,pos1=0.38,pos2=0.91,high=558,low=643,lows=366)  # 调用butpos方法
+            pos.click()  # 点击商店子页签
             sleep(1)
             freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
             if not poco("Create").exists():  # 创建公会
