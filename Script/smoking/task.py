@@ -73,8 +73,7 @@ def task(devices):
                         freeze_poco("TabTpl0").exists() and freeze_poco("TabTpl1").exists() and \
                         freeze_poco("DailyTaskInviteDlg(Clone)").offspring("Tab0Text").child("T")[0].exists() and \
                         freeze_poco("DailyTaskInviteDlg(Clone)").offspring("Tab0Text").child("T")[1].exists() and \
-                        freeze_poco("DailyTaskInviteDlg(Clone)").offspring("Tab0Text").child("T")[2].exists() and \
-                        freeze_poco("DailyTaskInviteDlg(Clone)").offspring("item0").exists():
+                        freeze_poco("DailyTaskInviteDlg(Clone)").offspring("Tab0Text").child("T")[2].exists():
                     printcolor.printgreen("刷新任务窗口检测各个按钮，控件，奖励 完成")
                     poco("DailyTaskInviteDlg(Clone)").offspring("Close").click()  # 点击返回
                 else:
@@ -92,7 +91,7 @@ def task(devices):
             elif poco(text="已求助").exists():
                 printcolor.printgreen("界面没有求助按钮，已经求助过了")
             else:
-                printcolor.printgreen("界面没有求助按钮，也没有以求助按钮，所以为确保产品质量，建议手动测试一次")
+                printcolor.printgreen("界面没有求助按钮，也没有已求助按钮，所以为确保产品质量，建议手动测试一次")
                 screenshot.get_screen_shot(time.time(), devices, "界面没有求助按钮")
             if poco("RefreshLogBtn").exists():
                 poco("RefreshLogBtn").click()
