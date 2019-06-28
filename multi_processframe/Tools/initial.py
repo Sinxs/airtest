@@ -44,26 +44,33 @@ def startgame(devices):
         poco("Pause").click()  # 准备退出副本
         poco("Leave").click()  # 点击退出副本
         sleep(20)
-    l_close = poco(texture="l_close_00")
-    Close = poco("Close")
+    if poco(text="返回主城").exists():
+        poco(text="返回主城").click()  # 准备返回主城
+        sleep(20)
     for x in range(4):
-        time.sleep(3)
-        if l_close.exists() and Close.exists():
-            time.sleep(1.5)
-            l_close.click()
-        elif poco("RecruitPublishView(Clone)").offspring("Close").exists():
-            time.sleep(1.5)
+        freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
+        time.sleep(1)
+        if freeze_poco("Btn").exists():
+            if freeze_poco("Btn").get_position()[1] < 1 and poco("Btn").get_position()[1] > 0:
+                if freeze_poco("Btn").get_position()[0] < 1 and poco("Btn").get_position()[0] > 0:
+                    time.sleep(1.5)
+                    freeze_poco("Btn").click()
+        elif freeze_poco("Cancel").exists():
+            freeze_poco("Cancel").click()
+        elif freeze_poco(texture="l_close_00").exists() and freeze_poco("Close").exists():
+            time.sleep(1)
+            poco(texture="l_close_00").click()
+        elif freeze_poco("RecruitPublishView(Clone)").offspring("Close").exists():
+            time.sleep(1)
             poco("RecruitPublishView(Clone)").offspring("Close").click()
-        elif Close.exists():
-            time.sleep(1.5)
-            Close.click()
-        elif poco("Btn").exists():
-            if poco("Btn").get_position()[1] < 1 and poco("Btn").get_position()[1] > 0:
-                if poco("Btn").get_position()[0] < 1 and poco("Btn").get_position()[0] > 0:
+        elif freeze_poco("Close").exists():
+            time.sleep(1)
+            poco("Close").click()
+        elif freeze_poco("Btn").exists():
+            if freeze_poco("Btn").get_position()[1] < 1 and poco("Btn").get_position()[1] > 0:
+                if freeze_poco("Btn").get_position()[0] < 1 and poco("Btn").get_position()[0] > 0:
                     time.sleep(1.5)
                     poco("Btn").click()
-        elif poco("Cancel").exists():
-            poco("Cancel").click()
         else:
             break
     return None
