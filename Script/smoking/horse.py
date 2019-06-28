@@ -27,6 +27,8 @@ def horse(devices):
             for i in range(20):
                 if poco("Grid").child(item).get_position()[1] > 0.9:
                     swipe((200, 560), (200, 180))
+                elif poco("Grid").child(item).get_position()[1] < 0.12:
+                    swipe((200, 180), (200, 560))
                 else:
                     break
         poco("Grid").offspring(item).click()  # 点击坐骑icon
@@ -47,14 +49,19 @@ def horse(devices):
 
             if poco("Btnhave").exists():
                 poco("Btnhave").click()
-                name = poco("ItemToolTipDlg(Clone)").child("Bg").offspring("TopFrame").child("Name").get_text()
-                printcolor.printgreen("获取界面打开正常")
-                touch([1140,540],times=2)
+                if poco("ItemToolTipDlg(Clone)").child("Bg").offspring("TopFrame").child("Name").exists():
+                    printcolor.printgreen("获取界面打开正常")
+                    touch([1140,540],times=2)
+                else:
+                    printcolor.printgreen("没有相关坐骑信息，请查具体查看该坐骑！")
+                    # screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
+                    touch([1140, 540], times=2)
             else:
                 if poco("BtnMount").exists():
                     print("坐骑已经获得，没有获取途径")
                 else:
                     printcolor.printred("没有相关坐骑信息，请查具体查看该坐骑！")
+                    # screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
         else:
             printcolor.printred("没有获取到该坐骑相关信息")
             # screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
