@@ -41,11 +41,11 @@ def horse(devices):
                     printcolor.printgreen(f"坐骑模型编组存在", end=",")
                 else:
                     printcolor.printred("坐骑模型编组不存在，请详细查看", end=",")
-                    # screenshot.get_screen_shot(time.time(), devices, "坐骑模型不显示")
+                    screenshot.get_screen_shot(time.time(), devices, "坐骑模型不显示")
             except Exception as e:
                 print(e)
                 printcolor.printred("坐骑模型编组不存在，请详细查看", end=",")
-                # screenshot.get_screen_shot(time.time(), devices, "坐骑模型不显示")
+                screenshot.get_screen_shot(time.time(), devices, "坐骑模型不显示")
 
             if poco("Btnhave").exists():
                 poco("Btnhave").click()
@@ -54,17 +54,17 @@ def horse(devices):
                     touch([1140,540],times=2)
                 else:
                     printcolor.printgreen("没有相关坐骑信息，请查具体查看该坐骑！")
-                    # screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
+                    screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
                     touch([1140, 540], times=2)
             else:
                 if poco("BtnMount").exists():
                     print("坐骑已经获得，没有获取途径")
                 else:
                     printcolor.printred("没有相关坐骑信息，请查具体查看该坐骑！")
-                    # screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
+                    screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
         else:
             printcolor.printred("没有获取到该坐骑相关信息")
-            # screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
+            screenshot.get_screen_shot(time.time(), devices, "没有获取到该坐骑相关信息")
         poco("NewBtn").child("BtnBg").click() # 打开坐骑列表
         time.sleep(1)
     return poco("Btnhave").get_name() # 返回值
