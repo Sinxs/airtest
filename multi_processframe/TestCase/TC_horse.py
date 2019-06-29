@@ -27,9 +27,12 @@ def Main(devices):
             """
             try:
                 self.assertEqual("Btnhave", horse.horse_befor(devices))
-            except simplerpc.RpcTimeoutError as e:
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
                 initial.startgame(devices)
                 self.assertEqual("Btnhave", horse.horse_befor(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "坐骑功能测试脚本")
         def test_horse_after(self):
@@ -38,9 +41,12 @@ def Main(devices):
             """
             try:
                 self.assertEqual("Btnhave", horse.horse_after(devices))
-            except simplerpc.RpcTimeoutError as e:
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
                 initial.startgame(devices)
                 self.assertEqual("Btnhave", horse.horse_after(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "坐骑功能测试脚本")
         def tearDown(self):
