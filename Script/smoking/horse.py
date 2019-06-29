@@ -2,7 +2,6 @@
 __author__ = "Lee.li"
 
 from airtest.core.api import *
-from poco.drivers.unity3d import UnityPoco
 from multi_processframe.Tools import screenshot, printcolor, adb_connect
 
 
@@ -12,6 +11,7 @@ def horse(devices):
     2.点击坐骑按钮
     3.依次点击坐骑图标，查看坐骑模型是否正常
     """
+    horselist=[1,]
     poco = adb_connect.device(devices)
     check_menu("SysEHorse", poco) # 调用函数查看主界面坐骑按钮是否可点击
     poco("NewBtn").child("BtnBg").click() # 打开坐骑列表
@@ -38,7 +38,9 @@ def horse(devices):
             try:
                 snapshotnumber = poco("PetMainDlg(Clone)").child("Bg").child("Snapshot").child().get_name()
                 if snapshotnumber.isnumeric() == True:
-                    printcolor.printgreen(f"坐骑模型编组存在", end=",")
+                    if any(snapshotnumber != s for s in horselist):  # 判断snapshotnumber是否在horselist中出现过,如果没有
+                            printcolor.printgreen(f"坐骑模型编组存在", end=",")
+                            horselist.append(snapshotnumber)
                 else:
                     printcolor.printred("坐骑模型编组不存在，请详细查看", end=",")
                     screenshot.get_screen_shot(time.time(), devices, "坐骑模型不显示")
@@ -78,5 +80,5 @@ def check_menu(sysmenu, poco):
     else:
         poco(sysmenu).click()
 
-# devices = "127.0.0.1:62001"
-# horse(devices)
+devices = "127.0.0.1:62001"
+horse(devices)

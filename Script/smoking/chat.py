@@ -6,8 +6,6 @@
 from multi_processframe.Tools import printcolor,adb_connect,screenshot
 from airtest.core.api import *
 import random
-from poco.drivers.android.uiautomation import AndroidUiautomationPoco
-Androidpoco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
 
 
 def chat(devices):
