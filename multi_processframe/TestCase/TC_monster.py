@@ -20,7 +20,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_sprite(self):
+        def test_monster(self):
             """
             伙伴功能测试模块--主要检测每个界面按钮元素是否存在以及是否可点击
             """

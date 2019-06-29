@@ -57,8 +57,9 @@ def Skip_Plot(poco):
         if not poco("Pause").wait(5).exists():
             if poco("DownBG").exists(): # 判断
                 touch([1140,540],times=2)
+                time.sleep(1)
                 if poco("Skip").exists():
-                    poco("Skip").click()
+                    touch([1220,40],times=2)
             for i in range(15):
                 if poco("TalkTextBg").exists():
                     touch([1140,540],times=10)
@@ -67,8 +68,9 @@ def Skip_Plot(poco):
     else:
         if poco("DownBG").exists(): # 判断
             touch([1140,540],times=2)
+            time.sleep(1)
             if poco("Skip").exists():
-                poco("Skip").click()
+                touch([1220,40],times=2)
         for i in range(15):
             if poco("TalkTextBg").exists():
                 touch([1140,540],times=10)
@@ -120,13 +122,22 @@ def Complete_Map(action,poco): # 跑图功能
         poco("DungeonSelect(Clone)").offspring(chapter).offspring(level).child("SprBtn").click() # 循环找到关卡
         poco("DungeonSelect(Clone)").offspring("DetailFrame").offspring("Bg").child("GoBattle").click() # 点击战斗按钮
         print(f'----------------开始{level}关卡战斗流程----------------')
-        if poco("LoadingProgress").exists():
+        time.sleep(5)
+        if not poco("LoadingProgress").exists():
+            if poco("DownBG").wait(3) or poco("TalkTextBg").wait(3):
+                Skip_Plot(poco) # 跳过剧情和对白
+            if poco("Pause").exists():
+                Verdict_AutoPlay(level, poco)
+        else:
             time.sleep(5)
             if poco("DownBG").wait(3) or poco("TalkTextBg").wait(3):
                 Skip_Plot(poco) # 跳过剧情和对白
             if poco("Pause").exists():
                 Verdict_AutoPlay(level, poco)
         for i in range(100):
+            if i == 5 or i == 10:
+                if poco("Pause").exists():
+                    Verdict_AutoPlay(level, poco)
             if poco("DownBG").exists() or poco("TalkTextBg").exists(): # 判断动画和对白存在的话
                 Skip_Plot(poco) # 跳过剧情和对白
             if i ==25 and poco("WarTime").exists():
@@ -232,7 +243,6 @@ def chapter_ten(devices):
     """
     poco = adb_connect.device(devices)
     Complete_Map(8,poco)
-    poco("a").get_bounds()
     return poco("Duck").get_name()
 
 def chapter_eleven(devices):
@@ -241,7 +251,6 @@ def chapter_eleven(devices):
     """
     poco = adb_connect.device(devices)
     Complete_Map(7,poco)
-    poco("a").get_bounds()
     return poco("Duck").get_name()
 
 def chapter_twelve(devices):
@@ -250,7 +259,6 @@ def chapter_twelve(devices):
     """
     poco = adb_connect.device(devices)
     Complete_Map(6,poco)
-    poco("a").get_bounds()
     return poco("Duck").get_name()
 
 def chapter_thirteen(devices):
@@ -259,7 +267,6 @@ def chapter_thirteen(devices):
     """
     poco = adb_connect.device(devices)
     Complete_Map(5,poco)
-    poco("a").get_bounds()
     return poco("Duck").get_name()
 
 def chapter_fourteen(devices):
@@ -268,7 +275,6 @@ def chapter_fourteen(devices):
     """
     poco = adb_connect.device(devices)
     Complete_Map(4,poco)
-    poco("a").get_bounds()
     return poco("Duck").get_name()
 
 def chapter_fifteen(devices):
@@ -277,7 +283,6 @@ def chapter_fifteen(devices):
     """
     poco = adb_connect.device(devices)
     Complete_Map(3,poco)
-    poco("a").get_bounds()
     return poco("Duck").get_name()
 
 def chapter_sixteen(devices):
@@ -286,7 +291,6 @@ def chapter_sixteen(devices):
     """
     poco = adb_connect.device(devices)
     Complete_Map(2,poco)
-    poco("a").get_bounds()
     return poco("Duck").get_name()
 
 def chapter_seventeen(devices):
@@ -295,7 +299,6 @@ def chapter_seventeen(devices):
     """
     poco = adb_connect.device(devices)
     Complete_Map(1,poco)
-    poco("a").get_bounds()
     return poco("Duck").get_name()
 
 def chapter_eighteen(devices):
@@ -304,5 +307,6 @@ def chapter_eighteen(devices):
     """
     poco = adb_connect.device(devices)
     Complete_Map(0,poco)
-    poco("a").get_bounds()
     return poco("Duck").get_name()
+devices = "127.0.0.1:62001"
+chapter_one(devices)
