@@ -4,7 +4,9 @@ __author__ = "Lee.li"
 import unittest
 from airtest.core.api import *
 from Script.smoking import gamemall
-from multi_processframe.Tools import initial, screenshot
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
+
 
 def Main(devices):
     class TC_gamemall(unittest.TestCase):
@@ -26,6 +28,12 @@ def Main(devices):
             try:
                 print("开始测试商城模块")
                 self.assertEqual("充 值", gamemall.gamemall(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("充 值", gamemall.gamemall(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "商城-冒烟测试")
 

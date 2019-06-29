@@ -4,8 +4,8 @@ __author__ = "Lee.li"
 import unittest
 from airtest.core.api import *
 from Script.smoking import skill
-from multi_processframe.Tools import initial, screenshot
-
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
 
 def Main(devices):
     class TCskilldance(unittest.TestCase):
@@ -27,6 +27,12 @@ def Main(devices):
             try:
                 print("测试Prof2-转职为弓箭手分支、箭神分支、魔羽分支")
                 self.assertEqual("魔羽", skill.test_Archer_1(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("魔羽", skill.test_Archer_1(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "魔羽-职业技能测试")
 
@@ -37,6 +43,12 @@ def Main(devices):
             try:
                 print("测试Prof2-转职为弓箭手分支、箭神分支、狙翎分支")
                 self.assertEqual("狙翎", skill.test_Archer_2(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("狙翎", skill.test_Archer_2(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "狙翎-职业技能测试")
 
@@ -47,6 +59,12 @@ def Main(devices):
             try:
                 print("测试Prof2-转职为弓箭手分支、猎人分支、银色猎人分支")
                 self.assertEqual("银色猎人", skill.test_Archer_3(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("银色猎人", skill.test_Archer_3(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "银色猎人-职业技能测试")
 
@@ -57,6 +75,12 @@ def Main(devices):
             try:
                 print("测试Prof2-转职为弓箭手分支、猎人分支、风行者分支")
                 self.assertEqual("风行者", skill.test_Archer_4(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("风行者", skill.test_Archer_4(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "影舞者-职业技能测试")
 
@@ -67,7 +91,12 @@ def Main(devices):
             try:
                 print("测试Prof2-转职为弓箭手分支、猎人分支、影舞者分支")
                 self.assertEqual("影舞者", skill.test_Archer_5(devices))
-
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("影舞者", skill.test_Archer_5(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "影舞者-职业技能测试")
 

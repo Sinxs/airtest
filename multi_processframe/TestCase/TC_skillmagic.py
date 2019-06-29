@@ -4,8 +4,8 @@ __author__ = "Lee.li"
 import unittest
 from airtest.core.api import *
 from Script.smoking import skill
-from multi_processframe.Tools import initial, screenshot
-
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
 
 def Main(devices):
     class TCskillmagic(unittest.TestCase):
@@ -27,6 +27,12 @@ def Main(devices):
             try:
                 print("测试Prof3-转职为魔法师分支、元素分支、冰灵分支")
                 self.assertEqual("冰灵", skill.test_magic_1(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("冰灵", skill.test_magic_1(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "冰灵-职业技能测试")
 
@@ -39,6 +45,12 @@ def Main(devices):
             try:
                 print("测试Prof3-转职为魔法师分支、元素分支、火舞分支")
                 self.assertEqual("火舞", skill.test_magic_2(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("火舞", skill.test_magic_2(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "火舞-职业技能测试")
 
@@ -51,6 +63,12 @@ def Main(devices):
             try:
                 print("测试Prof3-转职为魔法师分支、元素分支、黑暗女王分支")
                 self.assertEqual("黑暗女王", skill.test_magic_3(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("黑暗女王", skill.test_magic_3(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "黑暗女王-职业技能测试")
 
@@ -63,6 +81,12 @@ def Main(devices):
             try:
                 print("测试Prof3-转职为魔法师分支、元素分支、时空领主分支")
                 self.assertEqual("时空领主", skill.test_magic_4(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("时空领主", skill.test_magic_4(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "时空领主-职业技能测试")
 

@@ -4,7 +4,9 @@ __author__ = "sinwu"
 import unittest
 from airtest.core.api import *
 from Script.smoking import manufacture
-from multi_processframe.Tools import initial, screenshot
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
+
 
 def Main(devices):
     class TC_manufacture(unittest.TestCase):
@@ -26,6 +28,12 @@ def Main(devices):
             try:
                 print("开始测试制作模块")
                 self.assertEqual("继承", manufacture.manufacture(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("继承", manufacture.manufacture(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "制作-冒烟测试")
 

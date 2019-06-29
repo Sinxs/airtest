@@ -4,8 +4,8 @@ __author__ = "Lee.li"
 import unittest
 from airtest.core.api import *
 from Script.smoking import skill
-from multi_processframe.Tools import initial, screenshot
-
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
 
 def Main(devices):
     class TCskillthug(unittest.TestCase):
@@ -27,6 +27,12 @@ def Main(devices):
             try:
                 print("测试Prof6-转职为刺客分支、暗之使徒分支、烈分支")
                 self.assertEqual("烈", skill.test_thug_1(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("烈", skill.test_thug_1(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "烈-职业技能测试")
 
@@ -39,6 +45,12 @@ def Main(devices):
             try:
                 print("测试Prof6-转职为刺客分支、暗之使徒分支、影分支")
                 self.assertEqual("影", skill.test_thug_2(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("影", skill.test_thug_2(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "影-职业技能测试")
 
@@ -51,6 +63,12 @@ def Main(devices):
             try:
                 print("测试Prof6-转职为刺客分支、光明之怒分支、耀分支")
                 self.assertEqual("耀", skill.test_thug_3(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("耀", skill.test_thug_3(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "耀-职业技能测试")
 
@@ -63,6 +81,12 @@ def Main(devices):
             try:
                 print("测试Prof6-转职为刺客分支、光明之怒分支、暗分支")
                 self.assertEqual("暗", skill.test_thug_4(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("暗", skill.test_thug_4(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "暗-职业技能测试")
 

@@ -4,7 +4,9 @@ __author__ = "Lee.li"
 import unittest
 from airtest.core.api import *
 from Script.smoking import guild
-from multi_processframe.Tools import initial, screenshot
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
+
 
 def Main(devices):
     class TC_guild(unittest.TestCase):
@@ -26,6 +28,12 @@ def Main(devices):
             try:
                 print("开始测试公会相关模块")
                 self.assertEqual("进入公会", guild.guild(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("进入公会", guild.guild(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "公会-冒烟测试")
 

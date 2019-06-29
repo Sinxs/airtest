@@ -4,8 +4,8 @@ __author__ = "Lee.li"
 import unittest
 from airtest.core.api import *
 from Script.smoking import setting
-from multi_processframe.Tools import initial, screenshot
-
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
 
 def Main(devices):
     class TC_setting(unittest.TestCase):
@@ -26,6 +26,12 @@ def Main(devices):
             """
             try:
                 self.assertEqual("Duck", setting.setting(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("Duck", setting.setting(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "设置模块截图")
 

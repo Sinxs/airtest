@@ -5,7 +5,9 @@ __author__ = "Lee.li"
 import unittest
 from airtest.core.api import *
 from Script.smoking import darkness
-from multi_processframe.Tools import initial, screenshot
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
+
 
 def Main(devices):
     class TC_darkness_ectype(unittest.TestCase):
@@ -27,6 +29,12 @@ def Main(devices):
             try:
                 print("开始测试黑暗神殿模块")
                 self.assertEqual("黑暗神殿[-]", darkness.darkness_ectype(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("黑暗神殿[-]", darkness.darkness_ectype(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "黑暗神殿-冒烟测试")
 

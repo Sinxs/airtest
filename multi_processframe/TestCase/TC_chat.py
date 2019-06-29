@@ -5,7 +5,9 @@ __author__ = "Lee.li"
 import unittest
 from airtest.core.api import *
 from Script.smoking import chat
-from multi_processframe.Tools import initial, screenshot
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
+
 
 def Main(devices):
     class TC_chat(unittest.TestCase):
@@ -27,6 +29,12 @@ def Main(devices):
             try:
                 print("开始测试聊天模块")
                 self.assertEqual("系 统", chat.chat(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("系 统", chat.chat(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "聊天-冒烟测试")
 

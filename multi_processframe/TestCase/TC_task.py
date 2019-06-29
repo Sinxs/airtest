@@ -4,9 +4,8 @@ __author__ = "sinwu"
 import unittest
 from airtest.core.api import *
 from Script.smoking import task
-from multi_processframe.Tools import initial, screenshot
-from poco.drivers.unity3d import UnityPoco
-poco = UnityPoco()
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
 
 def Main(devices):
     class TC_task(unittest.TestCase):
@@ -28,6 +27,13 @@ def Main(devices):
             try:
                 print("开始测试日常任务模块")
                 self.assertEqual("任务刷新记录", task.task(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("任务刷新记录", task.task(devices))
+            except Exception as e:
+                print(e)
+
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "日常任务-冒烟测试")
 

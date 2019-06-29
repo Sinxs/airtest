@@ -4,7 +4,8 @@ __author__ = "sinwu"
 import unittest
 from airtest.core.api import *
 from Script.smoking import home
-from multi_processframe.Tools import initial, screenshot
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
 from poco.drivers.unity3d import UnityPoco
 poco = UnityPoco()
 
@@ -28,6 +29,12 @@ def Main(devices):
             try:
                 print("开始测试家园模块")
                 self.assertEqual("腊八粥宴", home.home(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("腊八粥宴", home.home(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "家园-冒烟测试")
 
@@ -38,6 +45,12 @@ def Main(devices):
             try:
                 print("开始测试进入家园模块")
                 self.assertEqual("社交", home.entrancehome(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("社交", home.entrancehome(devices))
+            except Exception as e:
+                print(e)
             finally:
                 if poco("ExitHome").exists():
                     poco("ExitHome").click()  # 返回主界面

@@ -4,9 +4,8 @@ __author__ = "sinwu"
 import unittest
 from airtest.core.api import *
 from Script.smoking import spacetime
-from multi_processframe.Tools import initial, screenshot
-from poco.drivers.unity3d import UnityPoco
-poco = UnityPoco()
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
 
 def Main(devices):
     class TC_space_time(unittest.TestCase):
@@ -28,6 +27,12 @@ def Main(devices):
             try:
                 print("开始测试时空裂缝模块")
                 self.assertEqual("排名奖励", spacetime.space_time(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("排名奖励", spacetime.space_time(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "时空裂缝-冒烟测试")
 

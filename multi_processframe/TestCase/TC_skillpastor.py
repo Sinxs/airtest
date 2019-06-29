@@ -4,8 +4,8 @@ __author__ = "Lee.li"
 import unittest
 from airtest.core.api import *
 from Script.smoking import skill
-from multi_processframe.Tools import initial, screenshot
-
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
 
 def Main(devices):
     class TCskillpastor(unittest.TestCase):
@@ -27,6 +27,12 @@ def Main(devices):
             try:
                 print("测试Prof4-转职为牧师分支、祭祀分支、雷神分支")
                 self.assertEqual("雷神", skill.test_pastor_1(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("雷神", skill.test_pastor_1(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "雷神-职业技能测试")
 
@@ -39,6 +45,12 @@ def Main(devices):
             try:
                 print("测试Prof4-转职为牧师分支、祭祀分支、圣徒分支")
                 self.assertEqual("圣徒", skill.test_pastor_2(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("圣徒", skill.test_pastor_2(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "圣徒-职业技能测试")
 
@@ -51,6 +63,12 @@ def Main(devices):
             try:
                 print("测试Prof4-转职为牧师分支、祭祀分支、十字军分支")
                 self.assertEqual("十字军", skill.test_pastor_3(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("十字军", skill.test_pastor_3(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "十字军-职业技能测试")
 
@@ -63,6 +81,12 @@ def Main(devices):
             try:
                 print("测试Prof4-转职为牧师分支、祭祀分支、圣骑士分支")
                 self.assertEqual("圣骑士", skill.test_pastor_4(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("圣骑士", skill.test_pastor_4(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "圣骑士-职业技能测试")
 
@@ -74,6 +98,12 @@ def Main(devices):
             try:
                 print("测试Prof4-转职为牧师分支、教主分支、黑暗教主分支")
                 self.assertEqual("黑暗教主", skill.test_pastor_5(devices))
+            except simplerpc.RpcTimeoutError:
+                printcolor.printred("————————————————————————————————————Rpc重连失败，脚本重新启动————————————————————————————————————")
+                initial.startgame(devices)
+                self.assertEqual("黑暗教主", skill.test_pastor_5(devices))
+            except Exception as e:
+                print(e)
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "黑暗教主-职业技能测试")
 
