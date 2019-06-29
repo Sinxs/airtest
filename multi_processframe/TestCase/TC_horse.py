@@ -4,7 +4,8 @@ __author__ = "Lee.li"
 import unittest
 from airtest.core.api import *
 from Script.smoking import horse
-from multi_processframe.Tools import initial, screenshot
+from multi_processframe.Tools import initial, screenshot, printcolor
+from poco.utils.simplerpc import simplerpc
 
 
 def Main(devices):
@@ -20,15 +21,28 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_horse(self):
+        def test_horse_befor(self):
             """
             坐骑功能测试模块--主要检测每个坐骑是否报错，坐骑模型是否存在
             """
             try:
-                self.assertEqual("Btnhave", horse.horse(devices))
+                self.assertEqual("Btnhave", horse.horse_befor(devices))
+            except simplerpc.RpcTimeoutError as e:
+                initial.startgame(devices)
+                self.assertEqual("Btnhave", horse.horse_befor(devices))
             finally:
                 screenshot.get_screen_shot(time.time(), devices, "坐骑功能测试脚本")
-
+        def test_horse_after(self):
+            """
+            坐骑功能测试模块--主要检测每个坐骑是否报错，坐骑模型是否存在
+            """
+            try:
+                self.assertEqual("Btnhave", horse.horse_after(devices))
+            except simplerpc.RpcTimeoutError as e:
+                initial.startgame(devices)
+                self.assertEqual("Btnhave", horse.horse_after(devices))
+            finally:
+                screenshot.get_screen_shot(time.time(), devices, "坐骑功能测试脚本")
         def tearDown(self):
             u'''这里放需要在每条用例后执行的部分'''
             print(f"{devices}结束运行")
