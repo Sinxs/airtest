@@ -80,5 +80,5 @@ def check_menu(sysmenu, poco):
     else:
         poco(sysmenu).click()
 
-devices = "127.0.0.1:62001"
-horse(devices)
+# devices = "127.0.0.1:62001"
+# # horse(devices)
