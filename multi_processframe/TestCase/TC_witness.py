@@ -21,7 +21,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_equip(self):
+        def test_witness(self):
             """
             观战模块-观战界面的所有按钮点击操作，观战设置
             """

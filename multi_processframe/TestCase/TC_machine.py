@@ -9,7 +9,7 @@ from poco.utils.simplerpc import simplerpc
 
 
 def Main(devices):
-    class TC_sprite(unittest.TestCase):
+    class TC_machine(unittest.TestCase):
         u'''测试用例102的集合'''
 
         @classmethod
@@ -21,7 +21,7 @@ def Main(devices):
             u'''这里放需要在每条用例前执行的部分'''
             initial.startgame(devices)
 
-        def test_sprite(self):
+        def test_machine(self):
             """
             佣兵功能测试模块--主要检测每个界面按钮元素是否存在以及是否可点击
             """
@@ -45,5 +45,5 @@ def Main(devices):
             u'''这里放需要在所有用例后执行的部分'''
             pass
 
-    srcSuite = unittest.makeSuite(TC_warlord)
+    srcSuite = unittest.makeSuite(TC_machine)
     return srcSuite
