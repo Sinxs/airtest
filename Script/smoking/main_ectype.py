@@ -308,5 +308,5 @@ def chapter_eighteen(devices):
     poco = adb_connect.device(devices)
     Complete_Map(0,poco)
     return poco("Duck").get_name()
-devices = "127.0.0.1:62001"
-chapter_one(devices)
+# devices = "127.0.0.1:62001"
+# chapter_one(devices)
