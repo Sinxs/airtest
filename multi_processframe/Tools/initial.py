@@ -49,6 +49,9 @@ def startgame(devices):
     if poco(text="返回主城").exists():
         poco(text="返回主城").click()  # 准备返回主城
         sleep(20)
+    touch((45,9))
+    time.sleep(1)
+    touch((45,9))
     for x in range(4):
         freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
         time.sleep(1)
