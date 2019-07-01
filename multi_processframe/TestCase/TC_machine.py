@@ -9,7 +9,7 @@ from poco.utils.simplerpc import simplerpc
 
 
 def Main(devices):
-    class TC_warlord(unittest.TestCase):
+    class TC_sprite(unittest.TestCase):
         u'''测试用例102的集合'''
 
         @classmethod
