@@ -140,5 +140,5 @@ def reward_dragon(poco,item,devices): # 分享奖励
             screenshot.get_screen_shot(time.time(), devices, "龙穴助战界面缺少UI元素")
 
 
-devices = "127.0.0.1:62001"
-reward(devices)
+# devices = "127.0.0.1:62001"
+# reward(devices)
