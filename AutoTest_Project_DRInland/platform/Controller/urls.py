@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 from Model import views, basehtml, case, login, report, index
+from django.conf import settings
+from django.views import static
 
 #  被访问网址/ 模块.函数
 urlpatterns = [
+    url(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT}, name='static'),
     path('admin/', admin.site.urls),
     path('platform/', views.platform),
     path('index/', index.start),

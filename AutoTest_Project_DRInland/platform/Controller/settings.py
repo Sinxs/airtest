@@ -23,7 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a9nlecsit&dx5ej-o^*7vpg!0s+sb@$!8a6s+9)tf542pja(-3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -114,9 +115,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'Controller\\static')
-]
 STATIC_URL = '/static/'
+if DEBUG:
+    STATIC_ROOT = '/static/'
+    # Static files (CSS, JavaScript, Images)
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
+else:
+    STATIC_ROOT = 'static'
+    # Static files (CSS, JavaScript, Images)
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, '/static/')
+    ]
