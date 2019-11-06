@@ -71,7 +71,7 @@ def enter_processing(processNo, sample, flag, start):
         auto_setup(__file__)
         is_connect = "Pass"
         print(f"连接设备{devices}成功")
-        stop_app(f"{package}")  # 首次运行的时候杀掉进程重新进入
+        # stop_app(f"{package}")  # 首次运行的时候杀掉进程重新进入
         installapkflag = ''
         if is_connect == "Pass":
             try:

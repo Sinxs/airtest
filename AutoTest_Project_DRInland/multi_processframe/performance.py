@@ -8,9 +8,9 @@ from multi_processframe.ProjectTools.common import *
 from multi_processframe.ProjectTools.androidtools import *
 
 
-# reportpath = os.path.abspath(os.path.join(os.getcwd(), "../platform/Controller/static/Report"))
-csspath = os.path.abspath(os.path.join(os.getcwd(), "../platform/Controller/static/assets/css/app.css"))
-jspath = os.path.abspath(os.path.join(os.getcwd(), "../platform/Controller/static/Report/script/app.js"))
+# reportpath = os.path.abspath(os.path.join(os.getcwd(), "../platform/static/Report"))
+csspath = os.path.abspath(os.path.join(os.getcwd(), "../platform/static/assets/css/app.css"))
+jspath = os.path.abspath(os.path.join(os.getcwd(), "../platform/static/Report/script/app.js"))
 htmlpath = os.path.abspath(os.path.join(os.getcwd(), "../platform/templates/performance.html"))
 headerpath = os.path.abspath(os.path.join(os.getcwd(), "../platform/templates/header.html"))
 
@@ -78,7 +78,7 @@ def enter_performance(sample, flag, start, storage_by_excel=True):
 
     report_Name = devices_name.split()[0] + "_" + str(nowtime)
     # 获取测试报告路径
-    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/Controller/static/Report/{report_Name}")))
+    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     filename = report_path + '\\' + devices_name.split()[0] + "_" + str(nowtime) + ".html"
     if storage_by_excel:
         editreport(filename, storage_by_excel, avglist, maxlist, minlist, wb=wb)
@@ -228,7 +228,7 @@ def editreport(path, storage_by_excelavglist, avglist="", maxlist="", minlist=""
         temp = []
         for key in PNGdata:
             for value in PNGdata[key]:
-                PNGdata[key] = value.split("Controller")[1]
+                PNGdata[key] = value.split("platform")[1]
                 temp.append(PNGdata[key])
         PNG = str({"PNGAddress": temp})
         Max_AllocatedMemory = maxlist[2]
@@ -262,7 +262,7 @@ def editreport(path, storage_by_excelavglist, avglist="", maxlist="", minlist=""
         temp = []
         for key in PNGdata:
             for value in PNGdata[key]:
-                PNGdata[key] = value.split("Controller")[1]
+                PNGdata[key] = value.split("platform")[1]
                 temp.append(PNGdata[key])
         PNG = str({"PNGAddress": temp})
         data_count = json.dumps(jsondata["data_count"])

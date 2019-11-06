@@ -21,7 +21,7 @@ from airtest.core.android.adb import ADB
 from poco.drivers.unity3d import UnityPoco
 from multi_processframe.ProjectTools import initial
 
-excelpath = os.path.abspath(os.path.join(os.getcwd(), "../platform/Controller/static/Report/Excel"))
+excelpath = os.path.abspath(os.path.join(os.getcwd(), "../platform/static/Report/Excel"))
 
 """
 命名规则：
@@ -230,7 +230,7 @@ def create_log_json(start, nowtime, devices):
     nowstime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
     report_Name = devices_name.split()[0] + "_" + str(nowstime)
     # 获取测试报告路径
-    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/Controller/static/Report/{report_Name}")))
+    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     datapath = report_path + '/data'
     create_time = time.strftime("%m%d%H%M", nowtime)
     jsonfile = datapath + f'\\{create_time}_{report_Name}_log.json'
@@ -328,7 +328,7 @@ def calculate_by_json(jsonfile):
 
 
 # if __name__=="__main__":
-#     jsonfile=r"D:\AirtestID\AutoTest_Project_DRInland\platform\Controller\static\Report\Excel\08051847_62001_log.json"
+#     jsonfile=r"D:\AirtestID\AutoTest_Project_DRInland\platform\static\Report\Excel\08051847_62001_log.json"
 #     calculate_by_json(jsonfile)
 #     # nowtime = time.localtime()
 #     # device = "123465"
@@ -341,7 +341,7 @@ def create_log_excel(start, nowtime, devices):
     nowstime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
     report_Name = devices_name.split()[0] + "_" + str(nowstime)
     # 获取测试报告路径
-    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/Controller/static/Report/{report_Name}")))
+    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     datapath = report_path + '/data'
     create_time = time.strftime('%m%d%H%M', nowtime)
     exclefile = datapath + f'\\{create_time}_{devices_name}_log.xlsx'
@@ -537,7 +537,7 @@ def get_screen_shot(start, starttime, devices, action):
     nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
     report_Name = devices_name.split()[0] + "_" + str(nowtime)
     # 获取测试报告路径
-    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/Controller/static/Report/{report_Name}")))
+    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     screenpath = report_path + '/Screenshot'
     pngtime = time.strftime('%Y%m%d_%H%M%S', time.localtime(starttime))
     picture_PNG = screenpath + "\\" + pngtime + "_" + "_" + action + ".png"
@@ -573,7 +573,7 @@ def GetScreenbyADBCap(start, starttime, devices, action):
     nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
     report_Name = devices_name.split()[0] + "_" + str(nowtime)
     # 获取测试报告路径
-    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/Controller/static/Report/{report_Name}")))
+    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     screenpath = report_path + '/Screenshot'
     # 先给昵称赋值，防止生成图片的命名格式问题。
     if ":" in devices:
@@ -601,7 +601,7 @@ def GetScreenbyMiniCap(start, starttime, devices, action):
     nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
     report_Name = devices_name.split()[0] + "_" + str(nowtime)
     # 获取测试报告路径
-    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/Controller/static/Report/{report_Name}")))
+    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     screenpath = report_path + '/Screenshot'
     # 先给昵称赋值，防止生成图片的命名格式问题。
     if ":" in devices:

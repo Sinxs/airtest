@@ -32,13 +32,13 @@ def run_testcase(sample, start):
     nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
     report_Name = devices_name.split()[0] + "_" + str(nowtime)
     # 获取测试报告路径
-    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/Controller/static/Report/{report_Name}")))
+    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     if not os.path.exists(report_path):
         os.makedirs(report_path + '/Screenshot')
         os.makedirs(report_path + '/data')
         os.makedirs(report_path + '/script')
     # 复制文件到报告
-    tempjs = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/Controller/static/Report/script/highcharts.js")))
+    tempjs = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/script/highcharts.js")))
     scriptjs = report_path + '/script'
     shutil.copy(tempjs, scriptjs)
     # 得到config中的所有待测用例
