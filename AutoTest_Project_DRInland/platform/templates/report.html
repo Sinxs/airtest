@@ -1,0 +1,203 @@
+{%extends "baseauto.html" %}
+{% load staticfiles %}
+{% block head %}
+    <style type="text/css">
+		  .progress{
+			  height: 17px;
+			  background: #262626;
+			  padding: 0px;
+			  overflow: visible;
+			  border-radius: 20px;
+			  margin-top: 11px;
+		  }
+          .progresss{
+			  height: 17px;
+			  background: #f5473e;
+			  padding: 0px;
+			  overflow: visible;
+			  border-radius: 20px;
+			  margin-top: 11px;
+		  }
+		  .progress .progress-bar{
+			  border-radius: 20px;
+			  position: relative;
+			  animation: animate-positive 2s;
+		  }
+		  .progress .progress-value{
+			  display: block;
+			  padding: 1px 7px;
+			  font-size: 1px;
+			  color: #fff;
+			  border-radius: 10px;
+			  background: #191919;
+			  border: 1px solid #000;
+			  position: absolute;
+			  top: -25px;
+			  right: -20px;
+		  }
+		  .progress .progress-value:after{
+			  content: "";
+			  border-top: 10px solid #191919;
+			  border-left: 10px solid transparent;
+			  border-right: 10px solid transparent;
+			  position: absolute;
+			  bottom: -6px;
+			  left: 26%;
+		  }
+		  .progress-bar.active{
+			  animation: reverse progress-bar-stripes 0.40s linear infinite, animate-positive 2s;
+		  }
+		  @-webkit-keyframes animate-positive{
+			  0% { width: 0; }
+		  }
+		  @keyframes animate-positive{
+			  0% { width: 0; }
+		  }
+</style>
+{% endblock %}
+{% block mainbody %}
+<div class="app-content">
+    <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+        <div class="single-page construction-bg cover-image" data-image-src="{% static "assets/img/img14.jpg" %}" style="background: center center;">
+            <div class="text-white text-center construction">
+                <h1 class="mb-0">Automated Test Platform</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+        <div class="card">
+        <div class="card-header">
+            <div class="float-right">
+                <a data-collapse="#mycard-collapse" class="btn btn-icon"><i class="ion ion-minus"></i></a>
+            </div>
+                <h4>Testing Report</h4>
+        </div>
+        <div class="collapse show" id="mycard-collapse">
+            <div class="card-body">
+
+                    <form  action="/report/" method="post">
+                        {% csrf_token %}
+                       <div class="table-responsive">
+                        <table id="example" name="_appendHere" class="table table-striped table-bordered border-t0 text-nowrap w-100" >
+                            <thead>
+                                <tr class="text-center">
+                                    <th>ID</th>
+                                    <th>Device</th>
+                                    <th>Star Time</th>
+                                    <th>Report Status</th>
+                                    <th>Report Progress</th>
+                                    <th>Delete Report</th>
+                                    <th>Check Report</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    {% for key,value in report.items %}
+                                    <td align="center">{{forloop.counter}}</td>
+                                    <td align="center">{{value}}</td>
+                                    <td align="center">{{key}}</td>
+                                        {% for key1,value1 in htmlstate.items %}
+                                            {% if key == key1 %}
+                                                 <!--0代表报告正在生成中 -->
+                                                {% if value1 == 'doing' %}
+                                                     <script language="JavaScript">
+                                                        function myrefresh()
+                                                            {
+                                                               window.location.reload();
+                                                            }
+                                                        setTimeout('myrefresh()',180000); //指定1秒刷新一次
+                                                    </script>
+                                                    <td align="center"><span class="badge badge-warning badge-pill ">Testing</span></td>
+                                                    <td>
+                                                        <div class="progress">
+                                                            <div id="status1" class="progress-bar progress-bar-success progress-bar-striped active" style="width: {{ progressstatus }}%;">
+                                                                <div id="status2" class="progress-value">{{ progressstatus }}%</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td align="center"><button class="btn btn-outline-danger m-b-5 m-t-5" data-toggle="tooltip" data-placement="right" disabled="true">Delete</button></td>
+                                                    <td align="center"><a href="http://{{addr}}:8000/case/" class="btn btn-warning m-b-5  m-t-5">Waiting</a></td>
+                                                {% endif %}
+                                                 <!--1 代表完成运行并且生成了报告 -->
+                                                {% if value1 == 'done' %}
+                                                    <td align="center"><span class="badge badge-info badge-pill">Done</span></td>
+                                                    <td>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" style="width: 100%; background:#6fad47;">
+                                                                <span>100%</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td align="center"><button name="delname" value="{{value}}_{{key}}"  class="btn btn-outline-danger m-b-5 m-t-5" data-toggle="tooltip" data-placement="right" onclick="return confirm('是否删除报告？')">Delete</button></td>
+
+                                                    <td align="center"><button target="_self" onclick="javascript:window.open('/info/','_blank')" name="reportname" value="{{value}}_{{key}}" class="btn btn-info m-b-5 m-t-5">View</button></td>
+
+                                                {% endif %}
+                                                <!--false代表报告生成失败或者报告运行超时 -->
+                                                {% if value1 == 'false' %}
+                                                    <td align="center"><span class="badge badge-danger badge-pill ">Failure</span></td>
+                                                    <td>
+                                                        <div class="progresss">
+                                                            <div class="progress-bar progress-bar-success progress-bar-striped active" style="width:0%;">
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td align="center"><button name="delname" value="{{value}}_{{key}}"  class="btn btn-outline-danger m-b-5 m-t-5" data-toggle="tooltip" data-placement="right" onclick="return confirm('是否删除报告？')">Delete</button></td>
+                                                <td align="center"><a href="#" class="btn btn-danger disabled m-b-5 m-t-5">False</a></td>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+{#                                    <td align="center"><button name="delname" value="{{value}}_{{key}}"  class="btn btn-outline-danger m-b-5 m-t-5" data-toggle="tooltip" data-placement="right" onclick="return confirm('是否删除报告？')">Delete</button></td>#}
+{#                                        {% for key1,value1 in htmlstate.items %}#}
+{#                                            {% if key == key1 %}#}
+{#                                                {% if value1 == '1' %}#}
+{#                                                    <td align="center"><button name="reportname" value="{{value}}_{{key}}" class="btn btn-info m-b-5 m-t-5">View</button></td>#}
+{#                                                {% endif %}#}
+{#                                                {% if value1 == '0' %}#}
+{#                                                    <td align="center"><a href="http://{{addr}}:8000/case/" class="btn btn-warning m-b-5  m-t-5">Waiting</a></td>#}
+{#                                                {% endif %}#}
+{#                                                {% if value1 == '3' %}#}
+{#                                                    <td align="center"><a href="#" class="btn btn-danger disabled m-b-5 m-t-5">False</a></td>#}
+{#                                                {% endif %}#}
+{#                                        {% endif %}#}
+{##}
+{#                                        {% endfor %}#}
+                                </tr>
+                                    {% endfor %}
+                            </tbody>
+                        </table>
+                       </div>
+                    </form>
+                </div>
+        </div>
+
+        </div>
+    </div>
+{#    {% if reporthtml != '' %}#}
+{#        <div class="col-md-12 col-lg-12">#}
+{#            <div class="card">#}
+{#                <div class="card-header">#}
+{#                     <iframe src="{{reporthtml}}" frameborder="0" style="min-height:800px;width:100%;height: 100%;" scrolling="auto"  ></iframe>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endif %}#}
+</div>
+{% endblock %}
+{% block script %}
+{#    <script>#}
+{#    var append_data = 0;#}
+{#    setInterval(function () {#}
+{#        $.ajax({#}
+{#            type: "GET",#}
+{#            url: {% url 'get_new_tables' %},#}
+{#            data: {'append_data': append_data}#}
+{#        })#}
+{#        .done(function (response) {#}
+{#            $('#_appendHere').append(response);#}
+{#            append_data += 10;#}
+{#        });#}
+{#    }, 10000)#}
+{##}
+{#    </script>#}
+{% endblock %}
