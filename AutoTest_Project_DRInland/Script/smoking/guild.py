@@ -40,27 +40,27 @@ def guild(start, devices):
                 poco(guildbut).click()
                 if guildbut == "BtnSignIn":
                     BtnSignIn(start, poco, devices)  # 签到
-                if guildbut == "BtnGz":
+                elif guildbut == "BtnGz":
                     BtnGz(start, poco, devices)  # 工资
-                if guildbut == "BtnRanking":
+                elif guildbut == "BtnRanking":
                     BtnRanking(start, poco, devices)  # 排行
-                if guildbut == "BtnSkill":
+                elif guildbut == "BtnSkill":
                     BtnSkill(start, poco, devices)  # 技能
-                if guildbut == "BtnRed":
+                elif guildbut == "BtnRed":
                     BtnRed(start, poco, devices)  # 红包
-                if guildbut == "Donation":
+                elif guildbut == "Donation":
                     Donation(start, poco, devices)  # 捐赠
-                if guildbut == "BtnMall":
+                elif guildbut == "BtnMall":
                     BtnMall(poco, devices)  # 商店
-                if guildbut == "BtnJoker":
+                elif guildbut == "BtnJoker":
                     BtnJoker(start, poco, devices)  # 小丑扑克
-                if guildbut == "Btnfish":
+                elif guildbut == "Btnfish":
                     Btnfish(start, poco, devices)  # 钓鱼
-                if guildbut == "BtnBuild":
+                elif guildbut == "BtnBuild":
                     BtnBuild(start, poco, devices)  # 建造
-                if guildbut == "BtnConsider":
+                elif guildbut == "BtnConsider":
                     BtnConsider(start, poco, devices)  # 研究
-                if guildbut == "GuildTreasureIcon":  # 宝藏
+                elif guildbut == "GuildTreasureIcon":  # 宝藏
                     common.printgreen("进入宝藏界面")
                     freeze_poco = poco.freeze()  # TODO：定义冻结poco
                     if freeze_poco("Title").exists() and \
@@ -165,6 +165,11 @@ def BtnGz(start, poco, devices):  # 工资
             freeze_poco("GuildSalaryDlg(Clone)").offspring("frame").offspring("item1").exists() and \
             freeze_poco("p5").exists():
         poco("GuildSalaryDlg(Clone)").offspring("frame").child("Left").child("Left").child("Go").click()  # 点击提升
+        # 如果没有点击出现，就再点击一次
+        if not poco("2").exists():
+            common.printgreen("因为这边总是报错，所以截图检查一下")
+            common.get_screen_shot(start, time.time(), devices, "因为这边总是报错，所以截图检查一下")
+            poco("GuildSalaryDlg(Clone)").offspring("frame").child("Left").child("Left").child("Go").click()  # 点击提升
         freeze_poco = poco.freeze()  # TODO：定义冻结poco
         if freeze_poco("2").exists() and \
                 freeze_poco("0").exists() and \
@@ -464,4 +469,4 @@ def close(poco):
 
 if __name__ == "__main__":
     start = time.localtime()
-    guild(start, "e37c0280")
+    guild(start, "9b57691d")

@@ -101,45 +101,52 @@ def longxue(start, devices):
     else:
         common.printred("龙穴界面缺少控件元素，请检查。。。")
         common.get_screen_shot(start, time.time(), devices, "龙穴界面缺少控件元素")
-    for item in range(len(poco("Panel").child())):
+    # 只操作冰龙和符纹龙
+    for item in range(2, len(poco("Panel").child())):
         item1 = "item" + str(item)
         if not poco("DragonNestDlg(Clone)").offspring(item1).offspring(texture="l_lock_01").exists():  # 如果等级足够，并且模块高亮显示
             poco("DragonNestDlg(Clone)").offspring(item1).click()  # 点击各个巢穴
-            if poco("ToggleDiffEasy").exists():  # 判断是否有简单选项
-                poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
-                common.printgreen("<<<<<<<--进入  " + poco("DragonNestDlg(Clone)").offspring(item1).child("Bg")
-                                  .child("Label").get_text() + "  简单模式-->>>>>>>>")
-                poco("ToggleDiffEasy").click()  # 点击简单选项
-                UIjudge(start, poco, 2, devices)  # 调用UIjudge判断当前界面的控件
-            else:
-                common.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
-                                  + "  没有简单模式")
-            if poco("ToggleDiffNormal").exists():  # 判断是否有普通选项
-                common.printgreen("<<<<<<<--进入  " + poco("DragonNestDlg(Clone)").offspring(item1).child("Bg")
-                                  .child("Label").get_text() + "  普通模式-->>>>>>>>")
-                poco("ToggleDiffNormal").click()  # 点击普通选项
-                UIjudge(start, poco, 3, devices)  # 调用UIjudge判断当前界面的控件
-            else:
-                common.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
-                                  + "  没有普通模式")
-            if poco("ToggleDiffHard").exists():  # 判断是否有困难选项
-                common.printgreen("<<<<<<<--进入  " + poco("DragonNestDlg(Clone)").offspring(item1).child("Bg")
-                                  .child("Label").get_text() + "  困难模式-->>>>>>>>")
-                poco("ToggleDiffHard").click()  # 点击困难选项
-                UIjudge(start, poco, 3, devices)  # 调用UIjudge判断当前界面的控件
-            else:
-                common.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
-                                  + "  没有困难模式")
-            if poco("ToggleDiffAngel") .exists():  # 判断是否有困难选项
-                common.printgreen("<<<<<<<--进入  " + poco("DragonNestDlg(Clone)").offspring(item1).child("Bg")
-                                  .child("Label").get_text() + "  地狱模式-->>>>>>>>")
-                poco("ToggleDiffAngel") .click()  # 点击困难选项
-                UIjudge(start, poco, 3, devices)  # 调用UIjudge判断当前界面的控件
-            else:
-                common.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
-                                  + "  没有地狱模式")
-        else:
-            common.printred("等级不足，没有开启")
+            print(f"点击第{item}个龙穴")
+            A = len(poco("DragonNestDlg(Clone)").offspring("NestFrameNormal").child())
+            freeze_poco = poco.freeze()  # TODO：定义冻结poco
+            for item in range(A-2):
+                freeze_poco("DragonNestDlg(Clone)").offspring("NestFrameNormal").child(f"item{item}").click()
+                sleep(0.3)
+            # if poco("ToggleDiffEasy").exists():  # 判断是否有简单选项
+            #     poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
+            #     common.printgreen("<<<<<<<--进入  " + poco("DragonNestDlg(Clone)").offspring(item1).child("Bg")
+            #                       .child("Label").get_text() + "  简单模式-->>>>>>>>")
+            #     poco("ToggleDiffEasy").click()  # 点击简单选项
+            #     UIjudge(start, poco, 2, devices)  # 调用UIjudge判断当前界面的控件
+            # else:
+            #     common.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
+            #                       + "  没有简单模式")
+            # if poco("ToggleDiffNormal").exists():  # 判断是否有普通选项
+            #     common.printgreen("<<<<<<<--进入  " + poco("DragonNestDlg(Clone)").offspring(item1).child("Bg")
+            #                       .child("Label").get_text() + "  普通模式-->>>>>>>>")
+            #     poco("ToggleDiffNormal").click()  # 点击普通选项
+            #     UIjudge(start, poco, 3, devices)  # 调用UIjudge判断当前界面的控件
+            # else:
+            #     common.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
+            #                       + "  没有普通模式")
+            # if poco("ToggleDiffHard").exists():  # 判断是否有困难选项
+            #     common.printgreen("<<<<<<<--进入  " + poco("DragonNestDlg(Clone)").offspring(item1).child("Bg")
+            #                       .child("Label").get_text() + "  困难模式-->>>>>>>>")
+            #     poco("ToggleDiffHard").click()  # 点击困难选项
+            #     UIjudge(start, poco, 3, devices)  # 调用UIjudge判断当前界面的控件
+            # else:
+            #     common.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
+            #                       + "  没有困难模式")
+            # if poco("ToggleDiffAngel") .exists():  # 判断是否有困难选项
+            #     common.printgreen("<<<<<<<--进入  " + poco("DragonNestDlg(Clone)").offspring(item1).child("Bg")
+            #                       .child("Label").get_text() + "  地狱模式-->>>>>>>>")
+            #     poco("ToggleDiffAngel") .click()  # 点击困难选项
+            #     UIjudge(start, poco, 3, devices)  # 调用UIjudge判断当前界面的控件
+            # else:
+            #     common.printgreen(poco("DragonNestDlg(Clone)").offspring(item1).child("Bg").child("Label").get_text()
+            #                       + "  没有地狱模式")
+    #     else:
+    #         common.printred("等级不足，没有开启")
     poco("Help").click()  # 点击帮助按钮
     poco(texture="l_close_00").click()
     if not poco(texture="l_close_00").exists():
@@ -151,5 +158,5 @@ def longxue(start, devices):
 
 if __name__ == "__main__":
     start = time.localtime()
-    longxue(start, "2d9096f3")
+    longxue(start, "e37c0280")
 

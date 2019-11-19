@@ -52,6 +52,11 @@ def heraldry(start, devices):
                 addheraldry(start, poco,devices)  # 调用纹章制作
 
                 common.printgreen("进入纹章界面，开始测试纹章")
+                but = poco("ItemNewDlg(Clone)").offspring(name="Icon")
+                if but.exists():
+                    but.click()  # 点击已经装备的纹章
+                    if poco("main").exists():
+                        poco("Button1").click()  # 点击卸下
                 if poco("ItemNewDlg(Clone)").offspring("Items").offspring("Icon").exists():
                     but = poco("ItemNewDlg(Clone)").offspring("Items").offspring(name="Icon")
                     if but.exists():
@@ -81,4 +86,4 @@ def heraldry(start, devices):
 
 if __name__ == "__main__":
     start = time.localtime()
-    heraldry(start, "e37c0280")
+    heraldry(start, "9b57691d")

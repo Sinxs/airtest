@@ -1,0 +1,172 @@
+{%extends "baseauto.html" %}
+{% load staticfiles %}
+{% block head %}
+    <style type="text/css">
+		  .progress{
+			  height: 17px;
+			  background: #262626;
+			  padding: 0px;
+			  overflow: visible;
+			  border-radius: 20px;
+			  margin-top: 11px;
+		  }
+          .progresss{
+			  height: 17px;
+			  background: #f5473e;
+			  padding: 0px;
+			  overflow: visible;
+			  border-radius: 20px;
+			  margin-top: 11px;
+		  }
+		  .progress .progress-bar{
+			  border-radius: 20px;
+			  position: relative;
+			  animation: animate-positive 2s;
+		  }
+		  .progress .progress-value{
+			  display: block;
+			  padding: 1px 7px;
+			  font-size: 1px;
+			  color: #fff;
+			  border-radius: 10px;
+			  background: #191919;
+			  border: 1px solid #000;
+			  position: absolute;
+			  top: -25px;
+			  right: -20px;
+		  }
+		  .progress .progress-value:after{
+			  content: "";
+			  border-top: 10px solid #191919;
+			  border-left: 10px solid transparent;
+			  border-right: 10px solid transparent;
+			  position: absolute;
+			  bottom: -6px;
+			  left: 26%;
+		  }
+		  .progress-bar.active{
+			  animation: reverse progress-bar-stripes 0.40s linear infinite, animate-positive 2s;
+		  }
+		  @-webkit-keyframes animate-positive{
+			  0% { width: 0; }
+		  }
+		  @keyframes animate-positive{
+			  0% { width: 0; }
+		  }
+</style>
+{% endblock %}
+{% block mainbody %}
+ <!--这里是配置模块!-->
+<div class="app-content">
+    <form action="/performance/" method="post" class="form-horizontal" onsubmit="return check()">
+     {% csrf_token %}
+    <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+        <div class="single-page construction-bg cover-image" data-image-src="{%  static "assets/img/img14.jpg" %}" style="background: center center;">
+            <div class="text-white text-center construction">
+                <h1 class="mb-0">Automated Test Platform</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+        <div class="card">
+                <div class="card-header">
+                    <h4>UWA--性能测试</h4>
+                </div>
+                <div class="card-body">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-md-3 col-form-label">Devices</label>
+                            <div class="col-md-9">
+                           <select name="devicesnumber" class="form-control select2 w-100 select2-hidden-accessible" tabindex="-10" aria-hidden="true">
+                               <option disabled="disabled" selected="selected">---选择设备(可用{{count}}台)---</option>
+                               {% for _ in count|get_range %}
+                                   <option>{{ forloop.counter }}</option>
+                               {% endfor %}
+                           </select>
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-md-3 col-form-label">Email</label>
+                            <div class="col-md-9">
+                                <input type="email" name="email" class="form-control" placeholder="Email address">
+                            </div>
+                        </div>
+            </div>
+            </div>
+        </div>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="float-right">
+                    <a data-collapse="#mycard-collapse" class="btn btn-icon"><i class="ion ion-minus"></i></a>
+                </div>
+                <h4>Devices Info</h4>
+            </div>
+            <div class="collapse show" id="mycard-collapse">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0 text-nowrap">
+                        <tbody>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Serial NO</th>
+                            <th>Asset Number</th>
+                            <th>Devices Name</th>
+                            <th>Version</th>
+                            <th>Progress</th>
+                        </tr>
+                        {% csrf_token %}
+                        {% for info in devicesdic %}
+                        <tr class="text-center">
+                            <td>{{forloop.counter}}</td>
+                            {% for i in info %}
+                            <td>{{ i }}</td>
+                            {% endfor %}
+                            <td>
+                                {% if progressstatus == 100 %}
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%; background:#6fad47;">
+                                        <span>100%</span>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="progress">
+                                    <div id="status1" class="progress-bar progress-bar-success progress-bar-striped active" style="width: {{ progressstatus }}%;">
+                                        <div id="status2" class="progress-value">{{ progressstatus }}%</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-body text-center">
+
+                    <button name="start" class="buttoncolor blue tags" onclick="toastr.success('测试已经开始，请留意邮件的测试结果F5刷新查看报告', '嗨，小伙子！');">开始执行</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="reset" class="buttoncolor yellow tags" onclick="toastr.warning('模块已经重置，请重新选择模块开始测试', '嗨，小伙子！');">重置模块</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button name="stop" value="stop" class="buttoncolor red tags" onclick="return confirm('是否终止执行？')">终止执行</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{#                            <div class="modal-body">#}
+{#								<p class="mb-0">This is a modal with small size</p>#}
+{#							</div><!-- modal-body -->#}
+{#							<div class="modal-footer">#}
+{#								<button type="button" class="btn btn-primary">取消</button>#}
+{#								<button type="button" class="btn btn-success">确认</button>#}
+{#							</div>#}
+                </div>
+            </div>
+    </div>
+    </div>
+    </form>
+</div>
+ {% endblock %}

@@ -17,8 +17,7 @@ def dragonspirit(start, devices):
             poco("SysG_DragonSpirit").click()
     freeze_poco = poco.freeze()  # TODO：定义冻结poco
     if freeze_poco("DragonSpiritDlg(Clone)").offspring("AvatarPanel").child("item0").exists() and \
-        freeze_poco("DragonSpiritDlg(Clone)").offspring("AvatarPanel").child("item1").exists() and \
-        freeze_poco("ActivationBtn").exists():
+        freeze_poco("DragonSpiritDlg(Clone)").offspring("AvatarPanel").child("item1").exists():
         for item in poco("AvatarPanel").offspring("HeadIcon"):
             item.click()
             freeze_poco = poco.freeze()  # TODO：定义冻结poco
@@ -34,9 +33,26 @@ def dragonspirit(start, devices):
             if poco("DragonSpiritSkillPreView").child("Bg").child("p").exists():
                 icon.click()
             # 点击激活按钮
-            freeze_poco("ActivationBtn").click()
-            sleep(0.5)
-            freeze_poco("ActivationBtn").click()
+            poco("ActivationBtn").click()
+            if poco(texture="l_frame_00").exists():
+                common.printred("没有激活道具。请补充。。")
+                poco("ActivationBtn").click()
+                break
+            if poco("LevelUpBtn").exists():
+                common.printgreen("已经激活，开始喂养")
+                poco("LevelUpBtn").click()
+                if not poco("Title").exists():  # 如果没有弹出就重新点击
+                    poco("LevelUpBtn").click()
+                if poco("Title").exists():  # 喂养界面
+                    if poco("DragonSpiritHandler").offspring("LevelUpBtn").exists():  # 如果有喂养按钮
+                        poco("DragonSpiritHandler").offspring("LevelUpBtn").click()  # 点击喂养
+                        poco(texture="l_close_00").click()  # 点击关闭
+                    elif poco("DirectUpBtn").exists():  # 如果有突破按钮
+                        poco("DirectUpBtn").click()  # 点击突破
+                        poco(texture="l_close_00").click()  # 点击关闭
+                else:
+                    common.printred("没有弹出喂养界面，请检查。。。")
+                    common.get_screen_shot(start, time.time(), devices, "没有弹出喂养界面")
             if poco("ItemAccessDlg(Clone)").offspring("Title").exists():
                 freeze_poco("ActivationBtn").click()
     else:
@@ -47,4 +63,4 @@ def dragonspirit(start, devices):
 
 if __name__ == "__main__":
     start = time.localtime()
-    dragonspirit(start, "e37c0280")
+    dragonspirit(start, "9b57691d")

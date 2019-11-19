@@ -48,42 +48,47 @@ def enter_performance(sample, flag, start, storage_by_excel=True):
         print(f"设备{devices}正在重新安装测试包.................")
         firstinstall(devices)
     jsonfilepath = ""
-    wb = ""
+    # wb = ""
     # 创表
-    if storage_by_excel:
-        filepath, sheet, wb = create_log_excel(start, time.localtime(), sample.get_momentdevices())
-        collect_data(start, sample, flag, storage_by_excel, sheet=sheet,)
-        avglist, maxlist, minlist = calculate(sheet)
-        record_to_excel(sheet, avglist, color=(230, 230, 250))
-        record_to_excel(sheet, maxlist, color=(193, 255, 193))
-        record_to_excel(sheet, minlist, color=(240, 255, 240))
-        wb.save()
-        # nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
-        # devices_name = os.popen(f"adb -s {sample.get_momentdevices()} shell getprop ro.product.name").read()
-        # filename = reportpath + '\\' + devices_name.split()[0] + "_" + str(nowtime) + ".html"
-        # editreport(filename, wb, avglist, maxlist, minlist)
-        # nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
-        # devices_name = os.popen(f"adb -s {sample.get_momentdevices()} shell getprop ro.product.name").read()
-        # filename = reportpath + '\\' + devices_name.split()[0] + "_" + str(nowtime) + ".html"
-        # print("要操作的文件名为：", filename)
-        # editreport(filename, wb, avglist, maxlist, minlist)
-    else:
-        # 创建json文件
-        jsonfilepath = create_log_json(start, time.localtime(), sample.get_momentdevices())
-        print(f"创建json文件成功:{jsonfilepath}")
-        collect_data(start, sample, flag, storage_by_excel, jsonfilepath=jsonfilepath)
-        calculate_by_json(jsonfilepath)
+    # if storage_by_excel:
+    #     filepath, sheet, wb = create_log_excel(start, time.localtime(), sample.get_momentdevices())
+    #     collect_data(start, sample, flag, storage_by_excel, sheet=sheet,)
+    #     avglist, maxlist, minlist = calculate(sheet)
+    #     record_to_excel(sheet, avglist, color=(230, 230, 250))
+    #     record_to_excel(sheet, maxlist, color=(193, 255, 193))
+    #     record_to_excel(sheet, minlist, color=(240, 255, 240))
+    #     wb.save()
+    #     # nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
+    #     # devices_name = os.popen(f"adb -s {sample.get_momentdevices()} shell getprop ro.product.name").read()
+    #     # filename = reportpath + '\\' + devices_name.split()[0] + "_" + str(nowtime) + ".html"
+    #     # editreport(filename, wb, avglist, maxlist, minlist)
+    #     # nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
+    #     # devices_name = os.popen(f"adb -s {sample.get_momentdevices()} shell getprop ro.product.name").read()
+    #     # filename = reportpath + '\\' + devices_name.split()[0] + "_" + str(nowtime) + ".html"
+    #     # print("要操作的文件名为：", filename)
+    #     # editreport(filename, wb, avglist, maxlist, minlist)
+    # else:
+    #     # 创建json文件
+    #     jsonfilepath = create_log_json(start, time.localtime(), sample.get_momentdevices())
+    #     print(f"创建json文件成功:{jsonfilepath}")
+    #     collect_data(start, sample, flag, storage_by_excel, jsonfilepath=jsonfilepath)
+    #     calculate_by_json(jsonfilepath)
+    jsonfilepath = create_log_json(start, time.localtime(), sample.get_momentdevices())
+    print(f"创建json文件成功:{jsonfilepath}")
+    collect_data(start, sample, flag, storage_by_excel, jsonfilepath=jsonfilepath)
+    calculate_by_json(jsonfilepath)
     nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
     devices_name = os.popen(f"adb -s {sample.get_momentdevices()} shell getprop ro.product.name").read()
 
     report_Name = devices_name.split()[0] + "_" + str(nowtime)
     # 获取测试报告路径
     report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
-    filename = report_path + '\\' + devices_name.split()[0] + "_" + str(nowtime) + ".html"
-    if storage_by_excel:
-        editreport(filename, storage_by_excel, avglist, maxlist, minlist, wb=wb)
-    else:
-        editreport(filename, storage_by_excel, jsonfilepath=jsonfilepath)
+    filename = report_path + '/' + devices_name.split()[0] + "_" + str(nowtime) + ".html"
+    # if storage_by_excel:
+    #     editreport(filename, storage_by_excel, avglist, maxlist, minlist, wb=wb)
+    # else:
+    #     editreport(filename, storage_by_excel, jsonfilepath=jsonfilepath)
+    editreport(filename, storage_by_excel, jsonfilepath=jsonfilepath)
 
 
 def collect_data(start, sample, flag, storage_by_excel, sheet="", jsonfilepath="", timeout=3600):

@@ -120,7 +120,8 @@ def sleeptiem():  # 脚本等待时间，如果时间过长，说明出现意外
 def startgame(devices):
     packagename = tool(devices).get_packagename()
     try:
-        if not common.os.system(f"adb -s {devices} shell pidof {packagename}") == 1:
+        if common.os.system(f"adb -s {devices} shell pidof {packagename}") != 1 and \
+                common.os.system(f"adb -s {devices} shell pidof {packagename}") != 256:
             print("游戏已经启动...")
             # 判断主界面
             if interface(devices, packagename) == "主界面":
@@ -149,7 +150,6 @@ def startgame(devices):
         print(f"{e},主机断开连接，杀掉游戏进程，脚本重新启动")
         startgame(devices)
     return None
-
 
 
 def interface(devices, packagename):
@@ -272,7 +272,6 @@ def restart_app(devices):
 def stop_APP(devices, packagename):
     try:
         print("游戏未启动，开始启动游戏...")
-        print(packagename)
         common.stop_app(packagename)
         common.sleep(1)
         common.start_app(packagename)

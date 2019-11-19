@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
-from Model import views, basehtml, case, login, report, index
+from Model import views, basehtml, case, login, report, index, custom
 from django.conf import settings
 from django.views import static
 
@@ -28,9 +28,11 @@ urlpatterns = [
     path('index/', index.start),
     path('login/', login.user_login, name='login'),
     path('report/', report.status),
+    path('performance/', custom.performance),
     path('info/', report.reportinfo),
     path('base/', basehtml.base),
     path('case/', case.progress),
     path('send/', report.setprogress),
     path('send/', report.setprogress)
+
 ]

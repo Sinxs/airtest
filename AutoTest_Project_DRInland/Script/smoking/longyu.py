@@ -6,8 +6,8 @@ from airtest.core.api import *
 
 def item_jade(start, devices):
     poco = deviceconnect(devices)
-    check_menu("SysAItem", poco) # 进入角色
-    poco("XSys_Item_Jade").click() # 进入龙玉页签
+    check_menu("SysAItem", poco)  # 进入角色
+    poco("XSys_Item_Jade").click()  # 进入龙玉页签
     with poco.freeze() as freeze_poco:
         if freeze_poco("ItemNewDlg(Clone)").offspring("Help").exists() and \
                 freeze_poco("JadeShop").exists() and \
@@ -18,8 +18,8 @@ def item_jade(start, devices):
             printred("龙玉界面缺少按钮")
             get_screen_shot(start, time.time(), devices, "龙玉界面缺少按钮")
     if poco("Empty").exists():
-        if poco("Empty").child("T").get_text() == "先穿戴装备再来镶嵌龙玉哦": # 判断是不是没有装备
-            poco("XSys_Item_Equip").click() # 去穿戴装备
+        if poco("Empty").child("T").get_text() == "先穿戴装备再来镶嵌龙玉哦":  # 判断是不是没有装备
+            poco("XSys_Item_Equip").click()  # 去穿戴装备
             with poco.freeze() as freeze_poco:
                 equipchild = freeze_poco("WrapContent").child()
                 for i in equipchild:
@@ -27,42 +27,58 @@ def item_jade(start, devices):
                     if name[:5] != "empty":
                         equipname = name
                         break
-            poco(equipname).click() # 点击装备
-            poco("Button1").click() # 穿戴装备
-            poco("XSys_Item_Jade").click() # 再次点击龙玉
+            poco(equipname).click()  # 点击装备
+            poco("Button1").click()  # 穿戴装备
+            poco("XSys_Item_Jade").click()  # 再次点击龙玉
     else:
         printgreen("龙玉界面穿了装备，直接进行龙玉获取操作")
     poco("BtnJadeStreng").click()
-    poco("ItemNewDlg(Clone)").offspring("JadeStrengHandler").offspring("BtnEqOnekey").click()
-    printgreen("龙玉强化按钮点击正常")
-    poco(texture="l_close_00").click()
+    with poco.freeze() as freeze_poco:
+        item1955 = freeze_poco("ItemNewDlg(Clone)").offspring("JadeStrengHandler").child("Bg").child(
+            "slider").offspring("Num").get_text()
+        sleep(1)
+        if item1955.split("/")[0] > item1955.split("/")[1]:
+            oldprocess = freeze_poco("ItemNewDlg(Clone)").offspring("JadeStrengHandler").child("Bg").child(
+                "slider").child("t").get_text()
+            freeze_poco("ItemNewDlg(Clone)").offspring("JadeStrengHandler").offspring("BtnEqOnekey").click()
+            newprocess = poco("ItemNewDlg(Clone)").offspring("JadeStrengHandler").child("Bg").child("slider").child(
+                "t").get_text()
+            if oldprocess != newprocess:
+                printgreen("龙玉强化成功")
+            else:
+                printred("龙玉强化进度没有增加")
+        else:
+            printred("龙玉强化石数量不足，只做简单点击操作")
+            freeze_poco("ItemNewDlg(Clone)").offspring("JadeStrengHandler").offspring("BtnEqOnekey").click()
+        printgreen("龙玉强化界面按钮正常")
+        freeze_poco(texture="l_close_00").click()
     poco("JadeShop").click()
     poco("access212").click()
     printgreen("进入龙玉商店")
-    poco("GameMall(Clone)").offspring("item3").offspring("TextLabel").click() # 进入龙玉页签
+    poco("GameMall(Clone)").offspring("item3").offspring("TextLabel").click()  # 进入龙玉页签
     for i in range(2):
         poco("OK").click()
-    poco("Close").click() # 关闭龙玉商店
-    poco("BtnEqOnekey").click() # 一件镶嵌
+    poco("Close").click()  # 关闭龙玉商店
+    poco("BtnEqOnekey").click()  # 一件镶嵌
     if poco("onekeylvup").exists():
-        poco("onekeylvup").click() # 一键升级
+        poco("onekeylvup").click()  # 一键升级
         printgreen("龙玉升级--一键升级")
-        poco("UIRoot(Clone)").offspring("BtnCompose").click() # 确认一键升级
+        poco("UIRoot(Clone)").offspring("BtnCompose").click()  # 确认一键升级
     if poco("Btngroup").exists():
-        poco("Btngroup").click()# 龙玉组合
+        poco("Btngroup").click()  # 龙玉组合
         if poco("UIRoot(Clone)").offspring("JadeGroupPanel").child("Bg").child("Bg").exists():
             printgreen("龙玉组合界面打开成功")
-            poco(texture="l_close_00").click() # 关闭龙玉组合界面
+            poco(texture="l_close_00").click()  # 关闭龙玉组合界面
         else:
             printred("龙玉组合界面打开失败")
             get_screen_shot(start, time.time(), devices, "龙玉组合界面打开失败")
     else:
         printred("龙玉组合按钮不存在")
         get_screen_shot(start, time.time(), devices, "龙玉组合按钮不存在")
-    poco("JadeEquipFrameNew").offspring("Help").click() # 规则按钮
+    poco("JadeEquipFrameNew").offspring("Help").click()  # 规则按钮
     if poco("CommonHelpTip(Clone)").child("Bg").exists():
         printgreen("龙玉规则界面打开正常")
-        poco("Btn").click() # 关闭规则界面
+        poco("Btn").click()  # 关闭规则界面
     else:
         printred("龙玉规则界面打开失败")
         get_screen_shot(start, time.time(), devices, "龙玉规则界面打开失败")
@@ -82,4 +98,4 @@ def check_menu(sysmenu, poco):
 
 if __name__ == "__main__":
     start = time.localtime()
-    item_jade(start, "9b57691d")
+    item_jade(start, "e37c0280")

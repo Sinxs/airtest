@@ -42,7 +42,7 @@ def Main(start, devices):
             """
             try:
                 print("开始测试技能模块")
-                self.assertEqual("激活职业", skill.skill(start, devices))
+                self.assertEqual("觉醒", skill.skill(start, devices))
             except simplerpc.RpcTimeoutError:
                 for i in range(initial.RpcTimeoutime()):  # rpc超时问题重置次数
                     try:
@@ -50,14 +50,14 @@ def Main(start, devices):
                                         "Rpc重连失败，脚本重新启动"
                                         "————————————————————————————————————")
                         initial.startgame(devices)
-                        self.assertEqual("激活职业", skill.skill(start, devices))
+                        self.assertEqual("觉醒", skill.skill(start, devices))
                         break
                     except simplerpc.RpcTimeoutError:
                         printred("————————————————————————————————————"
                                         "Rpc重连失败，脚本重新启动"
                                         "————————————————————————————————————")
                         initial.startgame(devices)
-                        self.assertEqual("激活职业", skill.skill(start, devices))
+                        self.assertEqual("觉醒", skill.skill(start, devices))
 
             finally:
                 get_screen_shot(start, time.time(), devices, "技能模块-冒烟测试")

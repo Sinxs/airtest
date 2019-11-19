@@ -1,6 +1,6 @@
 # -*- encoding=utf8 -*-
 __author__ = "Lee.li"
-import xlwings as xw
+# import xlwings as xw
 import smtplib
 import socket
 from email.mime.multipart import MIMEMultipart
@@ -20,7 +20,7 @@ from PIL import Image
 from airtest.core.android.adb import ADB
 from poco.drivers.unity3d import UnityPoco
 from multi_processframe.ProjectTools import initial
-
+import platform
 excelpath = os.path.abspath(os.path.join(os.getcwd(), "../platform/static/Report/Excel"))
 
 """
@@ -32,20 +32,31 @@ excelpath = os.path.abspath(os.path.join(os.getcwd(), "../platform/static/Report
 5.常量采用全大写，如有多个单词，使用下划线隔开
 """
 
-_print = print
+index_print = print
 
 
 def print(*args, **kwargs):
-    _print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), *args, **kwargs)
+    if get_system() == 'Windows':
+        index_print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), *args, **kwargs)
+    else:
+        index_print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 28800)), *args, **kwargs)
 
 
 config = configparser.ConfigParser()  # 实现插值的配置器
+_parentPath = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  # 获取当前文件上层路径
+_rootPath = os.path.dirname(os.path.abspath(_parentPath))  # 获取当前目录根目录
+config_Path = _rootPath + '/config.ini'  # 获取config.ini的路径
+
+def get_system():
+    """
+    获取系统版本
+    :return: 返回系统版本
+    """
+    system = platform.system()
+    return system
 
 
 def set_config(case):
-    _parentPath = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  # 获取当前文件上层路径
-    _rootPath = os.path.dirname(os.path.abspath(_parentPath))  # 获取当前目录根目录
-    config_Path = _rootPath + '\\config.ini'  # 获取config.ini的路径
     key = "progress"
     temp = get_value(config_Path, key)
     if case not in temp:
@@ -60,10 +71,16 @@ def set_config(case):
         config.set("config", key, getdata)
         config.write(open(config_Path, "w"))
 
+def uwa_dot(dot):
+     config.read(config_Path)
+     config.set("config", "progressnum", str(dot))
+     config.write(open(config_Path, "w"))
+
+
 def del_progress():
     _parentPath = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  # 获取当前文件上层路径
     _rootPath = os.path.dirname(os.path.abspath(_parentPath))  # 获取当前目录根目录
-    config_Path = _rootPath + '\\config.ini'  # 获取config.ini的路径
+    config_Path = _rootPath + '/config.ini'  # 获取config.ini的路径
     key = "progress"
     config.read(config_Path)
     config.set("config", key, "")
@@ -161,13 +178,17 @@ def printcolor(mes, color, end='\n'):
         return print(f"<font color=\"{color}\" >{mes}</font>")
 
 
-def sendemail(report_Name, receivers):
+def sendemail(report_Name, receivers, mailtype):
     addr = socket.gethostbyname(socket.gethostname())
     SENDER = '827435858@qq.com'
     PASSWORD = 'mjpuxtwhyatgbcga'
     # RECEIVERS = ['xiaomingli@123u.com'] # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
-    mailtitle = '龙之谷国内版本自动化测试报告'
+    if mailtype == 1:
+        mailtitle = 'UWA--龙之谷国内版本性能测试完成，请自行去uwa查询报告'
+    else:
+        mailtitle = 'BTV--龙之谷国内版本自动化测试报告'
     report_Name = f'{report_Name}.html'
+
     # htmlfile = report_Path + '\\' + report_Name # 获取报告路径
     # accessory = MIMEApplication(open(htmlfile,'rb').read())
     # accessory.add_header('Content-Disposition', 'attachment', filename=report_Name)
@@ -226,14 +247,17 @@ def settouch(type, x, y, devices, times=1):
 
 
 def create_log_json(start, nowtime, devices):
-    devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.name").read()
+    devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.model").read().replace(' ', '')
     nowstime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
-    report_Name = devices_name.split()[0] + "_" + str(nowstime)
+    if get_value(config_Path, 'uwatype')[0] == '1':
+        report_Name = devices_name.split()[0] + "-UWA_" + str(nowstime)
+    else:
+        report_Name = devices_name.split()[0] + "-BTV_" + str(nowstime)
     # 获取测试报告路径
     report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     datapath = report_path + '/data'
     create_time = time.strftime("%m%d%H%M", nowtime)
-    jsonfile = datapath + f'\\{create_time}_{report_Name}_log.json'
+    jsonfile = datapath + f'/{create_time}_{report_Name}_log.json'
     if os.path.exists(jsonfile):
         raise Exception("FileHasExisted")
     f = open(jsonfile, "w")
@@ -336,23 +360,23 @@ def calculate_by_json(jsonfile):
 
 
 # 创建一个log_excel用以记录性能数据
-def create_log_excel(start, nowtime, devices):
-    devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.name").read()
-    nowstime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
-    report_Name = devices_name.split()[0] + "_" + str(nowstime)
-    # 获取测试报告路径
-    report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
-    datapath = report_path + '/data'
-    create_time = time.strftime('%m%d%H%M', nowtime)
-    exclefile = datapath + f'\\{create_time}_{devices_name}_log.xlsx'
-    app = xw.App(visible=True, add_book=False)
-    wb = app.books.add()
-    sheet = wb.sheets("Sheet1")
-    sheet.range('A1').value = ["Time", "TotalMemory(MB)", "AllocatedMemory(MB)", "UsedMemory(MB)", "FreeMemory(MB)",
-                               "TotalCPU", "AllocatedCPU", "FPS", "", "PNG", "PNGAddress"]
-    sheet.range('A1:I1').color = 205, 197, 191
-    print("创建Excel文件：{}".format(exclefile))
-    return exclefile, sheet, wb
+# def create_log_excel(start, nowtime, devices):
+#     devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.model").read().replace(' ', '')
+#     nowstime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
+#     report_Name = devices_name.split()[0] + "_" + str(nowstime)
+#     # 获取测试报告路径
+#     report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
+#     datapath = report_path + '/data'
+#     create_time = time.strftime('%m%d%H%M', nowtime)
+#     exclefile = datapath + f'/{create_time}_{devices_name}_log.xlsx'
+#     app = xw.App(visible=True, add_book=False)
+#     wb = app.books.add()
+#     sheet = wb.sheets("Sheet1")
+#     sheet.range('A1').value = ["Time", "TotalMemory(MB)", "AllocatedMemory(MB)", "UsedMemory(MB)", "FreeMemory(MB)",
+#                                "TotalCPU", "AllocatedCPU", "FPS", "", "PNG", "PNGAddress"]
+#     sheet.range('A1:I1').color = 205, 197, 191
+#     print("创建Excel文件：{}".format(exclefile))
+#     return exclefile, sheet, wb
 
 
 # 计算一个sheet里已存在的所有数据，然后返回该sheet里的各项的平均、最大、最小值。
@@ -533,14 +557,17 @@ def get_screen_shot(start, starttime, devices, action):
     :param action: 当时的操作描述，属于哪个测试用例下的
     :return:
     """
-    devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.name").read()
+    devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.model").read().replace(' ', '')
     nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
-    report_Name = devices_name.split()[0] + "_" + str(nowtime)
+    if get_value(config_Path, 'uwatype')[0] == '1':
+        report_Name = devices_name.split()[0] + "-UWA_" + str(nowtime)
+    else:
+        report_Name = devices_name.split()[0] + "-BTV_" + str(nowtime)
     # 获取测试报告路径
     report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     screenpath = report_path + '/Screenshot'
     pngtime = time.strftime('%Y%m%d_%H%M%S', time.localtime(starttime))
-    picture_PNG = screenpath + "\\" + pngtime + "_" + "_" + action + ".png"
+    picture_PNG = screenpath + "/" + pngtime + "_" + "_" + action + ".png"
     packname = pngtime + "_" + "_" + action + ".png"
     os.system("adb -s " + devices + " shell screencap -p /sdcard/screencap.png")  # 调用adb命令实现截图
     file_Path = open(picture_PNG, "a+", encoding="utf-8")  # 打开文件启用添加模式
@@ -549,7 +576,7 @@ def get_screen_shot(start, starttime, devices, action):
     os.system(f"adb -s {devices} pull /sdcard/screencap.png {picture_PNG}")  # 把截图放到截图路径中去
     time.sleep(1)
     print(
-        "<img src='" + f"\static\Report\{report_Name}\Screenshot\\" + packname + "' width=600 />")  # 通过src路径获取图片，并显示出来
+        "<img src='" + f"/static/Report/{report_Name}/Screenshot/" + packname + "' width=600 />")  # 通过src路径获取图片，并显示出来
     return picture_PNG
 
 
@@ -569,9 +596,12 @@ def GetScreen(start, starttime, devices, action):
 
 # 用ADBCAP的方法截图
 def GetScreenbyADBCap(start, starttime, devices, action):
-    devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.name").read()
+    devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.model").read().replace(' ', '')
     nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
-    report_Name = devices_name.split()[0] + "_" + str(nowtime)
+    if get_value(config_Path, 'uwatype')[0] == '1':
+        report_Name = devices_name.split()[0] + "-UWA_" + str(nowtime)
+    else:
+        report_Name = devices_name.split()[0] + "-BTV_" + str(nowtime)
     # 获取测试报告路径
     report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     screenpath = report_path + '/Screenshot'
@@ -581,7 +611,7 @@ def GetScreenbyADBCap(start, starttime, devices, action):
     else:
         nickname = devices
     pngtime = time.strftime('%Y%m%d_%H%M%S', time.localtime(starttime))
-    png = screenpath + "\\" + pngtime + nickname + "_" + action + ".png"
+    png = screenpath + "/" + pngtime + nickname + "_" + action + ".png"
     pngname = pngtime + nickname + "_" + action + ".png"
     os.system(adb + " -s " + devices + " shell screencap -p /sdcard/screencap.png")
     time.sleep(1)
@@ -591,15 +621,18 @@ def GetScreenbyADBCap(start, starttime, devices, action):
     time.sleep(0.5)
     # ADB截图过大，需要压缩，默认压缩比为0.2，全屏。
     compressImage(png)
-    print("<img src='" + f"\static\Report\{report_Name}\Screenshot\\" + pngname + "' width=600 />")
+    print("<img src='" + f"/static/Report/{report_Name}/Screenshot/" + pngname + "' width=600 />")
     return png
 
 
 # 用MiniCap的方法截图，使用前需要确保手机上已经安装MiniCap和MiniCap.so。一般用过STF和airtestide的手机会自动安装，若未安装，则可以执行Init_MiniCap.py，手动安装。
 def GetScreenbyMiniCap(start, starttime, devices, action):
-    devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.name").read()
+    devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.model").read().replace(' ', '')
     nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
-    report_Name = devices_name.split()[0] + "_" + str(nowtime)
+    if get_value(config_Path, 'uwatype')[0] == '1':
+        report_Name = devices_name.split()[0] + "-UWA_" + str(nowtime)
+    else:
+        report_Name = devices_name.split()[0] + "-BTV_" + str(nowtime)
     # 获取测试报告路径
     report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     screenpath = report_path + '/Screenshot'
@@ -610,7 +643,7 @@ def GetScreenbyMiniCap(start, starttime, devices, action):
         nickname = devices
     # 创建图片
     pngtime = time.strftime('%Y%m%d_%H%M%S', time.localtime(starttime))
-    png = screenpath + "\\" + pngtime + nickname + "_" + action + ".png"
+    png = screenpath + "/" + pngtime + nickname + "_" + action + ".png"
     pngname = pngtime + nickname + "_" + action + ".png"
 
     # 获取设备分辨率
@@ -624,7 +657,7 @@ def GetScreenbyMiniCap(start, starttime, devices, action):
     os.system(screen)
     time.sleep(0.5)
     os.system(adb + " -s " + devices + " pull /sdcard/screencap.png " + png)
-    print("<img src='" + f"\static\Report\{report_Name}\Screenshot\\" + pngname + "' width=600 />")
+    print("<img src='" + f"/static/Report/{report_Name}/Screenshot/" + pngname + "' width=600 />")
     return png
 
     # 图片压缩批处理，cr为压缩比，其他参数为屏幕截取范围

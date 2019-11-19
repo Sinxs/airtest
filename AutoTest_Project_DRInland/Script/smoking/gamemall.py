@@ -159,7 +159,49 @@ def mall(start, devices):  # 商店功能测试
     return poco("item13").child("shopname").get_text()  # 战队商店
 
 
+def buy(start, devices):
+    """
+    测试商城购买功能，前提条件，拥有龙币，水晶，水晶GM  item 14 999999
+    :param start:
+    :param devices:
+    :return:
+    """
+    poco = common.deviceconnect(devices)
+    if poco("SysAGameMall").exists():
+        poco("SysAGameMall").click()
+    else:
+        common.printred("主界面找不到商城按钮，请检查")
+    Mallbutlist = ["XSys_GameMall_Dragon", "XSys_GameMall_CRYSTAL"]
+    for but in Mallbutlist:
+        if poco(but).exists():
+            common.printgreen("开始点击商城内 " + poco("GameMall(Clone)").offspring(but)
+                              .offspring("SelectedTextLabel").get_text() + " 子页签")
+            poco(but).click()
+            # 操作装备按钮
+            if poco("GameMall(Clone)").offspring("TabsFrame").child("item1").exists():
+                poco("GameMall(Clone)").offspring("TabsFrame").child("item1").click()
+                if int(poco("Count").child("Label").get_text()) >= 1:  # 判断是否有的卖
+                    poco("OK").click()  # 点击购买
+                    if poco(texture="l_button_00").exists():
+                        common.printred("货币不足，请提供可购买的货币")
+                        poco("Cancel").click()  # 点击取消弹窗，否则不好重置换成了
+                        common.get_screen_shot(start, time.time(), devices, "货币不足")
+                        return None
+                else:
+                    common.printred("没有物品可以购买")
+                    common.get_screen_shot(start, time.time(), devices, "没有物品可以购买")
+            else:
+                common.printred("没有找到装备页签，请检查")
+                common.get_screen_shot(start, time.time(), devices, "主界面没有社交按钮")
+    return poco("GameMall(Clone)").child("Bg").child("T").get_text()  # 水晶商城
+
+
+
+
+
+
 if __name__ == "__main__":
     start = time.localtime()
-    mall(start, "e37c0280")
-    gamemall("e37c0280")
+    buy(start, "9b57691d")
+    # mall(start, "e37c0280")
+    # gamemall("e37c0280")

@@ -7,6 +7,7 @@ from multi_processframe.performance import *
 from multi_processframe.ProjectTools import managecase
 from multi_processframe.ProjectTools.androidtools import AndroidTools as tool
 from multi_processframe.ProjectTools import initial
+import time
 
 
 def main():
@@ -27,7 +28,10 @@ def main():
             templist = []
             for i in range(len(deviceslist)):
                 sleep(1)
-                start = time.localtime()
+                if get_system() == 'Windows':
+                    start = time.localtime(time.time())
+                else:
+                    start = time.localtime(time.time()+28800)
                 sample = tool(deviceslist[i])  # 实例化类，循环加入devices
                 flag = Value('i', 0)
                 if performancetype == 'True':
@@ -71,7 +75,7 @@ def enter_processing(processNo, sample, flag, start):
         auto_setup(__file__)
         is_connect = "Pass"
         print(f"连接设备{devices}成功")
-        # stop_app(f"{package}")  # 首次运行的时候杀掉进程重新进入
+        stop_app(f"{package}")  # 首次运行的时候杀掉进程重新进入
         installapkflag = ''
         if is_connect == "Pass":
             try:

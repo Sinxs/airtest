@@ -24,7 +24,10 @@ queue = queue.Queue()  # queue线程通讯
 
 
 def print(*args, **kwargs):
-    index_print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), *args, **kwargs)
+    if common.get_system() == 'Windows':
+        index_print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), *args, **kwargs)
+    else:
+        index_print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time() + 28800)), *args, **kwargs)
 
 
 class AndroidTools:
@@ -33,7 +36,7 @@ class AndroidTools:
 
         self._parentPath = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  # 获取当前文件上层路径
         self._rootPath = os.path.dirname(os.path.abspath(self._parentPath))  # 获取当前目录根目录
-        self._configPath = self._rootPath + '\\config.ini'  # 获取config.ini的路径
+        self._configPath = self._rootPath + '/config.ini'  # 获取config.ini的路径
         self._testCase = common.get_value(self._configPath, 'testCase')  # 获取测试列表
         self._email = common.get_value(self._configPath, 'email')[0]  # 获取邮箱
         self._packageName = common.get_value(self._configPath, 'packageName')[0]  # 获取安装包名称
@@ -45,6 +48,7 @@ class AndroidTools:
         self._storage_by_exce = common.get_value(self._configPath, "storage_by_exce")[0]  # 获取性能报告方式 1 为excle 0 为json
         self._username = common.get_value(self._configPath, 'username')  # 获取账号
         self._password = common.get_value(self._configPath, 'password')[0]  # 获取密码
+        self._uwatype = common.get_value(self._configPath, "uwatype")[0]  # 获取uwa测试判断
         self._server = common.get_value(self._configPath, 'server')[0]  # 获取server
         if self._server == "1server":
             self._server = "日补丁qq android一服"
@@ -59,6 +63,15 @@ class AndroidTools:
         self._activityName = common.get_value(self._configPath, 'activityName')[0]  # 获取测试包的界面活动名
         if self._activityName == '':
             self._activityName = APK(self.get_apkpath()).activities[0]  # 如果活动包名没有填，就通过APK的activities方法，用包的路径获取活动名
+
+
+
+    def get_uwatype(self):
+        """
+        获取config中的uwatype
+        :return:
+        """
+        return self._uwatype
 
 
     def get_server(self):
@@ -478,7 +491,10 @@ class AndroidTools:
         :return:
         """
         packname = self.get_packagename()[0:15]
-        command = adb + f' -s {self.get_momentdevices()} shell top -n 1 |findstr {packname}'
+        if common.get_system() == 'Windows':
+            command = adb + f' -s {self.get_momentdevices()} shell top -n 1 |findstr {packname}'
+        else:
+            command = adb + f' -s {self.get_momentdevices()} shell top -n 1 |grep {packname}'
         tempcpu = os.popen(command).read()
         cpu = ''
         if tempcpu == '':
@@ -553,10 +569,11 @@ class AndroidTools:
 
 
 if __name__ == "__main__":
-    device = "127.0.0.1:62001"
+    device = "9b57691d"
     common.deviceconnect(device)
     P = AndroidTools(device)
-    P.install()
+    P.get_uwatype()
+    # P.get_performancetype()
     print(P)  # 启动app
     # p = Performance()
     # p.check_install()

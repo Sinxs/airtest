@@ -2,3 +2,4 @@
 /startdjango.bat
 kill.bat
 /rethinkdb_data
+*.png

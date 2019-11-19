@@ -42,7 +42,7 @@ def Main(start, devices):
 
         def test_darkness(self):
             """
-            黑暗神殿 -- 神殿界面判断--排行榜--通关黑暗神殿一次
+            黑暗神殿 -- 神殿界面判断--排行榜
             """
             try:
                 print("开始测试黑暗神殿模块")

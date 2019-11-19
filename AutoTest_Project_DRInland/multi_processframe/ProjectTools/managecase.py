@@ -7,7 +7,9 @@ import shutil
 from airtest.core.api import *
 from multi_processframe.ProjectTools.common import sendemail, get_script_list
 from BeautifulReport import BeautifulReport
+from multi_processframe.TestCaseUWA import *
 from multi_processframe.TestCase import *
+
 
 index_print = print
 
@@ -27,11 +29,20 @@ def run_testcase(sample, start):
     devices_list = sample.get_deviceslist()
     # 获取测试类型 True=兼容，False=分布
     testtype = sample.get_testtype()
-    # 生成测试报告
-    devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.name").read()
+    uwatepe = sample.get_uwatype()
+    devices_name = os.popen(f"adb -s {devices} shell getprop ro.product.model").read().replace(' ', '')
     nowtime = f'{time.strftime("%Y-%m-%d-%H-%M-%S", start)}'
-    report_Name = devices_name.split()[0] + "_" + str(nowtime)
-    # 获取测试报告路径
+    # 得到config中的所有待测用例
+    config_Test_List = sample.get_testcase()
+    # 根据测试类型获取testcase下的所有用例
+    if uwatepe == '1':
+        case_path = '/AirtestIDE/AutoTest_Project_DRInland/multi_processframe/TestCaseUWA'
+        report_Name = devices_name.split()[0] + "-UWA_" + str(nowtime)
+    else:
+        case_path = '/AirtestIDE/AutoTest_Project_DRInland/multi_processframe/TestCase'
+        report_Name = devices_name.split()[0] + "-BTV_" + str(nowtime)
+    script_list = get_script_list(case_path)
+    # 创建报告目录
     report_path = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/{report_Name}")))
     if not os.path.exists(report_path):
         os.makedirs(report_path + '/Screenshot')
@@ -41,11 +52,6 @@ def run_testcase(sample, start):
     tempjs = (os.path.abspath(os.path.join(os.getcwd(), f"../platform/static/Report/script/highcharts.js")))
     scriptjs = report_path + '/script'
     shutil.copy(tempjs, scriptjs)
-    # 得到config中的所有待测用例
-    config_Test_List = sample.get_testcase()
-    # 获取testcase下的所有用例
-    case_path = os.path.join(os.getcwd(), "TestCase")
-    script_list = get_script_list(case_path)
     # 实例化测试套件
     suite = unittest.TestSuite()
     cases = []  # 定义一个空的待测用例列表
@@ -62,12 +68,16 @@ def run_testcase(sample, start):
                     for b in range(devices_list.index(devices) + 1):  # 根据设备的数量循环把用例分成若干等分
                         split_cases = cases[math.floor(b / len(devices_list) * len(cases)):math.floor(
                             (b + 1) / len(devices_list) * len(cases))]  # 到这里已经把当前用例给分片了
-
                     for c in range(len(split_cases)):
                         result = globals()[split_cases[c]].Main(start, devices)
                         suite.addTests(result)
     unittest_Report = BeautifulReport(suite)
-    unittest_Report.report(filename=report_Name, description="龙之谷国内版本", report_dir=report_path)
+    if uwatepe == '1':
+        unittest_Report.report(filename=report_Name, description="龙之谷国内版本--UWA性能测试", report_dir=report_path)
+        mailtype = 1  # UWA性能测试报告
+    else:
+        unittest_Report.report(filename=report_Name, description="龙之谷国内版本--BTV功能测试", report_dir=report_path)
+        mailtype = 0  # BTV功能测试报告
     receivers = sample.get_email()
     if receivers != '':
-        sendemail(report_Name, receivers)
+        sendemail(report_Name, receivers, mailtype)

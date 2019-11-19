@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+from Model.tools import get_addr
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,9 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a9nlecsit&dx5ej-o^*7vpg!0s+sb@$!8a6s+9)tf542pja(-3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-
-DEBUG = False
-
+# if get_addr() == '192.168.5.7' or get_addr() == '192.168.5.117':
+#     DEBUG = True
+# else:
+#     DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 

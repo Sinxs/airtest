@@ -809,3 +809,63 @@
 2019-11-06T09:27:52.554305900 2.464474s info: Table f157d7c6-8dff-43f7-95b9-5b4b16fee9aa: This server is Raft leader for term 38. Latest log index is 128.
 2019-11-06T09:27:54.983492400 4.893309s info: Table f157d7c6-8dff-43f7-95b9-5b4b16fee9aa: Configuration is changing.
 2019-11-06T09:28:21.175227200 31.085201s warn: Problem when checking for new versions of RethinkDB: HTTP request to update.rethinkdb.com failed.
+2019-11-06T11:37:40.125220300 0.109804s notice: Running rethinkdb 2.3.6-windows (MSC 190024215)...
+2019-11-06T11:37:40.125220301 0.109947s notice: Running on 6.2.9200 (Windows 8, Server 2012)
+2019-11-06T11:37:40.133198500 0.117765s notice: Loading data from directory D:\\AirtestIDE\\AutoTest_Project_DRInland\\platform\\rethinkdb_data
+2019-11-06T11:37:40.234595200 0.219160s info: Automatically using cache size of 2238 MB
+2019-11-06T11:37:40.239582400 0.223567s notice: Listening for intracluster connections on port 29015
+2019-11-06T11:37:40.564286200 0.548577s notice: Listening for client driver connections on port 28015
+2019-11-06T11:37:40.564286201 0.548753s notice: Listening for administrative HTTP connections on port 8080
+2019-11-06T11:37:40.564286202 0.548768s notice: Listening on cluster address: 127.0.0.1
+2019-11-06T11:37:40.564286203 0.548769s notice: Listening on driver address: 127.0.0.1
+2019-11-06T11:37:40.564286204 0.548770s notice: Listening on http address: 127.0.0.1
+2019-11-06T11:37:40.564286205 0.548771s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2019-11-06T11:37:40.564286206 0.548772s notice: Server ready, "LX290_WTT_CSZX_s2l" 9952fab1-b606-45e1-b51e-e3405beb6572
+2019-11-06T11:37:42.055194100 2.039586s info: Table 68a1e30f-20d9-4110-8a02-0e478e5b4bdc: Starting a new Raft election for term 39.
+2019-11-06T11:37:42.149844100 2.133811s info: Table f157d7c6-8dff-43f7-95b9-5b4b16fee9aa: Starting a new Raft election for term 39.
+2019-11-06T11:37:42.161811700 2.146286s info: Table 68a1e30f-20d9-4110-8a02-0e478e5b4bdc: This server is Raft leader for term 39. Latest log index is 126.
+2019-11-06T11:37:42.206692900 2.190648s info: Table 36fea7ad-b70f-4fcd-b4e5-1d7818c4e9a0: Starting a new Raft election for term 39.
+2019-11-06T11:37:42.213674600 2.197790s info: Table f157d7c6-8dff-43f7-95b9-5b4b16fee9aa: This server is Raft leader for term 39. Latest log index is 131.
+2019-11-06T11:37:42.280496200 2.264595s info: Table 36fea7ad-b70f-4fcd-b4e5-1d7818c4e9a0: This server is Raft leader for term 39. Latest log index is 128.
+2019-11-06T11:37:44.880506600 4.864608s info: Table f157d7c6-8dff-43f7-95b9-5b4b16fee9aa: Configuration is changing.
+2019-11-06T11:38:11.165794900 31.149409s warn: Problem when checking for new versions of RethinkDB: HTTP request to update.rethinkdb.com failed.
+2019-11-06T11:56:32.283697400 0.090740s notice: Running rethinkdb 2.3.6-windows (MSC 190024215)...
+2019-11-06T11:56:32.283697401 0.090883s notice: Running on 6.2.9200 (Windows 8, Server 2012)
+2019-11-06T11:56:32.284695300 0.092261s notice: Loading data from directory D:\\AirtestIDE\\AutoTest_Project_DRInland\\platform\\rethinkdb_data
+2019-11-06T11:56:32.361894500 0.168979s info: Automatically using cache size of 2382 MB
+2019-11-06T11:56:32.367878700 0.175491s notice: Listening for intracluster connections on port 29015
+2019-11-06T11:56:32.737700100 0.544773s notice: Listening for client driver connections on port 28015
+2019-11-06T11:56:32.737700101 0.544905s notice: Listening for administrative HTTP connections on port 8080
+2019-11-06T11:56:32.737700102 0.544907s notice: Listening on cluster address: 127.0.0.1
+2019-11-06T11:56:32.737700103 0.544910s notice: Listening on driver address: 127.0.0.1
+2019-11-06T11:56:32.737700104 0.544911s notice: Listening on http address: 127.0.0.1
+2019-11-06T11:56:32.737700105 0.544914s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2019-11-06T11:56:32.737700106 0.544917s notice: Server ready, "LX290_WTT_CSZX_s2l" 9952fab1-b606-45e1-b51e-e3405beb6572
+2019-11-06T11:56:33.855254900 1.662365s info: Table 68a1e30f-20d9-4110-8a02-0e478e5b4bdc: Starting a new Raft election for term 40.
+2019-11-06T11:56:33.901132600 1.708180s info: Table 68a1e30f-20d9-4110-8a02-0e478e5b4bdc: This server is Raft leader for term 40. Latest log index is 129.
+2019-11-06T11:56:34.267160100 2.074258s info: Table f157d7c6-8dff-43f7-95b9-5b4b16fee9aa: Starting a new Raft election for term 40.
+2019-11-06T11:56:34.369181800 2.176382s info: Table f157d7c6-8dff-43f7-95b9-5b4b16fee9aa: This server is Raft leader for term 40. Latest log index is 134.
+2019-11-06T11:56:34.391860600 2.198926s info: Table 36fea7ad-b70f-4fcd-b4e5-1d7818c4e9a0: Starting a new Raft election for term 40.
+2019-11-06T11:56:34.539471100 2.346555s info: Table 36fea7ad-b70f-4fcd-b4e5-1d7818c4e9a0: This server is Raft leader for term 40. Latest log index is 131.
+2019-11-06T11:56:37.124309800 4.931381s info: Table f157d7c6-8dff-43f7-95b9-5b4b16fee9aa: Configuration is changing.
+2019-11-06T11:57:03.416809100 31.223624s warn: Problem when checking for new versions of RethinkDB: HTTP request to update.rethinkdb.com failed.
+2019-11-06T15:04:19.518913000 0.211656s notice: Running rethinkdb 2.3.6-windows (MSC 190024215)...
+2019-11-06T15:04:19.519909900 0.212007s notice: Running on 6.2.9200 (Windows 8, Server 2012)
+2019-11-06T15:04:19.522903100 0.215304s notice: Loading data from directory D:\\AirtestIDE\\AutoTest_Project_DRInland\\platform\\rethinkdb_data
+2019-11-06T15:04:19.762269800 0.454261s info: Automatically using cache size of 2685 MB
+2019-11-06T15:04:19.847044100 0.538867s notice: Listening for intracluster connections on port 29015
+2019-11-06T15:04:21.341243300 2.033834s notice: Listening for client driver connections on port 28015
+2019-11-06T15:04:21.342240900 2.034050s notice: Listening for administrative HTTP connections on port 8080
+2019-11-06T15:04:21.342240901 2.034052s notice: Listening on cluster address: 127.0.0.1
+2019-11-06T15:04:21.342240902 2.034066s notice: Listening on driver address: 127.0.0.1
+2019-11-06T15:04:21.342240903 2.034068s notice: Listening on http address: 127.0.0.1
+2019-11-06T15:04:21.342240904 2.034069s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2019-11-06T15:04:21.342240905 2.034070s notice: Server ready, "LX290_WTT_CSZX_s2l" 9952fab1-b606-45e1-b51e-e3405beb6572
+2019-11-06T15:04:21.963121300 2.654879s info: Table 68a1e30f-20d9-4110-8a02-0e478e5b4bdc: Starting a new Raft election for term 41.
+2019-11-06T15:04:22.021941000 2.713719s info: Table 36fea7ad-b70f-4fcd-b4e5-1d7818c4e9a0: Starting a new Raft election for term 41.
+2019-11-06T15:04:22.088799000 2.780892s info: Table 68a1e30f-20d9-4110-8a02-0e478e5b4bdc: This server is Raft leader for term 41. Latest log index is 132.
+2019-11-06T15:04:22.157574000 2.849412s info: Table 36fea7ad-b70f-4fcd-b4e5-1d7818c4e9a0: This server is Raft leader for term 41. Latest log index is 134.
+2019-11-06T15:04:23.066325300 3.758084s info: Table f157d7c6-8dff-43f7-95b9-5b4b16fee9aa: Starting a new Raft election for term 41.
+2019-11-06T15:04:23.174041000 3.866526s info: Table f157d7c6-8dff-43f7-95b9-5b4b16fee9aa: This server is Raft leader for term 41. Latest log index is 137.
+2019-11-06T15:04:26.279224700 6.970893s info: Table f157d7c6-8dff-43f7-95b9-5b4b16fee9aa: Configuration is changing.
+2019-11-07T15:04:51.953275500 86432.144128s warn: Problem when checking for new versions of RethinkDB: HTTP request to update.rethinkdb.com failed.
