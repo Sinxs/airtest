@@ -106,10 +106,10 @@ def honor(start, devices):
                                 common.printred("没有弹出合成弹窗，请检查...")
                                 common.get_screen_shot(start, time.time(), devices, "没有弹出合成弹窗")
                     else:
-                        common.printcolor("背包没有勋章，不做合成操作", "blue")
+                        common.printred("背包没有勋章，不做合成操作", "blue")
                         common.get_screen_shot(start, time.time(), devices, "勋章不足")
                 else:
-                    common.printcolor("背包没有勋章，不做合成操作", "blue")
+                    common.printred("背包没有勋章，不做合成操作", "blue")
                     common.get_screen_shot(start, time.time(), devices, "背包没有勋章")
                 if poco("ItemNewDlg(Clone)").offspring("item302").child("Num").exists():  # 判断背包中勋章的数量，如果数量不足以合成就跳过
                     common.printgreen("背包存在宫廷勋章，开始检查勋章数量")
@@ -155,7 +155,7 @@ def honor(start, devices):
                         common.printgreen("宫廷勋章不足，不做合成操作")
                         common.get_screen_shot(start, time.time(), devices, "勋章不足")
                 else:
-                    common.printcolor("背包没有勋章，不做合成操作", "blue")
+                    common.printred("背包没有勋章，不做合成操作", "blue")
                     common.get_screen_shot(start, time.time(), devices, "背包没有勋章")
         else:
             common.printred("没有进入装备界面，请检查...")

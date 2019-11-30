@@ -30,7 +30,7 @@ def addheraldry(start, poco,devices):
                 common.get_screen_shot(start, time.time(), devices, "没有弹出金属板制作弹窗")
     else:
         if not but.exists():  # 如果界面不存在金属板
-            common.printcolor("没有金属板，没办法进行纹章制作", "blue")
+            common.printred("没有金属板，没办法进行纹章制作", "blue")
             common.get_screen_shot(start, time.time(), devices, "没有金属板")
             poco("Close").click()  # 点击返回，返回到纹章界面
 

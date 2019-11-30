@@ -59,31 +59,31 @@ def space_time(strat, devices):
             freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
             for item in range(len(freeze_poco("Grid").child())):  # 点击奖励小icon
                 item1 = "item"+str(item)
-                freeze_poco(item1).click()
-                freeze_poco(item1).click()
+                freeze_poco("DropFrame").child("Grid").child(item1).child("Icon").click()
+                freeze_poco("DropFrame").child("Grid").child(item1).child("Icon").click()
             if poco("ItemToolTipDlg(Clone)").child("Bg").exists():  # 判断是不是小弹窗还在，如果在就点掉
-                poco(item1).click()
+                poco("DropFrame").child("Grid").child(item1).child("Icon").click()
             common.printgreen("点击  裂隙精英")
             poco("Levelthree").click()
             freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
             for item in range(len(freeze_poco("Grid").child())):  # 点击奖励小icon
                 item1 = "item"+str(item)
-                freeze_poco(item1).click()
-                freeze_poco(item1).click()
+                freeze_poco("DropFrame").child("Grid").child(item1).child("Icon").click()
+                freeze_poco("DropFrame").child("Grid").child(item1).child("Icon").click()
             sleep(1)
             if poco("ItemToolTipDlg(Clone)").child("Bg").exists():  # 判断是不是小弹窗还在，如果在就点掉
-                poco(item1).click()
+                poco("DropFrame").child("Grid").child(item1).child("Icon").click()
             common.printgreen("点击  世界boss")
             poco("LevelOne").click()
             freeze_poco = poco.freeze()  # TODO：定义dongjiepoco
             common.printgreen("时空裂缝界面--显示正确")
             for item in range(len(freeze_poco("Grid").child())):  # 点击奖励小icon
                 item1 = "item"+str(item)
-                freeze_poco(item1).click()
-                freeze_poco(item1).click()
+                freeze_poco("DropFrame").child("Grid").child(item1).child("Icon").click()
+                freeze_poco("DropFrame").child("Grid").child(item1).child("Icon").click()
             sleep(1)
             if poco("ItemToolTipDlg(Clone)").child("Bg").exists():  # 判断是不是小弹窗还在，如果在就点掉
-                poco(item1).click()
+                poco("DropFrame").child("Grid").child(item1).child("Icon").click()
         else:
             common.printred("缺少界面控件元素，请检查...")
             common.get_screen_shot(strat, time.time(), devices, "缺少界面控件元素")
@@ -91,20 +91,20 @@ def space_time(strat, devices):
             poco("LevelOne").offspring("item1").click()
             for item in range(len(freeze_poco("Grid").child())):  # 点击奖励小icon
                 item1 = "item"+str(item)
-                freeze_poco(item1).click()
-                freeze_poco(item1).click()
+                freeze_poco("DropFrame").child("Grid").child(item1).child("Icon").click()
+                freeze_poco("DropFrame").child("Grid").child(item1).child("Icon").click()
             sleep(1)
             if poco("ItemToolTipDlg(Clone)").child("Bg").exists():  # 判断是不是小弹窗还在，如果在就点掉
-                poco(item1).click()
+                poco("DropFrame").child("Grid").child(item1).child("Icon").click()
         if poco("LevelOne").offspring("item2").exists():  # 第三个boss
             poco("LevelOne").offspring("item1").click()
             for item in range(len(freeze_poco("Grid").child())):  # 点击奖励小icon
                 item1 = "item" + str(item)
-                freeze_poco(item1).click()
-                freeze_poco(item1).click()
+                freeze_poco("DropFrame").child("Grid").child(item1).child("Icon").click()
+                freeze_poco("DropFrame").child("Grid").child(item1).child("Icon").click()
                 sleep(1)
             if poco("ItemToolTipDlg(Clone)").child("Bg").exists():  # 判断是不是小弹窗还在，如果在就点掉
-                poco(item1).click()
+                poco("DropFrame").child("Grid").child(item1).child("Icon").click()
         if poco("Levelthree").exists():
             poco("Levelthree").click()
         if poco("Leveltwo").exists():

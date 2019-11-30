@@ -429,7 +429,7 @@ def BtnConsider(start, poco, devices):  # 研究
             freeze_poco("item1").wait().exists() and \
             freeze_poco("item2").wait().exists() and \
             freeze_poco("item3").wait().exists():
-        freeze_poco("item0").click()
+        freeze_poco("GuildGrowthLabDlg(Clone)").offspring("item0").click()
         sleep(1)
         freeze_poco = poco.freeze()  # TODO：定义冻结poco
         if freeze_poco("T").exists() and \

@@ -33,7 +33,7 @@ def dragonspirit(start, devices):
             if poco("DragonSpiritSkillPreView").child("Bg").child("p").exists():
                 icon.click()
             # 点击激活按钮
-            poco("ActivationBtn").click()
+            # poco("ActivationBtn").click()
             if poco(texture="l_frame_00").exists():
                 common.printred("没有激活道具。请补充。。")
                 poco("ActivationBtn").click()
@@ -63,4 +63,4 @@ def dragonspirit(start, devices):
 
 if __name__ == "__main__":
     start = time.localtime()
-    dragonspirit(start, "9b57691d")
+    dragonspirit(start, "e37c0280")

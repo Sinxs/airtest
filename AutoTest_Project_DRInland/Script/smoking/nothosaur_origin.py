@@ -73,7 +73,7 @@ def nothosaur_origin(start, devices):
         #     return None
         B = int(poco("ProgressBar").child("T").get_text().split("/")[0].split("（")[1])
         if A < B:
-            print("消弱成功")
+            printgreen("消弱成功")
         else:
             printred("消弱未生效，请检查。。")
             get_screen_shot(start, time.time(), devices, "主界面没有找到幻龙起源按钮")

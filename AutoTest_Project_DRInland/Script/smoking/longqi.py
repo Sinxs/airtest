@@ -132,7 +132,7 @@ def Artifact(start, devices):
                     with poco.freeze() as freeze_poco:
                         for x in freeze_poco("ArtifactFrame").child("Panel").child("Artifacts").offspring("Quality"):
                             uiname = x.parent().get_name()
-                            freeze_poco(uiname).click()
+                            freeze_poco("ItemNewDlg(Clone)").offspring(uiname).click()
                             poco("Button1").click()  # 穿戴装备
                     printgreen("龙器卸下成功")
                     break
@@ -155,7 +155,6 @@ def check_menu(sysmenu, poco):
 
 
 if __name__ == "__main__":
-    # start = time.localtime()
-    # Artifact(start, "9b57691d")
-    del_progress()
+    start = time.localtime()
+    Artifact(start, "e37c0280")
 

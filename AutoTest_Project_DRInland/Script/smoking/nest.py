@@ -127,10 +127,10 @@ def nest(start, devices):
                 common.get_screen_shot(start, time.time(), devices, "提示战力不足")
                 poco(text="强行闯关").click()
                 # 进入队伍界面
+            if poco("BtnCreate").exists():
+                poco("Close").click()  # 点击返回
                 if poco("BtnCreate").exists():
                     poco("Close").click()  # 点击返回
-                    if poco("BtnCreate").exists():
-                        poco("Close").click()  # 点击返回
         return poco("Btn1").child("T").get_text()  # 查看奖励
     else:
         common.printgreen("巢穴界面地狱选项控件缺失，请检查...")

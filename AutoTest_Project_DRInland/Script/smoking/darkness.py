@@ -66,11 +66,11 @@ def darkness_ectype(start, devices):
                 freeze_poco("4").exists() and \
                 freeze_poco("5").exists():
             for i in range(1, 20):
-                common.printgreen("检查点 " + freeze_poco(str(i)).child("Label").get_text() + " 显示正确")
+                if freeze_poco(str(i)).child("Label").exists():
+                    common.printgreen("检查点 " + freeze_poco(str(i)).child("Label").get_text() + " 显示正确")
             common.printgreen("排行榜首界面显示正确，详细内容不做判断，如果需要，后期优化")
             poco("RankDlg(Clone)").offspring("TabList").offspring("2").child("Bg").click()  # 点击PVE排行，避免影响其他脚本
             poco("Close").click()
-
         else:
             common.printred("排行榜界面显示错误，请检查....")
             common.get_screen_shot(start, time.time(), devices, "排行榜界面显示错误")
@@ -97,5 +97,5 @@ def darkness_ectype(start, devices):
 
 if __name__ == "__main__":
     start = time.localtime()
-    darkness_ectype(start, "2d9096f3")
+    darkness_ectype(start, "e37c0280")
 

@@ -49,7 +49,7 @@ def welfare(start,devices):
     else:
         printred("主界面没有找到福利模块")
         get_screen_shot(start,time.time(), devices, "竞技界面缺少元素，请详细查看")
-    return poco("SelectNormal").get_name()  # 返回主界面上的按钮
+    return poco("WelfareDlg(Clone)").offspring("item9").child("Title").get_text()  # 返回主界面上的按钮
 
 
 def move(poco,item):
@@ -359,4 +359,4 @@ def zhaohui(start, poco, item, devices):  # 奖励找回
 
 if __name__ == "__main__":
     start = time.localtime()
-    welfare(start, "9b57691d")
+    welfare(start, "e37c0280")

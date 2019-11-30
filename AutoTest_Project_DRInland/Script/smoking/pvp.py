@@ -117,7 +117,7 @@ def athletics(start, devices):
                 count = poco("Tabs").child()
                 for i in range(len(count)):
                     item = "item" + str(i)
-                    poco(item).click()
+                    poco("HallFameDlg(Clone)").offspring(item).click()
                     with poco.freeze() as freezepoco:
                         uiname = freezepoco(item).offspring("SelectedTextLabel").get_text()
                         print(f"测试{uiname}模块")

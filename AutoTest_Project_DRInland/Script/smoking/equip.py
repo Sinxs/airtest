@@ -41,7 +41,7 @@ def equip(devices):
                         else:
                             common.printred("没有显示" + item2.get_text() + "界面，请检查---")
                     else:
-                        common.printgreen("当前装备缺少 <装备相关> 选项,请更换更高级的装备")
+                        common.printred("当前装备缺少 <装备相关> 选项,请更换更高级的装备")
                 return poco("Title").get_text()
         else:  # 先获取时装在穿戴后
             common.printred("角色没有穿装备，请准备好测试环境在跑当前脚本，测试环境准备条件在当前脚本的最上方..")
